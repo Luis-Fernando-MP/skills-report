@@ -1,25 +1,35 @@
-# ITD — Proyectos académicos + legado RSL
+# ITD — Proyectos académicos + Graphify
 
-Nomenclatura skills: `project-*` / `graphify-*` / `rsl-*` (inglés).
+Skills actuales: `project-init`, `graphify-project`, `graphify-root`.
 
-## Proyectos académicos (`docs/content/`)
-
-Cada curso/proyecto vive en `docs/content/<FOLDER>/`:
+## Layout
 
 ```text
 docs/content/<FOLDER>/
-  config.json      # citation_style, modelo, alcance
-  profile.md       # tema, descripción, problema, alcance
-  structure.md     # opcional — si existe, pisa al modelo común
-  docs/            # apuntes md/qmd
-  graphify-out/    # memoria Graphify del proyecto (gitignored)
+  config.json           # citation_style, modelo, alcance
+  profile.md            # tema, descripción, problema, alcance
+  structure.md          # opcional — si existe, pisa al modelo común
+  docs/                 # apuntes md/qmd
+  graphify-out/         # memoria del proyecto (gitignored)
   index-manifest.json
 
-common/citation-style/APA7.md | IEEE.md
-common/structure/model1.md    # índices reutilizables (config.modelo)
+common/citation-style/  # APA7.md, IEEE.md
+common/structure/       # model1.md, … (config.modelo)
+
+graphify-out/           # memoria del repo (skills, README…)
 ```
 
-### Init
+**Índice del informe:** `structure.md` local si existe; si no → `common/structure/{config.modelo}.md`.
+
+## Skills
+
+| Skill | Qué hace | Salida |
+|-------|----------|--------|
+| `project-init` | Inicializa proyecto (deriva carpeta; rellena profile + config) | `docs/content/<FOLDER>/` |
+| `graphify-project` | Memoria Graphify de un proyecto | `docs/content/<FOLDER>/graphify-out/` |
+| `graphify-root` | Memoria Graphify del repo | `graphify-out/` |
+
+## Init
 
 | Vía | Input | Efecto |
 |-----|--------|--------|
@@ -34,10 +44,13 @@ pnpm project:init MOST
 Usa project-init
 Carpeta: MOST
 Tema: …
+Descripción: …
+Problema: …
+Alcance: …
 Modelo: model1
 ```
 
-### Memoria Graphify del proyecto
+## Graphify — proyecto
 
 ```text
 Usa graphify-project sobre FIS
@@ -54,151 +67,27 @@ Consulta:
 graphify query "Lean Canvas" --graph docs/content/FIS/graphify-out/graph.json
 ```
 
----
-
-## Skills RSL (legado)
-
-| Skill | Qué hace | Salida |
-|-------|----------|--------|
-| `rsl-topic-panel` | Estresa un tema (4 agentes + debate Mermaid + consenso) | `docs/[titulo-breve]/topic.md` |
-| `rsl-make-report` | Genera el informe UTP (7 puntos) | `docs/[titulo-breve]/informe.md` |
-| `rsl-polish-report` | Pule el informe (4 agentes) | `docs/[titulo-breve]/informe-polish.md` |
-| `rsl-make-paper` | Genera la **Introducción** borrador (sin agentes; APA 7; puede ir larga con §1.1…) | `docs/[titulo-breve]/paper.md` |
-| `rsl-polish-paper` | Pule la Introducción (4 agentes) → texto limpio + traza de debate | `paper-polish.md` + `paper-debate.md` |
-
-## Skills Graphify (memoria — **tú** las ejecutas)
-
-Los agentes `rsl-*` **no** regeneran Graphify solos. Tú invocas la skill cuando quieras actualizar la memoria.
-
-| Skill | Qué hace | Salida |
-|-------|----------|--------|
-| `graphify-root` | Crea/actualiza el grafo del **repo** | `graphify-out/` |
-| `graphify-theme` | Grafo de **un tema RSL** (legado) | `docs/[titulo-breve]/graphify-out/` |
-| `graphify-project` | Grafo de **un proyecto** en `docs/content/` | `docs/content/[FOLDER]/graphify-out/` |
-| `project-init` | Inicializa proyecto académico | `docs/content/[FOLDER]/` |
-
-Mismo tema RSL → **misma carpeta**:
-
-```text
-docs/[titulo-breve]/
-  topic.md
-  informe.md
-  informe-polish.md
-  paper.md
-  paper-polish.md        ← tema / problemática / objetivo + Intro fluida + 3 refs APA
-  paper-debate.md        ← Mermaid + turnos (no va al documento)
-  ficha.md               ← opcional (si la adjuntas; si no, se usa informe-polish/informe)
-  RSL/
-    PDF/                 ← originales
-    MD/                  ← corpus indexable (RAG + headings + locators)
-    index-manifest.json  ← traza (no re-lee lo indexado)
-  graphify-out/          ← grafo del tema (gitignored)
-```
-
-Root (repo):
-
-```text
-graphify-out/     ← memoria Graphify del repo (skills, README…)
-```
-
-Agentes: `.cursor/agents/` (`critico-rsl`, `defensor-rsl`, `impacto-social-rsl`, `viabilidad-negocio-rsl`)
-
----
-
-## Cómo ejecutar
-
-### Estresar tema
-
-```text
-Usa rsl-topic-panel con este tema:
-
-Título: ...
-Problemática: ...
-Objeto de estudio: ...
-```
-
-### Crear informe UTP
-
-```text
-Usa rsl-make-report sobre docs/[titulo-breve]/
-```
-
-### Pulir informe UTP
-
-```text
-Usa rsl-polish-report sobre docs/[titulo-breve]/informe.md
-```
-
-### Crear Introducción del paper (sin agentes)
-
-Usa `topic.md` + ficha (`informe-polish.md` / `informe.md` / `ficha.md`) + Graphify + `RSL/MD/`.
-
-```text
-Usa rsl-make-paper sobre docs/ia-inclusion-cognitiva-software/
-```
-
-Salida: `paper.md` (borrador con Contexto…Organización numerados; **no** citar `topic.md` en el texto).
-
-### Pulir Introducción del paper (4 agentes)
-
-```text
-Usa rsl-polish-paper sobre docs/[titulo-breve]/paper.md
-```
-
-Salidas:
-- `paper-polish.md` — **Tema / Problemática (pregunta ¿…?) / Objetivo**; luego H2 en orden: **Contexto → El problema → Justificación → Objetivo de la RSL → Organización** (1–varios párrafos por bloque, sin 1.1/2.3); al final **Referencias** APA 7 de las **3 RSL ancla**.
-- `paper-debate.md` — Mermaid + turnos del debate.
-
-### Memoria Graphify — root
+## Graphify — root
 
 ```text
 Usa graphify-root
 ```
 
 ```bash
-npm run graphify:refresh
+pnpm graphify:refresh
 ```
-
-### Memoria Graphify — tema (pipeline A→D)
-
-```text
-Usa graphify-theme sobre docs/ia-inclusion-cognitiva-software/
-```
-
-| Stage | Acción |
-|-------|--------|
-| **A prepare** | Diff `index-manifest.json` → `pdftotext` + MD estructurado (`##`/`###` + locators). Skip si ya indexado. |
-| **B agent-RAG** | Solo si `needs_agent` (PDF ilegible / pocos headings). |
-| **C build** | Grafo AST en `graphify-out/`. |
-| **D verify** | Gates: ≥8 nodos/paper, queries smoke, informe/topic. |
-
-```bash
-npm run graphify:theme -- ia-inclusion-cognitiva-software
-npm run graphify:theme:test -- ia-inclusion-cognitiva-software
-```
-
-Consulta (después de PASS):
-
-```bash
-graphify query "digital accessibility" --graph docs/ia-inclusion-cognitiva-software/graphify-out/graph.json
-```
-
----
 
 ## Orden sugerido
 
 ```text
-rsl-topic-panel
-  → rsl-make-report
-  → PDFs en RSL/PDF/
-  → graphify-theme (PASS)
-  → rsl-polish-report
-  → rsl-make-paper          ← Introducción borrador (APA 7; puede ser larga)
-  → rsl-polish-paper        ← paper-polish.md limpio + paper-debate.md
+project-init
+  → pegar/ajustar structure o config.modelo
+  → apuntes en docs/content/<FOLDER>/docs/
+  → graphify-project (PASS)
+  → (generación de capítulos: siguiente fase)
 ```
-(y de vez en cuando **`graphify-root`** si cambias skills / README)
 
-Para proyectos académicos: **`project-init`** → apuntes en `docs/` → **`graphify-project`** (generación de capítulos: fase siguiente).
+De vez en cuando **`graphify-root`** si cambias skills / README.
 
 ## Requisitos Graphify
 
