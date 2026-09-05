@@ -12,6 +12,25 @@
 
 *Promedio crítico R1 ≈ 2,3 (no ≤ 2). Viabilidad R2 ≥ 3. Ataques fuertes mitigados tras R2 con cambio de núcleo/alcance → no aplica NO_GO por ≥2 abiertos.*
 
+## Diagrama del debate
+```mermaid
+flowchart TD
+  audit[theme-audit.md] --> r1[Ronda1]
+  r1 --> crit[critico-estricto]
+  r1 --> def[defensor-fundamento]
+  r1 --> soc[impacto-social]
+  r1 --> neg[viabilidad-mvp]
+  crit -->|"commodity matriz + ISO mal usado + dual MVP"| def
+  crit -->|"sin baseline Romantex / tiempo real"| def
+  def -->|"concede; aporte = gobierno + priorización a|b"| crit
+  soc -->|"impacto bajo en diagnóstico"| out[Veredicto GO_con_cambios]
+  neg -->|"MVP1 solo inventario ≤2 ubic. propias"| out
+  crit --> r2[Ronda2]
+  def --> r2
+  neg --> r2
+  r2 -->|"Fase0 gate + sin POS + fichas a MVP2"| out
+```
+
 ## Preguntas y respuestas (cronológico)
 
 ### Ronda 1

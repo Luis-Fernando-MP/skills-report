@@ -3,7 +3,8 @@ name: init-theme-audit-polish
 description: >-
   Stress-test one audited theme (theme-audit.md) with critico-estricto,
   defensor-fundamento, impacto-social, viabilidad-mvp in una_alternativa mode;
-  write theme-audit-debate.md + theme-audit-polish.md. Use when user says
+  write theme-audit-debate.md (scores + diagrama + Q&A) and
+  theme-audit-polish.md (veredicto + tema final). Use when user says
   init-theme-audit-polish.
 ---
 
@@ -16,7 +17,7 @@ Estresa **el tema único** producido por `init-theme-audit`. Reutiliza los mismo
 ```text
 docs/topics/<FOLDER>/
   theme-audit.md           # entrada (init-theme-audit)
-  theme-audit-debate.md    # acta: scores por dimensión, Q&A
+  theme-audit-debate.md    # acta: scores, diagrama mermaid, Q&A
   theme-audit-polish.md    # veredicto + tema final o NO_GO
 ```
 
@@ -87,18 +88,6 @@ Mismos agentes y límites de búsqueda. Debate **componentes internos** (problem
 ## Cruce global
 …
 
-## Fuentes consultadas
-- …
-```
-
-### Write `theme-audit-polish.md`
-
-```markdown
-# Veredicto auditoría — [FOLDER]
-
-## Veredicto global
-GO | GO_con_cambios | NO_GO
-
 ## Diagrama del debate
 \`\`\`mermaid
 flowchart TD
@@ -117,6 +106,18 @@ flowchart TD
   r2 --> out
 \`\`\`
 *(Personalizar edges con objeciones reales.)*
+
+## Fuentes consultadas
+- …
+```
+
+### Write `theme-audit-polish.md`
+
+```markdown
+# Veredicto auditoría — [FOLDER]
+
+## Veredicto global
+GO | GO_con_cambios | NO_GO
 
 ## Detalle
 Ver `theme-audit-debate.md`.

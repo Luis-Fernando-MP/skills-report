@@ -2,8 +2,8 @@
 name: init-theme-polish
 description: >-
   Debate 3 theme alternatives with critico-estricto, defensor-fundamento,
-  impacto-social, viabilidad-mvp; write theme-debate.md (scores + Q&A trail) and
-  theme-polish.md (GO/NO_GO + final theme). Use when user says init-theme-polish.
+  impacto-social, viabilidad-mvp; write theme-debate.md (scores + diagrama + Q&A)
+  and theme-polish.md (GO/NO_GO + final theme). Use when user says init-theme-polish.
 ---
 
 # init-theme-polish
@@ -15,7 +15,7 @@ Estresa las **3 alternativas** de `theme.md`. Si el input es un **tema único** 
 ```text
 docs/topics/<FOLDER>/
   theme.md           # entrada (init-theme)
-  theme-debate.md    # acta: scores, preguntas, respuestas
+  theme-debate.md    # acta: scores, diagrama mermaid, preguntas, respuestas
   theme-polish.md    # veredicto + alternativa final o NO_GO
 ```
 
@@ -101,18 +101,6 @@ Acta legible para el humano. Plantilla:
 ## Cruce global
 Choques, réplicas ronda 2, y por qué se eligió (o no) una.
 
-## Fuentes consultadas (panel)
-- …
-```
-
-### Write `theme-polish.md`
-
-```markdown
-# Veredicto — [FOLDER]
-
-## Veredicto global
-GO | GO_con_cambios | NO_GO
-
 ## Diagrama del debate
 \`\`\`mermaid
 flowchart TD
@@ -130,6 +118,18 @@ flowchart TD
   r2 --> out
 \`\`\`
 *(Personalizar edges con objeciones reales de esta corrida.)*
+
+## Fuentes consultadas (panel)
+- …
+```
+
+### Write `theme-polish.md`
+
+```markdown
+# Veredicto — [FOLDER]
+
+## Veredicto global
+GO | GO_con_cambios | NO_GO
 
 ## Detalle del debate
 Ver `theme-debate.md`.
