@@ -1,14 +1,14 @@
 ---
-name: project-init
+name: init-project
 description: >-
   Create an academic project under docs/content/{FOLDER}: derive folder name
   from the topic, fill profile.md and config.json (citation_style, modelo,
-  alcance). Use when user says project-init or wants a new course/project mold.
+  alcance). Use when user says init-project (legacy: project-init).
 ---
 
-# project-init
+# init-project
 
-Inicializa un **proyecto académico** (informe / artículo de análisis) en `docs/content/<FOLDER>/`.
+Tercer paso de la familia **init-*** (tras `init-theme` / `init-theme-polish` si aplica). Inicializa un **proyecto académico** en `docs/content/<FOLDER>/`.
 
 ## CLI vs skill
 
@@ -38,7 +38,7 @@ common/structure/<modelo>.md   # índice si no hay structure.md local
 
 ## Procedure
 
-1. Leer lo que aportó el usuario (tema, descripción, problema, alcance, estilo de cita, modelo, capítulos, carpeta explícita).
+1. Leer lo que aportó el usuario (tema, descripción, problema, alcance, estilo de cita, modelo, capítulos, carpeta explícita). Si viene de `theme-polish.md`, preferir el tema final de ahí.
 2. **Derivar `FOLDER`:**
    - Si el usuario da un código corto (`MOST`, `FIS`) → usarlo.
    - Si no → slug corto (mayúsculas o kebab seguro) a partir del curso/tema; si `docs/content/<FOLDER>/` ya existe, preguntar o elegir variante.
@@ -67,7 +67,7 @@ common/structure/<modelo>.md   # índice si no hay structure.md local
 ## Invoke examples
 
 ```text
-Usa project-init
+Usa init-project
 
 Carpeta: MOST
 Tema: Informe digitalización inventario PyME calzado
@@ -80,8 +80,7 @@ Alcance capítulos: capítulo 1 todas las secciones
 ```
 
 ```text
-Usa project-init con este tema: …
-(usa el modelo model1)
+Usa init-project con el tema final de docs/topics/ITD/theme-polish.md
 ```
 
 ## Forbidden

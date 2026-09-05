@@ -9,27 +9,24 @@ Método: cada tema une **3 tópicos** (dominio + tecnología SE/IA + ángulo dif
 
 ---
 
-## Cómo estresar un tema (tú corres el panel)
+## Cómo definir y estresar temas (familia init-*)
 
-La skill `rsl-topic-panel` acepta **cualquier tema**, no solo estos 5.
-
-Forma principal — pega tu tema en el chat:
+Usa **`init-theme`** (3–4 tópicos → `docs/topics/<FOLDER>/theme.md`) y luego **`init-theme-polish`** (`theme-debate.md` + `theme-polish.md`).
 
 ```text
-Usa rsl-topic-panel con este tema:
-
-Título: ...
-Problemática: ...
-Objeto de estudio: ...
+Usa init-theme
+Carpeta: ITD
+Tópicos:
+1. …
+2. …
+3. …
 ```
-
-Atajo opcional si quieres uno de estos ejemplos:
 
 ```text
-Usa rsl-topic-panel sobre el Candidato N de candidatos-tema-rsl.md
+Usa init-theme-polish sobre ITD
 ```
 
-Detalle: [README.md](README.md).
+Puedes basarte en estos candidatos como tópicos de entrada. Detalle: [README.md](README.md).
 
 ---
 
@@ -133,10 +130,10 @@ Taxonomía por tipo de discapacidad cognitiva, técnica de IA, fase SE y métric
 
 ## Uso del panel de estrés
 
-- Skill: `.cursor/skills/rsl-topic-panel/SKILL.md`
-- Agentes: `critico-rsl`, `defensor-rsl`, `impacto-social-rsl`, `viabilidad-negocio-rsl` en `.cursor/agents/`
+- Skills: `.cursor/skills/init-theme/`, `.cursor/skills/init-theme-polish/`
+- Agentes: `critico-estricto`, `defensor-fundamento`, `impacto-social`, `viabilidad-mvp`, `benchmark-theme` en `.cursor/agents/`
 
-Tras **tu** ejecución del panel, anota el veredicto. Para el informe UTP usa `rsl-make-report` (salida en `docs/[fecha hora - título]/informe.md`).
+Tras el polish, revisa `theme-debate.md` y el veredicto en `theme-polish.md`. Luego `init-project` si aplica.
 
 | Tema / corrida | Veredicto | Fecha | Notas |
 |----------------|-----------|-------|-------|

@@ -1,10 +1,15 @@
 # ITD — Proyectos académicos + Graphify
 
-Skills actuales: `project-init`, `graphify-project`, `graphify-root`.
+Skills de inicio: `init-theme` → `init-theme-polish` → `init-project`. Graphify: `graphify-project`, `graphify-root`.
 
 ## Layout
 
 ```text
+docs/topics/<FOLDER>/
+  theme.md              # 3 alternativas (init-theme)
+  theme-debate.md       # acta + scores (init-theme-polish)
+  theme-polish.md       # veredicto + tema final (init-theme-polish)
+
 docs/content/<FOLDER>/
   config.json           # citation_style, modelo, alcance
   profile.md            # tema, descripción, problema, alcance
@@ -25,23 +30,40 @@ graphify-out/           # memoria del repo (skills, README…)
 
 | Skill | Qué hace | Salida |
 |-------|----------|--------|
-| `project-init` | Inicializa proyecto (deriva carpeta; rellena profile + config) | `docs/content/<FOLDER>/` |
+| `init-theme` | 3–4 tópicos → 3 alternativas + benchmarking | `docs/topics/<FOLDER>/theme.md` |
+| `init-theme-polish` | Debate 4 agentes; scores + veredicto | `theme-debate.md` + `theme-polish.md` |
+| `init-project` | Inicializa proyecto (profile + config) | `docs/content/<FOLDER>/` |
 | `graphify-project` | Memoria Graphify de un proyecto | `docs/content/<FOLDER>/graphify-out/` |
 | `graphify-root` | Memoria Graphify del repo | `graphify-out/` |
 
-## Init
+## Init — tema
+
+```text
+Usa init-theme
+Carpeta: ITD
+Tópicos:
+1. …
+2. …
+3. …
+```
+
+```text
+Usa init-theme-polish sobre ITD
+```
+
+## Init — proyecto
 
 | Vía | Input | Efecto |
 |-----|--------|--------|
 | `pnpm project:init <FOLDER>` | Solo nombre de carpeta | Molde vacío (`APA7`, `modelo: model1`) |
-| Skill `project-init` | Tema + extras | Deriva carpeta; rellena **profile** y **config** |
+| Skill `init-project` | Tema + extras (o `theme-polish.md`) | Deriva carpeta; rellena **profile** y **config** |
 
 ```bash
 pnpm project:init MOST
 ```
 
 ```text
-Usa project-init
+Usa init-project
 Carpeta: MOST
 Tema: …
 Descripción: …
@@ -80,7 +102,9 @@ pnpm graphify:refresh
 ## Orden sugerido
 
 ```text
-project-init
+init-theme
+  → init-theme-polish   # theme-debate.md + theme-polish.md (o NO_GO → otros tópicos)
+  → init-project        # docs/content/<FOLDER>/
   → pegar/ajustar structure o config.modelo
   → apuntes en docs/content/<FOLDER>/docs/
   → graphify-project (PASS)
