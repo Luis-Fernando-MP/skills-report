@@ -60,7 +60,7 @@ def save_manifest(project: Path, manifest: dict) -> None:
 def load_config(project: Path) -> dict:
     path = project / "config.json"
     if not path.exists():
-        return {"citation_style": "APA7", "modelo": "model1", "alcance": []}
+        return {"citation_style": "APA7", "modelo": "model1", "alcance": [], "mvp": 1}
     return json.loads(path.read_text(encoding="utf-8"))
 
 

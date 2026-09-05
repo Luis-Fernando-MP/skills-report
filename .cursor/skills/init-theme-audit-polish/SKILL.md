@@ -4,8 +4,8 @@ description: >-
   Stress-test one audited theme (theme-audit.md) with critico-estricto,
   defensor-fundamento, impacto-social, viabilidad-mvp in una_alternativa mode;
   write theme-audit-debate.md (scores + diagrama + Q&A) and
-  theme-audit-polish.md (veredicto + tema final). Use when user says
-  init-theme-audit-polish.
+  theme-audit-polish.md (veredicto + tema final + MVP entregables). Use when
+  user says init-theme-audit-polish.
 ---
 
 # init-theme-audit-polish
@@ -17,8 +17,8 @@ Estresa **el tema único** producido por `init-theme-audit`. Reutiliza los mismo
 ```text
 docs/topics/<FOLDER>/
   theme-audit.md           # entrada (init-theme-audit)
-  theme-audit-debate.md    # acta: scores, diagrama mermaid, Q&A
-  theme-audit-polish.md    # veredicto + tema final o NO_GO
+  theme-audit-debate.md    # acta: scores, diagrama mermaid, Q&A, debate MVP
+  theme-audit-polish.md    # veredicto + tema final + MVP entregables
 ```
 
 ## Invoke
@@ -62,8 +62,9 @@ Mismos agentes y límites de búsqueda. Debate **componentes internos** (problem
 ### Round 2 — cross-debate
 
 1. Pasar ataques/preguntas del crítico → `defensor-fundamento`.
-2. Pasar alcance cuestionado → `viabilidad-mvp`.
-3. Consolidar scores por dimensión.
+2. Pasar alcance cuestionado → `viabilidad-mvp` (debe devolver `### MVP entregables` con 2–4 MVPs: objetivo, entregables concretos, criterio de éxito, dependencias).
+3. Pasar el bloque MVP entregables → `critico-estricto` (¿inflado / paperware / núcleo equivocado?), `defensor-fundamento` e `impacto-social` (¿cuál arrancar y por qué).
+4. Orquestador fija **MVP de arranque** (casi siempre 1) o documenta disenso; consolidar scores por dimensión.
 
 ### Write `theme-audit-debate.md`
 
@@ -88,6 +89,13 @@ Mismos agentes y límites de búsqueda. Debate **componentes internos** (problem
 ## Cruce global
 …
 
+### Debate MVP entregables
+- [viabilidad-mvp] propuesta de secuencia / arranque: …
+- [critico-estricto] …
+- [defensor-fundamento] …
+- [impacto-social] …
+- Orquestador — MVP de arranque: N — …
+
 ## Diagrama del debate
 \`\`\`mermaid
 flowchart TD
@@ -99,7 +107,7 @@ flowchart TD
   crit -->|"objecion"| def
   def -->|"respuesta"| crit
   soc -->|"exigencia"| out[Veredicto]
-  neg -->|"MVP"| out
+  neg -->|"MVP entregables"| out
   crit --> r2[Ronda2]
   def --> r2
   neg --> r2
@@ -133,20 +141,32 @@ Ver `theme-audit-debate.md`.
 …
 ### Alcance
 …
-### MVP acordado
-- MVP 1: …
-- Fuera ahora: …
+
+## MVP entregables
+*(Solo si GO o GO_con_cambios. Resultado del debate R2.)*
+
+### MVP de arranque (recomendado al equipo)
+MVP N — una frase + por qué gana el debate
+
+### Secuencia
+| MVP | Objetivo | Entregables | Criterio de éxito | Estado |
+|-----|----------|-------------|-------------------|--------|
+| 1 | … | … | … | se trabaja ahora |
+| 2 | … | … | … | después |
+
+### Fuera de secuencia / descartado
+- …
 
 ## Si NO_GO
 El tema no pasó. Reformular o cambiar de eje; volver a `init-theme-audit` o explorar con `init-theme`.
 
 ## Listo para
-`init-project` (usar este tema final en `profile.md`).
+`init-project` (espejar tema final + MVP entregables en `profile.md`) → `init-project-mvp mvp-<N>`.
 ```
 
 ### Chat
 
-Paths + veredicto en una línea. Si NO_GO: indicar reformulación.
+Paths + veredicto + **MVP de arranque** en una línea. Si NO_GO: indicar reformulación.
 
 ## Forbidden
 
@@ -155,3 +175,4 @@ Paths + veredicto en una línea. Si NO_GO: indicar reformulación.
 - Forzar GO si el umbral dice NO_GO.
 - Escribir proyecto en `docs/content/` aquí.
 - Tocar skills `rsl-*` / regenerar Graphify.
+- Dejar solo un bullet “MVP acordado” sin tabla de entregables debatidos.

@@ -153,7 +153,7 @@ Ver `theme-debate.md`.
 Ninguna alternativa fue aceptada. Traer otros tópicos o áreas e invocar de nuevo `init-theme`.
 
 ## Listo para siguiente skill
-`init-project` (usar el tema final de este archivo en `profile.md`).
+`init-project` (espejar tema final en `profile.md`, `config.mvp`) → `init-project-mvp mvp-<N>`.
 ```
 
 ### Chat

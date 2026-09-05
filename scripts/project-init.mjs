@@ -35,19 +35,41 @@ if (existsSync(projectAbs)) {
 
 const profileTemplate = `# Perfil del proyecto
 
-**Nombre del proyecto:**
+## Tema
 
-**Descripción:**
 
-**Problema identificado:**
+## Descripción
 
-**Alcance de la propuesta:**
+
+## Problema identificado
+
+
+## Alcance
+
+
+## MVP entregables
+
+### MVP de arranque (recomendado al equipo)
+
+
+### Secuencia
+| MVP | Objetivo | Entregables | Criterio de éxito | Estado |
+|-----|----------|-------------|-------------------|--------|
+| 1 | | | | se trabaja ahora |
+
+### Fuera de secuencia / descartado
+
+
+## Origen
+- polish:
+- veredicto:
 `;
 
 const config = {
   citation_style: 'APA7',
   modelo: 'model1',
   alcance: [],
+  mvp: 1,
 };
 
 mkdirSync(path.join(projectAbs, 'docs'), { recursive: true });
@@ -56,8 +78,8 @@ writeFileSync(path.join(projectAbs, 'profile.md'), profileTemplate, 'utf8');
 writeFileSync(path.join(projectAbs, 'docs', '.gitkeep'), '', 'utf8');
 
 console.log(`PASS: project mold → ${projectRel}`);
-console.log('  config.json  (citation_style=APA7, modelo=model1, alcance=[])');
-console.log('  profile.md   (empty template)');
+console.log('  config.json  (citation_style=APA7, modelo=model1, alcance=[], mvp=1)');
+console.log('  profile.md   (empty template — mirror polish via init-project)');
 console.log('  docs/        (apuntes)');
 console.log('  structure.md not created — index from common/structure/model1.md via config.modelo');
 process.exit(0);
