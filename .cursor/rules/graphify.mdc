@@ -1,16 +1,17 @@
 ---
-description: Graphify dual memory (root + per-theme). Lookup OK; refresh only via skills/user.
+description: Graphify scopes (root + theme RSL + project). Lookup OK; refresh only via skills/user.
 alwaysApply: true
 ---
 
-# Graphify (FIS)
+# Graphify (ITD)
 
-Two graph scopes:
+Three graph scopes:
 
 | Scope | Graph path | Refresh |
 |-------|------------|---------|
 | Root (repo) | `graphify-out/graph.json` | `npm run graphify:refresh` / skill **graphify-root** |
-| Theme | `docs/[titulo-breve]/graphify-out/graph.json` | `npm run graphify:theme -- <slug>` / skill **graphify-theme** |
+| Theme RSL (legado) | `docs/[titulo-breve]/graphify-out/graph.json` | `npm run graphify:theme -- <slug>` / skill **graphify-theme** |
+| Proyecto académico | `docs/content/[FOLDER]/graphify-out/graph.json` | `pnpm graphify:project -- <FOLDER>` / skill **graphify-project** |
 
 ## Lookup (default — agents MAY query)
 
@@ -22,18 +23,27 @@ graphify path "A" "B"
 graphify explain "<concept>"
 ```
 
-Theme (require `--graph`):
+Theme RSL (require `--graph`):
 
 ```bash
 graphify query "<question>" --graph docs/[titulo-breve]/graphify-out/graph.json
 ```
 
-Prefer theme graph when the question is about that tema’s `informe`, SLRs, PDFs, or `topic.md`. Prefer root for skills, `global/`, README, cross-theme layout.
+Proyecto (require `--graph`):
 
-If `graphify-out/wiki/index.md` (or theme wiki) exists, navigate it before dumping large files.
+```bash
+graphify query "<question>" --graph docs/content/[FOLDER]/graphify-out/graph.json
+```
+
+Prefer **project** graph for `profile.md`, `structure`/`modelo`, and course notes under `docs/content/[FOLDER]/docs/`. Prefer theme graph for legado RSL (`informe`, SLRs, PDFs, `topic.md`). Prefer root for skills, README, cross-project layout.
+
+If `graphify-out/wiki/index.md` (or project/theme wiki) exists, navigate it before dumping large files.
+
+## Índice del informe (proyectos)
+
+1. `docs/content/[FOLDER]/structure.md` local si existe con contenido útil.
+2. Si no → `common/structure/{config.modelo}.md`.
 
 ## Refresh — human / skill owned
 
-**Never** run `npm run graphify:refresh`, `npm run graphify:theme`, or `graphify update` from `rsl-*` agents or casual coding unless the user **explicitly** invokes **graphify-root** / **graphify-theme** (or asks to refresh).
-
-PDFs live under `docs/[tema]/RSL/PDF/` so they do not sit next to markdown. Theme Graphify indexes that corpus; optional `RSL/MD/` conversions are also welcome for lighter tokens.
+**Never** run `npm run graphify:refresh`, `npm run graphify:theme`, `pnpm graphify:project`, or `graphify update` from casual coding unless the user **explicitly** invokes **graphify-root** / **graphify-theme** / **graphify-project** (or asks to refresh).

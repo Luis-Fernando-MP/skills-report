@@ -1,8 +1,62 @@
-# FIS — Skills RSL + Graphify
+# ITD — Proyectos académicos + legado RSL
 
-Nomenclatura skills: `rsl-*` / `graphify-*` (inglés).
+Nomenclatura skills: `project-*` / `graphify-*` / `rsl-*` (inglés).
 
-## Skills RSL
+## Proyectos académicos (`docs/content/`)
+
+Cada curso/proyecto vive en `docs/content/<FOLDER>/`:
+
+```text
+docs/content/<FOLDER>/
+  config.json      # citation_style, modelo, alcance
+  profile.md       # tema, descripción, problema, alcance
+  structure.md     # opcional — si existe, pisa al modelo común
+  docs/            # apuntes md/qmd
+  graphify-out/    # memoria Graphify del proyecto (gitignored)
+  index-manifest.json
+
+common/citation-style/APA7.md | IEEE.md
+common/structure/model1.md    # índices reutilizables (config.modelo)
+```
+
+### Init
+
+| Vía | Input | Efecto |
+|-----|--------|--------|
+| `pnpm project:init <FOLDER>` | Solo nombre de carpeta | Molde vacío (`APA7`, `modelo: model1`) |
+| Skill `project-init` | Tema + extras | Deriva carpeta; rellena **profile** y **config** |
+
+```bash
+pnpm project:init MOST
+```
+
+```text
+Usa project-init
+Carpeta: MOST
+Tema: …
+Modelo: model1
+```
+
+### Memoria Graphify del proyecto
+
+```text
+Usa graphify-project sobre FIS
+```
+
+```bash
+pnpm graphify:project -- FIS
+pnpm graphify:project -- FIS --prepare-only
+```
+
+Consulta:
+
+```bash
+graphify query "Lean Canvas" --graph docs/content/FIS/graphify-out/graph.json
+```
+
+---
+
+## Skills RSL (legado)
 
 | Skill | Qué hace | Salida |
 |-------|----------|--------|
@@ -14,14 +68,16 @@ Nomenclatura skills: `rsl-*` / `graphify-*` (inglés).
 
 ## Skills Graphify (memoria — **tú** las ejecutas)
 
-Los agentes `rsl-*` **no** regeneran Graphify solos. Tú invocas la skill cuando quieras actualizar la memoria. Las skills de paper **sí consultan** el grafo (`query`) para gastar menos tokens.
+Los agentes `rsl-*` **no** regeneran Graphify solos. Tú invocas la skill cuando quieras actualizar la memoria.
 
 | Skill | Qué hace | Salida |
 |-------|----------|--------|
 | `graphify-root` | Crea/actualiza el grafo del **repo** | `graphify-out/` |
-| `graphify-theme` | Crea/actualiza el grafo de **un tema** | `docs/[titulo-breve]/graphify-out/` |
+| `graphify-theme` | Grafo de **un tema RSL** (legado) | `docs/[titulo-breve]/graphify-out/` |
+| `graphify-project` | Grafo de **un proyecto** en `docs/content/` | `docs/content/[FOLDER]/graphify-out/` |
+| `project-init` | Inicializa proyecto académico | `docs/content/[FOLDER]/` |
 
-Mismo tema → **misma carpeta**:
+Mismo tema RSL → **misma carpeta**:
 
 ```text
 docs/[titulo-breve]/
@@ -39,10 +95,10 @@ docs/[titulo-breve]/
   graphify-out/          ← grafo del tema (gitignored)
 ```
 
-Root (proyecto):
+Root (repo):
 
 ```text
-graphify-out/     ← memoria Graphify del repo (skills, global/, README…)
+graphify-out/     ← memoria Graphify del repo (skills, README…)
 ```
 
 Agentes: `.cursor/agents/` (`critico-rsl`, `defensor-rsl`, `impacto-social-rsl`, `viabilidad-negocio-rsl`)
@@ -140,7 +196,9 @@ rsl-topic-panel
   → rsl-make-paper          ← Introducción borrador (APA 7; puede ser larga)
   → rsl-polish-paper        ← paper-polish.md limpio + paper-debate.md
 ```
-(y de vez en cuando **`graphify-root`** si cambias skills / `global/`)
+(y de vez en cuando **`graphify-root`** si cambias skills / README)
+
+Para proyectos académicos: **`project-init`** → apuntes en `docs/` → **`graphify-project`** (generación de capítulos: fase siguiente).
 
 ## Requisitos Graphify
 
