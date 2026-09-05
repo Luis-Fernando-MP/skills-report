@@ -8,7 +8,9 @@ description: >-
 
 # init-theme
 
-Primer paso de la familia **init-***. Define temas de proyecto en `docs/topics/<FOLDER>/`.
+Primer paso de la familia **init-*** cuando **exploras** desde tópicos. Define 3 alternativas en `docs/topics/<FOLDER>/`.
+
+Si **ya tienes un tema concreto** (empresa + problema + alcance) → usa **`init-theme-audit`**, no esta skill.
 
 ## Layout
 

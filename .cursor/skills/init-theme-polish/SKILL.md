@@ -8,7 +8,7 @@ description: >-
 
 # init-theme-polish
 
-Segundo paso de la familia **init-***. Estresa las 3 alternativas de `theme.md` y deja acta + veredicto.
+Estresa las **3 alternativas** de `theme.md`. Si el input es un **tema único** auditado → usa **`init-theme-audit-polish`**.
 
 ## Layout
 

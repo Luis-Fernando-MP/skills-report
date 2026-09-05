@@ -1,14 +1,22 @@
 # ITD — Proyectos académicos + Graphify
 
-Skills de inicio: `init-theme` → `init-theme-polish` → `init-project`. Graphify: `graphify-project`, `graphify-root`.
+Skills de inicio:
+
+- Explorar: `init-theme` → `init-theme-polish` → `init-project`
+- Tema ya propuesto: `init-theme-audit` → `init-theme-audit-polish` → `init-project`
+
+Graphify: `graphify-project`, `graphify-root`.
 
 ## Layout
 
 ```text
 docs/topics/<FOLDER>/
-  theme.md              # 3 alternativas (init-theme)
-  theme-debate.md       # acta + scores (init-theme-polish)
-  theme-polish.md       # veredicto + tema final (init-theme-polish)
+  theme.md                 # 3 alternativas (init-theme)
+  theme-debate.md          # acta (init-theme-polish)
+  theme-polish.md          # veredicto (init-theme-polish)
+  theme-audit.md           # tema único (init-theme-audit)
+  theme-audit-debate.md    # acta (init-theme-audit-polish)
+  theme-audit-polish.md    # veredicto (init-theme-audit-polish)
 
 docs/content/<FOLDER>/
   config.json           # citation_style, modelo, alcance
@@ -30,13 +38,15 @@ graphify-out/           # memoria del repo (skills, README…)
 
 | Skill | Qué hace | Salida |
 |-------|----------|--------|
-| `init-theme` | 3–4 tópicos → 3 alternativas + benchmarking | `docs/topics/<FOLDER>/theme.md` |
-| `init-theme-polish` | Debate 4 agentes; scores + veredicto | `theme-debate.md` + `theme-polish.md` |
+| `init-theme` | 3–4 tópicos → 3 alternativas + benchmarking | `theme.md` |
+| `init-theme-polish` | Debate 4 agentes sobre las 3 alts | `theme-debate.md` + `theme-polish.md` |
+| `init-theme-audit` | 1 tema propuesto + benchmarking | `theme-audit.md` |
+| `init-theme-audit-polish` | Debate 4 agentes (modo una_alternativa) | `theme-audit-debate.md` + `theme-audit-polish.md` |
 | `init-project` | Inicializa proyecto (profile + config) | `docs/content/<FOLDER>/` |
 | `graphify-project` | Memoria Graphify de un proyecto | `docs/content/<FOLDER>/graphify-out/` |
 | `graphify-root` | Memoria Graphify del repo | `graphify-out/` |
 
-## Init — tema
+## Init — explorar tópicos
 
 ```text
 Usa init-theme
@@ -49,6 +59,21 @@ Tópicos:
 
 ```text
 Usa init-theme-polish sobre ITD
+```
+
+## Init — auditar un tema ya propuesto
+
+```text
+Usa init-theme-audit
+Carpeta: ITD
+Tema: Digitalización del inventario y estandarización de tallaje en Calzados Romantex S.A.C
+Descripción: …
+Problema: …
+Alcance: …
+```
+
+```text
+Usa init-theme-audit-polish sobre ITD
 ```
 
 ## Init — proyecto
@@ -102,13 +127,14 @@ pnpm graphify:refresh
 ## Orden sugerido
 
 ```text
-init-theme
-  → init-theme-polish   # theme-debate.md + theme-polish.md (o NO_GO → otros tópicos)
-  → init-project        # docs/content/<FOLDER>/
+# Explorar
+init-theme → init-theme-polish → init-project → …
+
+# Tema ya propuesto (ej. Romantex)
+init-theme-audit → init-theme-audit-polish → init-project → …
   → pegar/ajustar structure o config.modelo
   → apuntes en docs/content/<FOLDER>/docs/
   → graphify-project (PASS)
-  → (generación de capítulos: siguiente fase)
 ```
 
 De vez en cuando **`graphify-root`** si cambias skills / README.
