@@ -191,7 +191,7 @@ Informar: aceptadas con PDF+MD / rechazadas / `pendiente_oa` (solo chat+debate),
 - Paywall bypass / Sci-Hub.
 - Más de 5 PDFs descargados.
 - Indexar binarios PDF en Graphify (solo MD + catálogo).
-- Refresh graphify-root o graphify-theme desde esta skill.
+- Refresh graphify-root desde esta skill.
 - Sobrescribir en silencio.
 
 ## Agentes

@@ -187,7 +187,7 @@ Informar: aceptadas con PDF+MD / rechazadas / `pendiente_oa` (solo chat+debate, 
 - Más de 5 PDFs descargados.
 - Guardar PDF fuera de `bibliography/auto/pdfs/`.
 - Indexar binarios PDF en Graphify (solo MD + `docs.md`).
-- Refresh graphify-root o graphify-theme desde esta skill.
+- Refresh graphify-root desde esta skill.
 - Sobrescribir en silencio.
 
 ## Agentes

@@ -83,7 +83,7 @@ Usar el resultado del grafo (documento, finding, `src`, página/`loc`) para orie
 - Inventar fichas / DOI / PDF / `pendiente_oa` en el catálogo.
 - Paywall bypass / Sci-Hub.
 - Más de 5 PDFs; guardar PDF fuera de `auto/pdfs/`.
-- graphify-root / graphify-theme; make-informe.
+- graphify-root; make-informe.
 - Sobrescribir en silencio.
 
 ## Agentes

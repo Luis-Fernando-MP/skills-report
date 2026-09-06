@@ -26,7 +26,7 @@ Dos vías de arranque del tema; después el pipeline es el mismo.
 | 4 | `init-project-mvp` | Genera pack MVP (`mvp/mvp-N-slug/*.md`) y registra `tools["mvp-N"]` |
 | 5 | `bibliography-picoct` | Marco PICO/PICOC/PICOCT, keywords EN/ES y ecuaciones Scopus |
 | 6 | `bibliography-auto` | Hasta 5 fuentes OA (debate utilidad → PDF/MD + `auto/docs.md` + Graphify) |
-| 7 | `make-report` | Draft versionado `docs/vN-tag/draft.md` + `docs/reports-trace.json` (alias `make-informe`; ≠ `rsl-make-report`) |
+| 7 | `make-report` | Draft versionado `docs/vN-tag/draft.md` + `docs/reports-trace.json` (alias `make-informe`) |
 | 8 | `bibliography-search` | OA para huecos `TODO: citar` → `bibliography/search` + `docs/search` + Graphify |
 | 9 | `make-report-polish` | Pule último draft → `reporte.md` + `reporte-debate.md` (7 agentes; no toca draft) |
 | — | `bibliographic-search` | *(deprecated)* alias → `bibliography-search` |
@@ -38,16 +38,6 @@ Dos vías de arranque del tema; después el pipeline es el mismo.
 |--------|----------|
 | `graphify-project` | Indexa un proyecto académico (`docs/content/<FOLDER>/graphify-out/`) |
 | `graphify-root` | Indexa el repo (skills, README, layout) |
-| `graphify-theme` | Indexa un tema RSL legado (`docs/[titulo-breve]/`) |
-
-### RSL legado (opcional, paralelo al flujo init)
-
-| Skill | Qué hace |
-|--------|----------|
-| `rsl-make-report` | Arma `informe.md` UTP + PDFs RSL |
-| `rsl-polish-report` | Pule el informe con debate 4 agentes |
-| `rsl-make-paper` | Arma introducción académica `paper.md` |
-| `rsl-polish-paper` | Pule el paper con debate 4 agentes |
 
 ## Layout
 

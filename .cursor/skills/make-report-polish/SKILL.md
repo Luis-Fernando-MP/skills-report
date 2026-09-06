@@ -12,8 +12,6 @@ Pule el **último** `draft.md` de `make-report` en un informe profesional limpio
 
 **SoT del cómo:** `common/make-report-polish/model1.md`. Seguir ese playbook al pie.
 
-**No** es `rsl-polish-report`.
-
 ## Salida
 
 ```text
@@ -55,7 +53,7 @@ graphify query "<q>" --graph docs/content/<FOLDER>/graphify-out/graph.json
 
 - Editar `draft.md`.
 - Pulir versión que no sea la última del trace.
-- Inventar fuentes; graphify-root / graphify-theme.
+- Inventar fuentes; graphify-root.
 - Soft consensus vacío.
 
 ## Agentes

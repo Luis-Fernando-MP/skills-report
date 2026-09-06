@@ -132,4 +132,4 @@ Si no se encuentra evidencia mínima (identidad + historia o identidad corporati
 - Saltar la investigación cuando hay empresa real.
 - Lanzar crítico/defensor/impacto/viabilidad aquí.
 - Escribir en `docs/content/` (**init-project**).
-- Tocar skills `rsl-*` / regenerar Graphify.
+- Regenerar Graphify.

@@ -63,13 +63,13 @@ Papers de **bibliography-auto** y **bibliography-search** llevan finding hooks E
 
 **Otras skills de proyecto** (bibliography-*, bibliography-search, make-report, make-report-polish, init-project-mvp, redacción sobre el FOLDER) **deben** usar este grafo como lookup por defecto — no Grep/Read masivo del corpus.
 
-Preferir este grafo para profile / structure / apuntes / drafts / **mvp activo** / bib-auto / bib-search del proyecto. Root → **graphify-root**. Temas RSL legado → **graphify-theme**.
+Preferir este grafo para profile / structure / apuntes / drafts / **mvp activo** / bib-auto / bib-search del proyecto. Root → **graphify-root**.
 
 `--force` regenera y re-enriquece MD de bib-auto/bib-search; re-indexa el MVP de `config.mvp`.
 
 ## Forbidden
 
-- Refresh root o theme desde esta skill.
+- Refresh root desde esta skill.
 - Skip verify.
 - Re-indexar entradas `graphify_indexed` con mismo hash sin `--force`.
 - Inventar contenido del grafo si el build falla.

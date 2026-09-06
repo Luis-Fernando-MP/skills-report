@@ -4,7 +4,7 @@ description: >-
   Draft a versioned professional academic report under docs/content/<FOLDER>/docs/vN-tag/draft.md
   from config.modelo + alcance + company.md, using Graphify and bibliography-search
   for citation gaps; appends docs/reports-trace.json. Alias make-informe. Use when
-  user says make-report or make-informe. Not rsl-make-report.
+  user says make-report or make-informe.
 ---
 
 # make-report
@@ -13,7 +13,7 @@ Redacta un **draft versionado, profesional y sustancial** del informe del proyec
 
 **SoT del cómo:** `common/make-report/model1.md`. Seguir ese playbook al pie.
 
-**Alias:** `make-informe` → esta skill. **No** es `rsl-make-report`.
+**Alias:** `make-informe` → esta skill.
 
 Esta skill deja la **base completa** del informe (detalle, prosa, secciones llenas). **`make-report-polish`** produce `reporte.md` sin tocar el draft; **aquí no se entrega un “casi informe” ni un “valídalo tú”**.
 
@@ -77,10 +77,9 @@ No volcar PDFs/MD al contexto. Preferir findings + `src` + página. Incluir quer
 
 ## Forbidden
 
-- `rsl-make-report` / informe bajo `docs/[titulo-breve]/`.
 - Draft fuera de `docs/vN-tag/`; sobrescribir versión.
 - Inventar fuentes; omitir Referencias; volcar MVP entero.
 - Redactar cap. empresa **sin** `company.md` cuando el sujeto es empresa/entidad.
 - Meter labels de pipeline (`pendiente_campo`, etc.) en el draft.
-- Mezclar catálogo search con `bibliography/auto`; graphify-root / graphify-theme.
+- Mezclar catálogo search con `bibliography/auto`; graphify-root.
 - Editar `reporte.md` aquí (eso es **make-report-polish**).

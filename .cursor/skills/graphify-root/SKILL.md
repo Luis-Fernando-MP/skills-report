@@ -3,18 +3,18 @@ name: graphify-root
 description: >-
   Create or refresh the FIS root Graphify memory at graphify-out/. Use when
   the user says graphify-root, refresh root graphify, or asks to update project
-  memory. Does not refresh theme graphs. Agents must not run this unless the
+  memory. Does not refresh project graphs. Agents must not run this unless the
   user explicitly invokes this skill.
 ---
 
 # graphify-root
 
-Build / refresh the **repo-root** knowledge graph (skills, `global/`, README, candidatos). Theme SLR corpora under `docs/` are **out of scope** here — use **graphify-theme**.
+Build / refresh the **repo-root** knowledge graph (skills, `global/`, README, candidatos). Project corpora under `docs/content/` are **out of scope** here — use **graphify-project**.
 
 ## Control
 
 - You run refresh **only** when the user explicitly invokes this skill (or clearly asks to refresh root Graphify).
-- `rsl-*` agents and casual coding must **never** call refresh on their own.
+- Casual coding must **never** call refresh on its own (only this skill / explicit user ask).
 - Lookup (`query` / `path` / `explain`) against an existing root graph is always OK.
 
 ## Procedure
@@ -29,7 +29,7 @@ npm run graphify:refresh
 Equivalent: `npm run graphify:update` or `graphify update .`
 
 3. Verify `graphify-out/graph.json` exists. Optionally note `GRAPH_REPORT.md` / `graph.html`.
-4. Chat: path of graph, brief status (ok / error). Remind that themes need **graphify-theme**.
+4. Chat: path of graph, brief status (ok / error). Projects need **graphify-project**.
 
 ## Lookup (after graph exists)
 
@@ -39,18 +39,10 @@ graphify path "A" "B"
 graphify explain "<concept>"
 ```
 
-## Invoke examples
-
-```text
-Usa graphify-root
-```
-
-```text
-Actualiza la memoria graphify del root
-```
+Prefer root graph for architecture across skills / README. Prefer **graphify-project** for a specific `docs/content/<FOLDER>/`.
 
 ## Forbidden
 
-- Running `npm run graphify:theme` from this skill.
-- Refreshing because “the graph might be stale” without user request.
-- Inventing graph contents if update fails — report the error and install hint (`pipx install graphifyy`).
+- Refreshing a project graph from this skill (`pnpm graphify:project`).
+- Running refresh without an explicit user request for root Graphify.
+- Inventing graph contents if the CLI fails.

@@ -196,5 +196,4 @@ Path de ambos archivos + veredicto en una línea. Si NO_GO: pedir nuevos tópico
 - Elegir un ganador si las lecturas fuertes (crítico+viabilidad) son NO_GO.
 - Tumbar solo por `NO_GO` del inversor cuando hay tesis de valor social/adopción mitigada.
 - Escribir `informe.md` / proyecto en `docs/content/` aquí.
-- Tocar skills `rsl-*`.
 - Regenerar Graphify.

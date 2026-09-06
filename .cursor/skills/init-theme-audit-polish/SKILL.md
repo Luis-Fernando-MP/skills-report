@@ -223,7 +223,7 @@ Paths + veredicto + **MVP de arranque** + si T usó solo año corriente. Si NO_G
 - GO/GO_con_cambios con empresa real **sin** ficha pública usable.
 - Forzar GO si el umbral dice NO_GO.
 - Escribir proyecto en `docs/content/` aquí.
-- Tocar skills `rsl-*` / regenerar Graphify.
+- Regenerar Graphify.
 - Dejar solo un bullet “MVP acordado” sin tabla de entregables debatidos.
 - Omitir **Marco PICOCT**, **Tesis de valor (inversor)** o la ficha de sujeto cuando el veredicto es GO o GO_con_cambios.
 - Tumbar solo por `NO_GO` del inversor cuando hay mitigación de valor social/adopción.

@@ -77,7 +77,7 @@ Si no hay grafo → pedir **graphify-project**. Tras esta skill, el refresh deja
 - Ignorar el playbook; PICOCT como dependencia.
 - Descargar antes del debate; inventar fichas / `pendiente_oa` en el catálogo.
 - Paywall bypass / Sci-Hub; más de 5 PDFs.
-- graphify-root / graphify-theme; sobrescribir en silencio.
+- graphify-root; sobrescribir en silencio.
 
 ## Agentes
 

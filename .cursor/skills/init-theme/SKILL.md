@@ -97,4 +97,4 @@ Si una alternativa depende de empresa real y no hay evidencia pública mínima �
 - Lanzar el panel de 4 agentes (eso es **init-theme-polish**).
 - Crear proyecto en `docs/content/` (eso es **init-project**).
 - Regenerar Graphify.
-- Tocar skills `rsl-*`.
+- Regenerar Graphify.

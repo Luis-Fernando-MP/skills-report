@@ -2,7 +2,7 @@
 
 Playbook para la skill **`make-report`** (alias **`make-informe`**). Redacta un **draft versionado, profesional y sustancial** del informe académico según `config.modelo` + `config.alcance`, usa **`company.md`** cuando hay organización ancla, Graphify durante la redacción, y cierra huecos de citación con **bibliography-search**.
 
-**No es `rsl-make-report`**. Aquí: `docs/content/<FOLDER>/`.
+Dominio: `docs/content/<FOLDER>/`.
 
 ## Propósito
 
@@ -197,7 +197,6 @@ Path, tag/N, trace, secciones, uso de `company.md` sí/no, TODOs restantes, sear
 
 ## Forbidden
 
-- Confundir con **rsl-make-report**.
 - Salida fuera de `docs/v<N>-<tag>/draft.md`.
 - Sobrescribir versión existente.
 - Omitir Referencias.
@@ -206,7 +205,7 @@ Path, tag/N, trace, secciones, uso de `company.md` sí/no, TODOs restantes, sear
 - Meter `pendiente_campo` / disclaimers de pipeline en el draft.
 - Mezclar catálogo de search con `bibliography/auto`.
 - Escribir `reporte.md` aquí (usar **make-report-polish**).
-- Refresh graphify-root / graphify-theme.
+- Refresh graphify-root.
 
 ## Relación con otras skills
 
@@ -217,4 +216,3 @@ Path, tag/N, trace, secciones, uso de `company.md` sí/no, TODOs restantes, sear
 | **bibliography-search** | Cerrar `TODO: citar` |
 | **bibliography-auto** | Corpus base previo (opcional) |
 | **make-report-polish** | `reporte.md` desde último draft |
-| **rsl-make-report** | Otro dominio |

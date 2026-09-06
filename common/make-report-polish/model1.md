@@ -2,7 +2,7 @@
 
 Playbook para la skill **`make-report-polish`**. Parte de `draft.md` (solo lectura) y produce un informe limpio profesional + acta de debate en la misma carpeta de versión.
 
-**No modifica `draft.md`.** No es `rsl-polish-report`.
+**No modifica `draft.md`.**
 
 ## Propósito
 
@@ -146,9 +146,7 @@ Paths, veredicto de fondo, tesis de valor, TODOs de cita residuales, Graphify ok
 - Pulir una versión que no sea la última del trace.
 - Inventar fuentes / cerrar TODO con DOI ficticio.
 - Soft consensus sin presión del crítico.
-- graphify-root / graphify-theme.
-- Confundir con `rsl-polish-report`.
-
+- graphify-root.
 ## Agentes
 
 - `.cursor/agents/critico-estricto.md`
