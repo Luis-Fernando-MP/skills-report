@@ -28,7 +28,14 @@ docs/content/<FOLDER>/docs/vN-tag/
 /make-report-polish DDS
 ```
 
-Sin draft / sin `docs/reports-trace.json` → pedir **make-report** primero.
+Sin draft usable → pedir **make-report** primero.
+
+Resolución del draft (en orden):
+
+1. Última entrada con `has_draft: true` en `docs/reports-trace.json`, o
+2. `config.tools["make-report"].last` si apunta a un `draft.md` existente.
+
+Si hay draft vía `last` pero **no** hay trace → crear/actualizar `docs/reports-trace.json` al cerrar el polish (misma versión del draft).
 
 ## Lookup Graphify
 
@@ -40,12 +47,12 @@ graphify query "<q>" --graph docs/content/<FOLDER>/graphify-out/graph.json
 
 1. Resolver `FOLDER`; leer `profile.md` + `config.json` (+ `company.md` si aplica).
 2. Leer `common/make-report-polish/model1.md`.
-3. Resolver draft vía `docs/reports-trace.json` → **última** entrada `has_draft: true` (o `config.tools["make-report"].last`).
+3. Resolver draft vía `docs/reports-trace.json` → **última** entrada `has_draft: true`; si no hay trace, usar `config.tools["make-report"].last` si el archivo existe (y crear/actualizar el trace al cerrar).
 4. Round 1 (5): critico, defensor, impacto, viabilidad, **inversor**.
 5. Round 2: cruce; propuestas de valor del inversor; soft-veto (no tumbar solo).
 6. Orquestador: borrador de `reporte.md` (misma estructura que draft; prosa limpia).
-7. Round 3: `gramatica-continuidad` + `revisor-cientifico`.
-8. Escribir `reporte-debate.md` + `reporte.md`; actualizar trace (`has_polish`); `config.tools["make-report-polish"].last`.
+7. Round 3: `gramatica-continuidad` + `revisor-cientifico` con `modo: make_report_polish`.
+8. Escribir `reporte-debate.md` + `reporte.md`; actualizar/crear trace (`has_polish`); `config.tools["make-report-polish"].last`.
 9. `pnpm graphify:project -- <FOLDER>`.
 10. Chat: paths, tesis de valor, TODOs residuales.
 

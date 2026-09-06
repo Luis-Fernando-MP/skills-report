@@ -32,7 +32,8 @@
       "docs": "./bibliography/docs/"
     },
     "make-report": {
-      "last": "./docs/v1-capitulo-1/draft.md"
+      "last": "./docs/v1-capitulo-1/draft.md",
+      "trace": "./docs/reports-trace.json"
     },
     "bibliography-search": {
       "catalog": "./bibliography/search/docs.md",

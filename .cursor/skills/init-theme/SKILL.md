@@ -94,7 +94,6 @@ Si una alternativa depende de empresa real y no hay evidencia pública mínima �
 
 - Inventar soluciones/empresas del benchmark o datos corporativos no hallados.
 - Omitir investigación cuando una alternativa nombra empresa real.
-- Lanzar el panel de 4 agentes (eso es **init-theme-polish**).
+- Lanzar el panel de polish (5 agentes de fondo + `gramatica-continuidad` en R3 — eso es **init-theme-polish**).
 - Crear proyecto en `docs/content/` (eso es **init-project**).
-- Regenerar Graphify.
 - Regenerar Graphify.

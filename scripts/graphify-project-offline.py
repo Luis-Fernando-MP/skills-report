@@ -63,17 +63,18 @@ def load_config(project: Path) -> dict:
     path = project / "config.json"
     if not path.exists():
         return {
-            "citation_style": "APA7",
-            "modelo": "model1",
+            "citation_style": "common/citation-style/APA7.md",
+            "modelo": "common/structure/model1.md",
             "alcance": [],
             "mvp": 1,
-            "tools": {
+            "playbooks": {
                 "design-thinking": "common/design-thinking/model1.md",
                 "lean-canvas": "common/lean-canvas/model1.md",
                 "rat": "common/rat/model1.md",
                 "foda": "common/foda/model1.md",
                 "as-is-to-be": "common/as-is-to-be/model1.md",
             },
+            "tools": {},
         }
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -338,19 +339,27 @@ def prepare(project: Path, force: bool = False) -> dict:
             digest = sha256_file(struct_src)
             index_path = struct_src
         else:
-            modelo = str(config.get("modelo") or "model1")
+            modelo = str(config.get("modelo") or "common/structure/model1.md").strip()
             rel = f"modelo:{modelo}"
             digest = sha256_file(struct_src)
             index_path = ensure_corpus_md(
                 project, struct_src, "structure.md",
             )
-            # header note for provenance
-            body = index_path.read_text(encoding="utf-8")
-            if not body.startswith("<!-- modelo:"):
-                index_path.write_text(
-                    f"<!-- modelo: common/structure/{modelo}.md -->\n\n{body}",
-                    encoding="utf-8",
+            # Provenance comment: use resolved path relative to repo (no double-prefix)
+            try:
+                modelo_note = str(struct_src.resolve().relative_to(REPO_ROOT.resolve())).replace(
+                    "\\", "/"
                 )
+            except ValueError:
+                modelo_note = modelo if ("/" in modelo or modelo.endswith(".md")) else f"common/structure/{modelo}.md"
+            body = index_path.read_text(encoding="utf-8")
+            # Rewrite stale/wrong headers from older path bugs
+            if body.startswith("<!-- modelo:"):
+                body = re.sub(r"^<!-- modelo:.*?-->\s*\n*", "", body, count=1, flags=re.S)
+            index_path.write_text(
+                f"<!-- modelo: {modelo_note} -->\n\n{body.lstrip()}",
+                encoding="utf-8",
+            )
 
         ent = entries.get(rel)
         if (

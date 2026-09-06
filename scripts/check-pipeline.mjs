@@ -169,6 +169,16 @@ for (const p of walkDirs(join(root, 'docs/content'))) {
   fail(`legacy bibliographic/ directory: ${p.replace(root + '/', '')}`);
 }
 
+
+// 9) Corpus structure header must not double-prefix modelo path
+const corpusStruct = join(root, 'docs/content/DDS/graphify-out/_corpus/structure.md');
+if (existsSync(corpusStruct)) {
+  const first = readFileSync(corpusStruct, 'utf8').split('\n')[0] || '';
+  if (first.includes('common/structure/common/structure') || first.includes('model1.md.md')) {
+    fail(`bad modelo comment in DDS corpus: ${first}`);
+  }
+}
+
 // Report
 for (const w of warns) console.warn('WARN:', w);
 if (errors.length) {

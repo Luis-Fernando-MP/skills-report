@@ -122,7 +122,7 @@ Si no se encuentra evidencia mínima (identidad + historia o identidad corporati
 - …
 ```
 
-9. No lanzar el panel de 4 agentes (eso es **init-theme-audit-polish**).
+9. No lanzar el panel de polish (5 agentes de fondo + `gramatica-continuidad` en R3 — eso es **init-theme-audit-polish**).
 10. Chat: path + `tipo_sujeto` + resumen ficha/benchmark + siguiente **`init-theme-audit-polish`**.
 
 ## Forbidden

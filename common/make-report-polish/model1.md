@@ -17,9 +17,10 @@ Misma estructura de secciones que el draft; prosa más corta, precisa y continua
 
 ## Entrada (trazabilidad)
 
-1. Leer `docs/reports-trace.json` (o `config.tools["make-report"].trace`).
-2. Tomar la **última** entrada con `has_draft: true` (o la apuntada por `config.tools["make-report"].last`).
-3. Si no hay draft / trace → pedir **make-report** primero.
+1. Leer `docs/reports-trace.json` (o `config.tools["make-report"].trace`) si existe.
+2. Tomar la **última** entrada con `has_draft: true`, **o** el path de `config.tools["make-report"].last` si el `draft.md` existe.
+3. Si no hay draft usable → pedir **make-report** primero.
+4. Si se usó solo `last` sin trace → al cerrar, crear/append la entrada correspondiente en `docs/reports-trace.json` y registrar `config.tools["make-report"].trace`.
 
 ## Pipeline
 
@@ -82,8 +83,8 @@ Redactar borrador interno de `reporte.md` desde el draft + consensos R1/R2:
 
 ### Paso 5 — Round 3 (calidad)
 
-1. `gramatica-continuidad` sobre el borrador.
-2. `revisor-cientifico` sobre borrador + draft + referencias.
+1. `gramatica-continuidad` sobre el borrador (`modo: make_report_polish`).
+2. `revisor-cientifico` sobre borrador + draft + referencias (`modo: make_report_polish`).
 3. Integrar reescrituras y hallazgos accionables en el texto final.
 
 ### Paso 6 — Escribir artefactos

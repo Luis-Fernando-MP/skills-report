@@ -154,4 +154,4 @@ graphify query "<q>" --graph docs/content/<FOLDER>/graphify-out/graph.json
 - Copiar playbooks de `common/` al proyecto (solo referenciar en `playbooks`).
 - Rellenar `tools` con paths `common/` (eso es `playbooks`).
 - Regenerar Graphify / ejecutar **init-project-mvp** aquí.
-- Tocar RSL ni borrar proyectos sin confirmación.
+- Borrar proyectos sin confirmación.

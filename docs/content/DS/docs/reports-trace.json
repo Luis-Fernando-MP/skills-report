@@ -1,0 +1,14 @@
+[
+  {
+    "dir": "docs/v1-capitulo-1",
+    "version": 1,
+    "tag": "capitulo-1",
+    "draft": "./docs/v1-capitulo-1/draft.md",
+    "has_draft": true,
+    "todos": [],
+    "has_polish": false,
+    "reporte": null,
+    "reporte_debate": null,
+    "created_at": "2026-09-06"
+  }
+]
