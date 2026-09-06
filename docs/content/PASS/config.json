@@ -1,13 +1,22 @@
 {
-  "citation_style": "APA7",
-  "modelo": "model1",
+  "citation_style": "common/citation-style/APA7.md",
+  "modelo": "common/structure/model1.md",
   "alcance": [],
   "mvp": 1,
-  "tools": {
+  "playbooks": {
     "design-thinking": "common/design-thinking/model1.md",
     "lean-canvas": "common/lean-canvas/model1.md",
     "rat": "common/rat/model1.md",
     "foda": "common/foda/model1.md",
     "as-is-to-be": "common/as-is-to-be/model1.md"
+  },
+  "tools": {
+    "mvp-1": {
+      "design-thinking": "./mvp/mvp-1-confiabilidad-stock-pt-por-variante-en-ubicaciones-propias/design-thinking.md",
+      "lean-canvas": "./mvp/mvp-1-confiabilidad-stock-pt-por-variante-en-ubicaciones-propias/lean-canvas.md",
+      "foda": "./mvp/mvp-1-confiabilidad-stock-pt-por-variante-en-ubicaciones-propias/foda.md",
+      "rat": "./mvp/mvp-1-confiabilidad-stock-pt-por-variante-en-ubicaciones-propias/rat.md",
+      "as-is-to-be": "./mvp/mvp-1-confiabilidad-stock-pt-por-variante-en-ubicaciones-propias/as-is-to-be.md"
+    }
   }
 }

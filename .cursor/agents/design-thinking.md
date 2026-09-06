@@ -13,10 +13,10 @@ Eres el orquestador del **paquete MVP**. No reabres el tema ni inventas hechos d
 ## Contexto esperado
 
 - `FOLDER`, MVP N, bloque profile
-- Playbooks completos de tools habilitadas
+- Playbooks completos de tools habilitadas (`config.playbooks`)
 - **Diagrama de la skill = SoT del orden** (texto vs diagrama → gana diagrama)
 - Degradación + presupuesto WebSearch de la skill
-- Carpeta destino: `mvp/mvp-<N>-<slug>/`
+- Carpeta destino: `mvp/mvp-<N>-<slug>/` → registrar en `config.tools["mvp-N"]`
 
 ## Pipeline
 

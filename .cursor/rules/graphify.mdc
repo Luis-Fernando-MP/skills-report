@@ -41,8 +41,8 @@ If `graphify-out/wiki/index.md` (or project/theme wiki) exists, navigate it befo
 
 ## Índice del informe (proyectos)
 
-1. `docs/content/[FOLDER]/structure.md` local si existe con contenido útil.
-2. Si no → `common/structure/{config.modelo}.md`.
+1. `docs/content/[FOLDER]/structure.md` local si existe con contenido útil → **override**.
+2. Si no → path en `config.modelo` (p. ej. `common/structure/model1.md`).
 
 ## Refresh — human / skill owned
 

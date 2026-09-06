@@ -19,20 +19,23 @@ docs/topics/<FOLDER>/
   theme-audit-polish.md    # veredicto (init-theme-audit-polish)
 
 docs/content/<FOLDER>/
-  config.json           # citation_style, modelo, alcance
+  config.json           # citation_style, modelo (paths), alcance, mvp, playbooks, tools
   profile.md            # tema, descripción, problema, alcance
-  structure.md          # opcional — si existe, pisa al modelo común
+  structure.md          # opcional — si existe, pisa config.modelo
   docs/                 # apuntes md/qmd
+  mvp/                  # packs generados (init-project-mvp)
   graphify-out/         # memoria del proyecto (gitignored)
   index-manifest.json
 
-common/citation-style/  # APA7.md, IEEE.md
-common/structure/       # model1.md, … (config.modelo)
+common/citation-style/  # APA7.md, IEEE.md  ← config.citation_style
+common/structure/       # model1.md, …     ← config.modelo (si no hay override)
 
 graphify-out/           # memoria del repo (skills, README…)
 ```
 
-**Índice del informe:** `structure.md` local si existe; si no → `common/structure/{config.modelo}.md`.
+**Índice del informe:** `structure.md` local si existe con contenido útil; si no → path en `config.modelo` (p. ej. `common/structure/model1.md`).
+
+**Config (resumen):** `playbooks` = cómo generar (`common/…`); `tools` = mapa `mvp-N` → artefactos en `./mvp/mvp-N-slug/*.md`.
 
 ## Skills
 
@@ -80,7 +83,7 @@ Usa init-theme-audit-polish sobre ITD
 
 | Vía | Input | Efecto |
 |-----|--------|--------|
-| `pnpm project:init <FOLDER>` | Solo nombre de carpeta | Molde vacío (`APA7`, `modelo: model1`) |
+| `pnpm project:init <FOLDER>` | Solo nombre de carpeta | Molde vacío (paths APA7 + model1, playbooks, `tools: {}`) |
 | Skill `init-project` | Tema + extras (o `theme-polish.md`) | Deriva carpeta; rellena **profile** y **config** |
 
 ```bash
@@ -94,7 +97,7 @@ Tema: …
 Descripción: …
 Problema: …
 Alcance: …
-Modelo: model1
+Modelo: common/structure/model1.md
 ```
 
 ## Graphify — proyecto
@@ -132,8 +135,9 @@ init-theme → init-theme-polish → init-project → …
 
 # Tema ya propuesto (ej. Romantex)
 init-theme-audit → init-theme-audit-polish → init-project → …
-  → pegar/ajustar structure o config.modelo
+  → pegar/ajustar structure.md (override) o config.modelo (path)
   → apuntes en docs/content/<FOLDER>/docs/
+  → init-project-mvp (rellena tools["mvp-N"])
   → graphify-project (PASS)
 ```
 
