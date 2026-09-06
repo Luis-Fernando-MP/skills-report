@@ -1,8 +1,8 @@
 # Make report — model1
 
-Playbook para la skill **`make-report`** (alias **`make-informe`**). Redacta un **draft versionado** del informe académico del proyecto según `config.modelo` + `config.alcance`, usa Graphify durante la redacción, y opcionalmente cierra huecos de citación con **bibliographic-search**.
+Playbook para la skill **`make-report`** (alias **`make-informe`**). Redacta un **draft versionado, profesional y sustancial** del informe académico según `config.modelo` + `config.alcance`, usa **`company.md`** cuando hay organización ancla, Graphify durante la redacción, y cierra huecos de citación con **bibliographic-search**.
 
-**No es `rsl-make-report`** (RSL legado bajo `docs/[titulo-breve]/`). Aquí: `docs/content/<FOLDER>/`.
+**No es `rsl-make-report`**. Aquí: `docs/content/<FOLDER>/`.
 
 ## Propósito
 
@@ -12,22 +12,19 @@ Producir:
 docs/content/<FOLDER>/docs/v<N>-<tag>/draft.md
 ```
 
-con secciones del modelo filtradas por alcance, citas según `citation_style`, integración de tools MVP **solo si la estructura lo pide**, y **Referencias** siempre al final.
+Esta skill deja la **base completa** del informe (detalle, prosa académica, secciones llenas). Una skill de polish posterior limpiará estilo/citas; **aquí no se entrega un “casi informe”**.
 
 ## Layout
 
 ```text
 docs/content/<FOLDER>/
   profile.md
-  config.json          # modelo, alcance, citation_style, mvp, tools
-  structure.md         # opcional: override local del índice
-  docs/
-    v1-completo/
-      draft.md
-    v2-capitulo-1/
-      draft.md
-  mvp/…                # vía tools["mvp-N"] si el índice lo requiere
-  bibliographic/…      # tras bibliographic-search (si hay TODOs)
+  company.md           # si tipo_sujeto = empresa|entidad (requerido para cap. 1.1)
+  config.json
+  structure.md         # opcional
+  docs/vN-tag/draft.md
+  mvp/…
+  bibliographic/…
   graphify-out/
 ```
 
@@ -40,9 +37,7 @@ docs/content/<FOLDER>/
 | `[{ "capitulo": 1, "secciones": ["1.1", "1.2"] }]` | Prefijo inclusivo |
 | Varios objetos | Unión |
 
-**Referencias bibliográficas:** siempre al final del `draft.md` (aunque el alcance no las liste).
-
-**Anexos:** sin regla especial vs alcance; incluir material de anexos solo si el alcance / modelo lo pide y hay contenido útil (MVP, instrumentos, etc.).
+**Referencias:** siempre al final del `draft.md`.
 
 ## Tag de versión
 
@@ -51,17 +46,41 @@ docs/content/<FOLDER>/
 | Todo el modelo | `completo` |
 | Solo capítulo 1 | `capitulo-1` |
 | Capítulos 1 y 2 | `capitulo-1-2` |
-| Otro recorte | `capitulo-<lista>` legible (p. ej. `capitulo-3`) |
+| Otro recorte | `capitulo-<lista>` |
 
-`<N>` = siguiente entero libre bajo `docs/v*-*/` (nunca sobrescribir un draft existente).
+`<N>` = siguiente entero libre bajo `docs/v*-*/` (nunca sobrescribir).
+
+## Estándar de calidad (obligatorio)
+
+### Qué sí
+
+- Prosa **académico-profesional**, párrafos desarrollados, secciones con sustancia.
+- Cap. presentación de empresa: **reseña histórica real** (fundación, hitos, expansión) desde `company.md` + fuentes públicas; misión/visión/valores con sustancia.
+- Diagnóstico y Lean Canvas: integrar MVP de forma narrativa **cerrada** (hechos del proyecto como decisiones/criterios del PoC, no como dudas abiertas al lector).
+- Separar en frases distintas lo **documentado con fuente** de lo que es **diseño del PoC** — sin etiquetas internas.
+- Citas donde aportan (teoría, dato corporativo); no repetir la misma cita en cada frase.
+- Portada/metadato **alineados** con lo que el draft realmente cubre.
+
+### Qué no (prohibido en el cuerpo del draft)
+
+| Prohibido | Por qué |
+|-----------|---------|
+| `pendiente_campo`, `hipótesis`, `evidencia` como labels de pipeline | Son meta del proceso init/MVP, no del informe |
+| “no se afirma como auditoría certificada”, “valídalo con sponsor”, “propuesta de trabajo no hallazgos” | Descarga la responsabilidad al lector |
+| Reseña histórica de 2 líneas + salvedad metodológica | Confunde falta de AS-IS interno con falta de historia pública |
+| Inventar hechos internos de la empresa | Solo fuentes públicas / `company.md` |
+| “Casi reporte”, disclaimers de calidad | El polish limpia; esta base debe ser sólida |
+
+**Único placeholder permitido en el draft:** `TODO: citar — <afirmación>` cuando falta fuente verificable.
 
 ## Pipeline
 
 ```mermaid
 flowchart TD
-  modelo[config.modelo] --> outline[Outline_por_alcance]
-  profile[profile_md] --> draftWrite[Redactar_draft]
-  outline --> draftWrite
+  company[company_md] --> validate[Validacion_pre]
+  profile[profile_md] --> validate
+  validate --> outline[Outline_por_alcance]
+  outline --> draftWrite[Redactar_draft_profesional]
   mvp[tools_mvp_N] --> draftWrite
   graphNow[graphify_query] --> draftWrite
   cite[citation_style] --> draftWrite
@@ -70,8 +89,7 @@ flowchart TD
   draftWrite --> todos[TODO_citar]
   gp1 --> todos
   todos -->|hay_pendientes| search[bibliographic_search]
-  search --> gp2[graphify_project]
-  gp2 --> replace[Reemplazar_TODOs]
+  search --> replace[Reemplazar_TODOs]
   replace --> gp3[graphify_project]
   todos -->|sin_pendientes| done[Listo]
   gp3 --> done
@@ -80,55 +98,59 @@ flowchart TD
 ### Paso 1 — Resolver proyecto
 
 1. `FOLDER` + leer `profile.md` y `config.json`.
-2. Resolver **índice / modelo** (misma regla Graphify del repo):
-   - Si existe `docs/content/<FOLDER>/structure.md` con contenido útil → **override**.
-   - Si no → path en `config.modelo` (p. ej. `common/structure/model1.md` o `./structure.md`).
-3. Leer playbook de `citation_style`.
-4. Sin `profile.md` → pedir **init-project**.
+2. Si `tipo_sujeto` / tema implica empresa o entidad:
+   - Exigir `company.md` (o `config.tools.company`). Si falta o está vacío → **detener** y pedir `init-project` / completar ficha.
+   - Si existe pero es pobre (p. ej. <1 página útil) → **ampliar con investigación pública** antes de redactar 1.1; actualizar `company.md`.
+3. Si `dominio_sin_empresa` → no exigir `company.md`; omitir o adaptar secciones de empresa del modelo con justificación **sustantiva** en el draft (contexto del dominio), sin disclaimers de pipeline.
+4. Resolver índice: `structure.md` local útil → override; si no → `config.modelo`.
+5. Leer playbook de `citation_style`.
+6. Sin `profile.md` → pedir **init-project**.
 
 ### Paso 2 — Outline por alcance
 
-1. Parsear el índice del modelo (capítulos / secciones numeradas).
-2. Filtrar según `config.alcance` (tabla arriba). `[]` = completo.
-3. Construir outline de headings del draft (`##`, `###` alineados al índice).
-4. Decidir `<tag>` y `<N>` (listar `docs/v*-*/` existentes).
+1. Parsear el índice del modelo.
+2. Filtrar según `config.alcance`. `[]` = completo.
+3. Construir outline de headings (`##`, `###`).
+4. Decidir `<tag>` y `<N>`.
 
-### Paso 3 — Lookup Graphify (durante redacción)
+### Paso 3 — Validación pre-redacción
 
-**Antes** de Grep/Read masivo de bib, MVP o apuntes:
+Antes de escribir el draft:
+
+1. Contrastar profile ↔ company ↔ MVP ↔ bib (Graphify + lectura dirigida).
+2. Si hay contradicciones, huecos graves o riesgo de meta-prosa → lanzar subagente **`critico-estricto`** en modo `validacion_informe` con el outline y hallazgos.
+3. Resolver: completar `company.md`, acotar afirmaciones a fuentes, o ampliar investigación. **No** copiar objeciones del crítico al draft como disclaimers.
+
+### Paso 4 — Lookup Graphify (durante redacción)
 
 ```bash
 graphify query "<q>" --graph docs/content/<FOLDER>/graphify-out/graph.json
 ```
 
-Usar nodos (finding, hallazgo, `src`, página/`loc`) para anclar afirmaciones. Si no hay grafo → pedir **graphify-project** o crearlo si el usuario ya autorizó esta skill (esta skill **sí** puede refrescar al final).
+Consultas típicas: empresa (`company.md`), tema, papers, conceptos del capítulo, MVP.
 
-Consultas típicas: tema/empresa del profile, conceptos del capítulo, papers de `bibliography/` o `bibliographic/`.
+### Paso 5 — Tools MVP (condicional)
 
-### Paso 4 — Tools MVP (condicional)
+Solo si el outline pide entregables MVP (Lean Canvas, FODA, AS-IS/TO-BE, etc.):
 
-Solo si el outline incluye secciones que el índice asocia a entregables MVP (p. ej. Lean Canvas, AS-IS/TO-BE, requeriments del MVP):
+1. Leer `config.tools["mvp-N"]` (`N = config.mvp`).
+2. **Integrar** en prosa profesional; **no** volcar el MD ni labels `hipótesis`/`pendiente_campo`.
 
-1. Leer paths de `config.tools["mvp-N"]` donde `N = config.mvp`.
-2. **Integrar** (sintetizar, citar el artefacto); **no** volcar el MD completo al draft.
-
-Si el alcance no toca esas secciones → no leer MVP.
-
-### Paso 5 — Redactar `draft.md`
+### Paso 6 — Redactar `draft.md`
 
 1. Crear `docs/v<N>-<tag>/draft.md`.
-2. Portada breve: FOLDER, tema del profile, fecha, versión `vN-tag`.
-3. Redactar secciones del outline con prosa académica coherente al profile.
-4. Citas: estilo de `citation_style`. Si falta fuente verificable en grafo/catálogo → placeholder:
-   ```text
-   TODO: citar — <qué afirmación necesita soporte>
-   ```
-5. **Referencias** al final: entradas reales ya usadas + dejar TODOs sin inventar bibliografía.
-6. Anexos solo si aplican (paso alcance).
+2. Portada breve: FOLDER, tema, fecha, versión — sin contradecir el contenido.
+3. **1.1 / presentación de empresa** (si aplica): redactar desde `company.md`:
+   - **1.1.1 Reseña histórica:** varios párrafos (fundación, hitos, expansión global/sector) con citas a fuentes de la ficha.
+   - Misión, visión, valores: desarrollados, no un bullet cada uno.
+4. Resto del outline: densidad alta, coherencia narrativa.
+5. Citas según `citation_style`. Falta de fuente → solo `TODO: citar — …`.
+6. **Referencias** al final (entradas reales usadas).
+7. Anexos solo si el alcance/modelo lo pide.
 
-**Forbidden en redacción:** inventar DOI/papers; Sci-Hub; copiar verbatim largos de PDFs; sobrescribir `vN` existente.
+**Forbidden en redacción:** inventar DOI/papers; Sci-Hub; verbatim largos; sobrescribir `vN`; labels de pipeline; disclaimers de “no auditoría”.
 
-### Paso 6 — Registrar y Graphify tras draft
+### Paso 7 — Registrar y Graphify
 
 ```json
 "make-report": {
@@ -140,35 +162,35 @@ Si el alcance no toca esas secciones → no leer MVP.
 pnpm graphify:project -- <FOLDER>
 ```
 
-(El draft bajo `docs/` entra al corpus de apuntes.)
+### Paso 8 — Cerrar TODOs de citación
 
-### Paso 7 — Cerrar TODOs de citación (si hay)
+1. Listar `TODO: citar — …`.
+2. Si hay ≥1 → **bibliographic-search**.
+3. Reemplazar TODOs + Referencias; Graphify de nuevo.
+4. Si un TODO queda sin OA → dejar el `TODO: citar` (único residual aceptable); no inventar.
 
-1. Listar todos los `TODO: citar — …` del draft.
-2. Si hay ≥1 → invocar **bibliographic-search** con esas queries (playbook `common/bibliographic-search/model1.md`).
-3. Tras search + Graphify: reemplazar cada TODO por cita real + añadir entrada en Referencias (solo fuentes con PDF/MD en catálogo).
-4. Si un TODO queda sin OA → dejar el TODO o nota `pendiente_oa` en el draft; no inventar.
-5. `pnpm graphify:project -- <FOLDER>` de nuevo tras el reemplazo.
+### Paso 9 — Chat
 
-### Paso 8 — Chat
-
-Informar: path del draft, tag/N, secciones cubiertas, TODOs restantes, si corrió bibliographic-search, Graphify ok.
+Path, tag/N, secciones, uso de `company.md` sí/no, TODOs restantes, search sí/no, Graphify ok.
 
 ## Forbidden
 
-- Confundir con **rsl-make-report** / escribir en `docs/[titulo-breve]/informe.md`.
+- Confundir con **rsl-make-report**.
 - Salida fuera de `docs/v<N>-<tag>/draft.md`.
-- Sobrescribir una versión existente.
-- Omitir bloque de Referencias.
-- Volcar tools MVP enteros; inventar fuentes.
-- Meter resultados de search en `bibliography/auto`.
+- Sobrescribir versión existente.
+- Omitir Referencias.
+- Volcar tools MVP; inventar fuentes.
+- Redactar empresa sin `company.md` cuando el sujeto es empresa/entidad.
+- Meter `pendiente_campo` / disclaimers de pipeline en el draft.
+- Resultados de search en `bibliography/auto`.
 - Refresh graphify-root / graphify-theme.
 
 ## Relación con otras skills
 
 | Skill | Rol |
 |-------|-----|
-| **graphify-project** | Lookup + refresh tras draft/search |
+| **init-project** | Crea `company.md` + profile |
+| **graphify-project** | Lookup + refresh |
 | **bibliographic-search** | Cerrar `TODO: citar` |
-| **bibliography-auto** | Corpus base previo (opcional); no lo sustituye make-report |
-| **rsl-make-report** | Otro dominio (RSL legado) |
+| **bibliography-auto** | Corpus base previo (opcional) |
+| **rsl-make-report** | Otro dominio |

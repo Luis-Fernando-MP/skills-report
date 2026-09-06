@@ -36,6 +36,12 @@ Tópicos:
 
 Sin tópicos → preguntar. No inventar el dominio del usuario.
 
+## Clasificación del sujeto
+
+Por cada tópico/alternativa que **nombre una empresa u organización real** → investigar fuentes públicas (identidad, historia, misión/visión/valores, sector) **antes** de fijar la alternativa. Si el tópico es de dominio sin org. (p. ej. sismos en Lima) → `tipo_sujeto: dominio_sin_empresa` y no inventar empresa.
+
+Si una alternativa depende de empresa real y no hay evidencia pública mínima → marcar `evidencia_empresa: insuficiente` o descartar esa alt. (no inventar).
+
 ## Procedure
 
 1. Leer tópicos (3–4) y carpeta opcional.
@@ -43,8 +49,9 @@ Sin tópicos → preguntar. No inventar el dominio del usuario.
    - Si el usuario da código (`ITD`, `MOST`) → usarlo.
    - Si no → slug corto (mayúsculas o kebab) a partir del curso/tema; si `docs/topics/<FOLDER>/` ya existe con `theme.md`, preguntar antes de sobrescribir.
 3. Crear `docs/topics/<FOLDER>/` si no existe.
-4. Lanzar **un** agente `benchmark-theme` con CONTEXTO + tópicos. Si `evidencia: insuficiente`, reflejarlo en `theme.md` (proxies explícitos; no inventar casos).
-5. Escribir **`theme.md`** con **exactamente 3 alternativas**, cada una:
+4. Clasificar sujeto por tópico; **investigar empresa** cuando aplique (WebSearch / oficiales).
+5. Lanzar **un** agente `benchmark-theme` con CONTEXTO + tópicos + fichas de empresa halladas. Si `evidencia: insuficiente`, reflejarlo en `theme.md` (proxies explícitos; no inventar casos).
+6. Escribir **`theme.md`** con **exactamente 3 alternativas**, cada una:
 
 ```markdown
 # Temas propuestos — [FOLDER]
@@ -65,6 +72,8 @@ Sin tópicos → preguntar. No inventar el dominio del usuario.
 **Descripción:** …
 **Problema identificado:** …
 **Alcance:** …
+**Tipo de sujeto:** empresa | entidad | dominio_sin_empresa | ficticio
+**Ficha de empresa (si aplica):** identidad · reseña histórica pública · misión/visión/valores · fuentes (o N/A justificado)
 **Benchmarking:** … (marcar directo|proxy; si insuficiente, decirlo)
 **Diferenciador propuesto:** …
 
@@ -78,12 +87,13 @@ Sin tópicos → preguntar. No inventar el dominio del usuario.
 - …
 ```
 
-6. No inventar empresas ni casos. No escribir `theme-debate.md` ni `theme-polish.md` aquí.
-7. Chat: path de `theme.md`, resumen de las 3, y siguiente skill **`init-theme-polish`**.
+7. No inventar empresas ni casos. No escribir `theme-debate.md` ni `theme-polish.md` aquí.
+8. Chat: path de `theme.md`, resumen de las 3, y siguiente skill **`init-theme-polish`**.
 
 ## Forbidden
 
-- Inventar soluciones/empresas del benchmark.
+- Inventar soluciones/empresas del benchmark o datos corporativos no hallados.
+- Omitir investigación cuando una alternativa nombra empresa real.
 - Lanzar el panel de 4 agentes (eso es **init-theme-polish**).
 - Crear proyecto en `docs/content/` (eso es **init-project**).
 - Regenerar Graphify.

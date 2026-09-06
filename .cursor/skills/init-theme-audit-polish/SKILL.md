@@ -39,6 +39,15 @@ Mismos agentes y límites de búsqueda. Debate **componentes internos** (problem
 **GO_con_cambios** si resiste con ajustes de alcance/MVP.  
 **GO** si crítico y viabilidad ≥ 3 y no quedan ataques fuertes abiertos.
 
+## Empresa / sujeto
+
+Leer `tipo_sujeto` y **`## Ficha de empresa (investigación)`** de `theme-audit.md`.
+
+- Si `empresa|entidad` y ficha ausente o `evidencia_empresa: insuficiente` → **completar investigación pública** (WebSearch / sitios oficiales) **antes** de Round 1; volcar hallazgos al CONTEXTO. Sin ficha usable → **NO_GO** o pedir reformulación (no inventar).
+- Distinguir siempre: **reseña histórica pública** ≠ **AS-IS operativo interno** no publicado.
+- Si `dominio_sin_empresa` → no exigir ficha corporativa; el debate se centra en el problema de dominio.
+- Pasar la ficha (o N/A justificado) a los 4 agentes en CONTEXTO.
+
 ## Procedure
 
 ### CONTEXTO + tema único
@@ -50,6 +59,10 @@ Mismos agentes y límites de búsqueda. Debate **componentes internos** (problem
 - fase_entregable: …
 - restricciones: …
 - modo: una_alternativa
+- tipo_sujeto: empresa | entidad | dominio_sin_empresa | ficticio
+
+## FICHA_EMPRESA
+(pegar ficha de theme-audit.md o “N/A — dominio_sin_empresa: …”)
 
 ## BLOQUE_TEMA
 (pegar tema afinado de theme-audit.md + benchmarking)
@@ -57,7 +70,7 @@ Mismos agentes y límites de búsqueda. Debate **componentes internos** (problem
 
 ### Round 1 — parallel
 
-`critico-estricto`, `defensor-fundamento`, `impacto-social`, `viabilidad-mvp` — todos con `modo: una_alternativa`.
+`critico-estricto`, `defensor-fundamento`, `impacto-social`, `viabilidad-mvp` — todos con `modo: una_alternativa` + FICHA_EMPRESA.
 
 ### Round 2 — cross-debate
 
@@ -141,6 +154,10 @@ Ver `theme-audit-debate.md`.
 …
 ### Alcance
 …
+### Tipo de sujeto
+empresa | entidad | dominio_sin_empresa | ficticio
+### Ficha de empresa (para init-project → company.md)
+*(Obligatoria si empresa|entidad: identidad, reseña histórica pública, misión/visión/valores, oferta, fuentes. Si dominio_sin_empresa → “N/A” + justificación.)*
 
 ## MVP entregables
 *(Solo si GO o GO_con_cambios. Resultado del debate R2.)*
@@ -190,9 +207,10 @@ Paths + veredicto + **MVP de arranque** + si T usó solo año corriente. Si NO_G
 ## Forbidden
 
 - Tratar el input como 3 alternativas (`init-theme-polish`).
-- Soft consensus / inventar fuentes.
+- Soft consensus / inventar fuentes o datos de empresa.
+- GO/GO_con_cambios con empresa real **sin** ficha pública usable.
 - Forzar GO si el umbral dice NO_GO.
 - Escribir proyecto en `docs/content/` aquí.
 - Tocar skills `rsl-*` / regenerar Graphify.
 - Dejar solo un bullet “MVP acordado” sin tabla de entregables debatidos.
-- Omitir **Marco PICOCT** cuando el veredicto es GO o GO_con_cambios.
+- Omitir **Marco PICOCT** o la ficha de sujeto cuando el veredicto es GO o GO_con_cambios.

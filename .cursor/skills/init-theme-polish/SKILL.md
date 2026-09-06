@@ -42,6 +42,15 @@ No es un brainstorm amable. Respeta límites de búsqueda de cada agente y el pr
 
 Por alternativa, **cae** si el crítico marca `NO_GO` **o** (puntuación crítico ≤ 2 **y** viabilidad ≤ 2). **Pasa** solo si al menos un eje fuerte (crítico ≥ 3 y viabilidad ≥ 3) y no hay ≥2 ataques fuertes sin mitigar tras ronda 2. Si todas caen → veredicto global `NO_GO`.
 
+## Empresa / sujeto
+
+Si alguna alternativa tiene `tipo_sujeto: empresa|entidad`:
+
+- Exigir ficha usable en CONTEXTO (completar investigación pública si falta).
+- El crítico puede tumbar una alt. por empresa inventada o sin fuentes.
+- Distinguir reseña histórica **pública** vs AS-IS interno no publicado.
+- Si gana una alt. con empresa → el polish debe llevar **Ficha de empresa** lista para `init-project` → `company.md`.
+
 ## Procedure
 
 ### CONTEXTO (mismo bloque a los 4)
@@ -56,13 +65,16 @@ Tomar de `theme.md` / usuario; si falta, declarar supuestos:
 - restricciones: …
 - modo: N_alternativas
 
+## FICHAS_EMPRESA_POR_ALT
+(A1/A2/A3: ficha o N/A dominio_sin_empresa)
+
 ## BLOQUE_ALTERNATIVAS
 ...
 ```
 
 ### Round 1 — parallel
 
-Lanzar en paralelo: `critico-estricto`, `defensor-fundamento` (usará checklist si aún no hay crítico), `impacto-social`, `viabilidad-mvp`.
+Lanzar en paralelo: `critico-estricto`, `defensor-fundamento` (usará checklist si aún no hay crítico), `impacto-social`, `viabilidad-mvp` — con FICHAS_EMPRESA_POR_ALT.
 
 ### Round 2 — cross-debate
 
@@ -145,6 +157,10 @@ Ver `theme-debate.md`.
 …
 ### Alcance
 …
+### Tipo de sujeto
+empresa | entidad | dominio_sin_empresa | ficticio
+### Ficha de empresa (para init-project → company.md)
+*(Si empresa|entidad: identidad, reseña histórica pública, misión/visión/valores, oferta, fuentes. Si dominio_sin_empresa → N/A.)*
 ### MVP acordado
 - MVP 1 (se trabaja): …
 - Fuera de alcance ahora: …
@@ -153,7 +169,7 @@ Ver `theme-debate.md`.
 Ninguna alternativa fue aceptada. Traer otros tópicos o áreas e invocar de nuevo `init-theme`.
 
 ## Listo para siguiente skill
-`init-project` (espejar tema final en `profile.md`, `config.mvp`) → `init-project-mvp mvp-<N>`.
+`init-project` (espejar tema final + ficha → `company.md` si aplica, `profile.md`, `config.mvp`) → `init-project-mvp mvp-<N>`.
 ```
 
 ### Chat
@@ -164,6 +180,7 @@ Path de ambos archivos + veredicto en una línea. Si NO_GO: pedir nuevos tópico
 
 - Soft consensus sin presión del crítico.
 - Inventar fuentes o empresas.
+- Elegir ganador con empresa real **sin** ficha pública.
 - Elegir un ganador si las 4 lecturas son NO_GO.
 - Escribir `informe.md` / proyecto en `docs/content/` aquí.
 - Tocar skills `rsl-*`.

@@ -25,6 +25,7 @@ A prepare → (B agent headings si needs_agent) → C build → D verify
 ## Corpus
 
 - `profile.md`
+- `company.md` (si existe — ficha de empresa/entidad)
 - `structure.md` local **o** path de `config.modelo`
 - `docs/**/*.{md,qmd}` (apuntes del curso **y** drafts `docs/vN-*/draft.md`)
 - **MVP activo** = `config.mvp` (N) → `config.tools["mvp-N"]` paths (solo ese N; otros MVP → `mvp_inactive` en manifest, no al grafo). Fallback: `mvp/mvp-<N>-*/**/*.md`

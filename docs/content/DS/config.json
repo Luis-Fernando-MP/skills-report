@@ -23,6 +23,15 @@
       "debate": "./bibliography/auto/debate.md",
       "pdfs": "./bibliography/auto/pdfs/",
       "docs": "./bibliography/docs/"
+    },
+    "make-report": {
+      "last": "./docs/v1-capitulo-1/draft.md"
+    },
+    "bibliographic-search": {
+      "catalog": "./bibliographic/search/docs.md",
+      "debate": "./bibliographic/search/debate.md",
+      "pdfs": "./bibliographic/search/pdfs/",
+      "docs": "./bibliographic/docs/"
     }
   }
 }

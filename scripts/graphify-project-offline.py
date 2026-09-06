@@ -2,7 +2,7 @@
 """
 Project Graphify pipeline (docs/content/<FOLDER>).
 
-Corpus: profile.md, structure via config.modelo, docs/**/*.{md,qmd} (incl. drafts vN),
+Corpus: profile.md, company.md (optional), structure via config.modelo, docs/**/*.{md,qmd} (incl. drafts vN),
 active MVP from config.mvp → tools["mvp-N"], bibliography/auto + bibliography/docs,
 bibliographic/search + bibliographic/docs
 Manifest: docs/content/<FOLDER>/index-manifest.json
@@ -287,6 +287,37 @@ def prepare(project: Path, force: bool = False) -> dict:
             prepared.append(rel)
             if status == "needs_agent":
                 needs_agent.append(rel)
+
+    # company.md (empresa/entidad — make-report cap. 1.1)
+    company = project / "company.md"
+    if company.exists() and company.stat().st_size > 40:
+        rel = "company.md"
+        digest = sha256_file(company)
+        ent = entries.get(rel)
+        if (
+            not force
+            and ent
+            and ent.get("sha256") == digest
+            and ent.get("status") in {"md_ready", "graphify_indexed"}
+        ):
+            skipped.append(rel)
+        else:
+            text = company.read_text(encoding="utf-8", errors="replace")
+            headings = count_md_headings(text)
+            status = "md_ready" if headings >= MIN_HEADINGS_NOTE else "needs_agent"
+            entries[rel] = {
+                "sha256": digest,
+                "status": status,
+                "kind": "company",
+                "heading_count": headings,
+                "updated_at": utc_now(),
+            }
+            prepared.append(rel)
+            if status == "needs_agent":
+                needs_agent.append(rel)
+                print(f"needs_agent: {rel} (headings={headings})")
+            else:
+                print(f"prepared: {rel} (headings={headings})")
 
     # structure (local or modelo → corpus copy)
     struct_src, kind = resolve_structure_source(project, config)
@@ -607,7 +638,7 @@ def collect_md_files(project: Path) -> tuple[list[Path], list[str]]:
         indexed_keys.append(key)
 
     # Always try profile/structure on disk if somehow missing from prepare
-    for name in ("profile.md", "structure.md"):
+    for name in ("profile.md", "company.md", "structure.md"):
         p = project / name
         if p.exists() and p not in md_files:
             md_files.append(p)

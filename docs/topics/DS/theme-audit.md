@@ -1,55 +1,49 @@
 # Auditoría de tema — DS
 
 ## CONTEXTO
-- dominio: sistemas de información / arquitectura cloud — gestión de pedidos e inventario con microservicios, contenedores y despliegue AWS
-- pais_region: no fijada por el usuario; evidencia pública de Komatsu es global (no LatAm específica en fuentes usadas)
-- fase_entregable: mvp
-- tipo_entrega: **propuesta empresarial / PoC para Komatsu** (no proyecto solo estudiantil; el destinatario del valor es la empresa)
-- restricciones: MVP software básico (CRUD: clientes, productos, pedidos, inventario, usuarios); prioridad en arquitectura microservicios + contenedores + AWS; stack propuesto Java/Spring Boot, REST, Docker, Kubernetes (evolución), PostgreSQL, frontend HTML/CSS/JS, Prometheus/Grafana; no ERP enterprise completo; no inventar hechos internos de Komatsu no aportados por el usuario
+- dominio: Gestión de pedidos e inventario
+- pais_region: Global (origen Japón)
+- fase_entregable: PoC/MVP
+- restricciones: Convivencia con plataformas existentes fuera del alcance inicial
 - modo: una_alternativa
-- empresa: Komatsu (**cliente / destinatario de la propuesta**)
+- tipo_sujeto: empresa
+- empresa: Komatsu
 
 ## Tema propuesto (entrada)
-**Tema:** Sistema de Gestión de Inventario y Pedidos Basado en Microservicios y Contenedores para Komatsu
+**Tema:** Sistema de gestión de pedidos e inventario de partes/repuestos basado en microservicios y contenedores para Komatsu
+**Descripción:** Propuesta empresarial (PoC/MVP) dirigida a Komatsu para gestionar clientes, catálogo de partes, pedidos, inventario y usuarios sobre arquitectura cloud. Camino de entrega: dominio con reserva de stock al crear pedido → contenedores (Docker) → despliegue en AWS (ECS/Fargate + PostgreSQL + monitoreo) → extracción a microservicios (API Gateway, hasta 3 servicios acotados) como arquitectura objetivo. El entregable es un sistema demostrable y desplegable que Komatsu pueda evaluar frente a cuellos de integración/escala en pedidos e inventario; la convivencia o integración con plataformas ya existentes (p. ej. NPS/WMS documentados públicamente) queda fuera de esta fase salvo acuerdo explícito.
+**Problema identificado:** La falta de integración y escalabilidad en la gestión manual o centralizada de pedidos e inventario genera cuellos de botella en la atención a clientes, riesgo de desabastecimiento e ineficiencia operacional ante picos imprevistos de demanda. Pregunta de diseño: ¿de qué manera una arquitectura orientada a microservicios sobre infraestructura cloud permite optimizar la disponibilidad, escalabilidad y tiempo de respuesta en la gestión de pedidos e inventario de partes/repuestos para Komatsu?
+**Alcance:** PoC/MVP para Komatsu, secuenciado: (1) dominio + reserva de stock; (2) Compose + prueba de carga; (3) ECS/Fargate + RDS + monitoreo. Arquitectura objetivo con API Gateway y microservicios; K8s/EKS como evolución. Frontend web funcional mínimo. Auth de PoC.
 
-**Descripción:** Sistema web empresarial basado en servicios cloud para la gestión de pedidos e inventario. Módulos: clientes, productos, pedidos, inventario y usuarios. Arquitectura propuesta: Frontend Web/App → API Gateway → microservicios (Clientes, Productos, Pedidos) → base de datos cloud → monitoreo/métricas. Enfoque: demostrar infraestructura cloud (IaaS/PaaS, virtualización, contenedores, orquestación, redes, almacenamiento, BD cloud, monitoreo, escalabilidad y tolerancia a fallos) con un MVP funcional sencillo.
-
-**Problema identificado:** La falta de integración y escalabilidad en la gestión manual o centralizada de pedidos e inventario en Komatsu genera cuellos de botella en la atención a clientes, riesgo de desabastecimiento e ineficiencia operacional ante picos imprevistos de demanda.
-
-**Alcance:** MVP / PoC de propuesta para Komatsu: software básico + arquitectura microservicios contenedorizada desplegada en AWS para resolver la problemática de pedidos e inventario. No es requisito implementar desde el día 1 Kubernetes completo, multi-región ni un ERP.
+## Ficha de empresa (investigación)
+**Identidad:** Komatsu Ltd.
+**Razón social / marca:** Komatsu Ltd.
+**País / sede pública:** Japón (Oficina principal: Shiodome Building, 1-2-20, Kaigan, Minato-ku, Tokio 105-8316, Japón)
+**Sector:** Fabricación y venta de maquinaria de construcción, minería, utilidades, forestal e industrial.
+**Escala (pública):** Global, con 211 subsidiarias consolidadas y 67,279 empleados consolidados (a 1 de abril de 2026). Ventas netas consolidadas: 4,132.8 mil millones de yenes.
+**Reseña histórica (pública):** Fundada el 13 de mayo de 1921 por Meitaro Takeuchi como Komatsu Iron Works. Se expandió globalmente y en 2025 lanzó un plan de crecimiento estratégico a tres años, "Driving value with ambition".
+**Misión / visión / valores:** Ser un socio colaborativo comprometido con la optimización de lugares de trabajo seguros, productivos y limpios a través de la fabricación innovadora, la transformación digital y soluciones de energía sostenibles. Su propósito es crear valor a través de la innovación en fabricación y tecnología para empoderar un futuro sostenible.
+**Principios / identidad de gestión (si publicados):** Principio de gestión de compromiso con la calidad y fiabilidad, maximización del valor corporativo, y responsabilidad social corporativa.
+**Oferta / sector relevante:** Maquinaria de construcción y minería, sistemas de acarreo autónomos (AHS), plataformas digitales de construcción inteligente (Smart Construction), y maquinaria industrial especializada. Con un enfoque en la sostenibilidad y la reducción de emisiones de CO2.
+**Evidencia_empresa:** suficiente
+**Fuentes de empresa:**
+- https://www.komatsu.jp/en/aboutus/profile
+- https://www.komatsu.jp/en/-/media/home/ir/library/financial/en/2603q4_e.pdf
+- https://www.komatsu.jp/en/-/media/home/ir/library/annual/2025/en/kr25e_strategy.pdf
+- https://www.plantmachineryvehicles.com/power-lists/pmv-power-list/manufacturers-power-list-2025
+- https://www.komatsu.jp/en/-/media/home/ir/library/annual/2025/en/kr25e_introduction.pdf
 
 ## Benchmarking
-**Casos (directo|proxy):**
-1. **Komatsu — New Parts System (NPS) sobre Infor Nexus** — refresco global del supply chain de piezas de mantenimiento: visibilidad del estado de partes, menos silos/batch, plataforma cloud SaaS — https://dcross.impress.co.jp/docs/usecase/001098.html — (**directo**)
-2. **Komatsu Ltd. + LOGISTEED ONEsLOGI / WMS** — WMS y picking digital en centros de partes (multi-país): entrada/salida de partes, paperless — https://sol.logisteed.com/en/case/voice/komatsu.html — (**directo**)
-3. **AWS Guidance — Order & Inventory Management (QSR)** — arquitectura de referencia order+inventory en AWS (contenedores ECS/Fargate, sincronización, escalado) — https://aws.amazon.com/solutions/guidance/implementing-order-and-inventory-management-for-quick-service-restaurants-on-aws/ — (**proxy**)
-4. **AWS Architecture Blog — ECS + API Gateway** — patrón API Gateway → VPC Link → APIs en ECS; encaja con Frontend → Gateway → microservicios — https://aws.amazon.com/blogs/architecture/field-notes-serverless-container-based-apis-with-amazon-ecs-and-amazon-api-gateway/ — (**proxy**)
-5. **Sparity — microservicios para service supply chain / spare parts** — inventario de partes, órdenes, APIs REST en AWS — https://www.sparity.com/case-studies/microservices-platform-for-service-supply-chain-transformation/ — (**proxy**)
-
-**Qué adaptar:** acotar el dominio a **pedidos e inventario de partes/repuestos** (alineado a evidencia pública de Komatsu), sin reclamar paridad con NPS/WMS; una fuente de verdad por entidad vía API Gateway y contratos REST; movimientos de stock ligados a pedidos; despliegue AWS con API Gateway + contenedores (ECS/Fargate primero) + RDS PostgreSQL; K8s/EKS y tolerancia avanzada como evolución/demo de curso, no bloqueante del MVP; criterios medibles de disponibilidad/latencia/escala bajo carga simulada.
-
-**Diferenciador posible:**
-1. MVP didáctico de arquitectura cloud (microservicios acotados + Docker + AWS + métricas), no producto enterprise.
-2. Dominio “partes/repuestos” con reserva simple de stock al crear pedido (consistencia documentada).
-3. Camino de madurez IaaS → contenedores → orquestación (VM/demo → Docker → ECS; EKS opcional) para cubrir temas del curso sin inflar alcance funcional.
-
-**Evidencia:** suficiente (4/5 búsquedas)
+**Casos (directo|proxy):** Komatsu ya utiliza soluciones digitales como Smart Construction y AHS. El benchmark debe considerar la integración con sus sistemas existentes y cómo un PoC de microservicios se alinea o mejora sus infraestructuras actuales de gestión de operaciones.
+**Qué adaptar:** El PoC debe demostrar un valor claro y medible en la eficiencia de pedidos e inventario, complementando o mejorando los sistemas de Komatsu sin reemplazarlos de forma unilateral. El enfoque en 0 oversell y métricas de rendimiento es clave.
+**Diferenciador posible:** La propuesta de microservicios y contenedores en AWS ofrece escalabilidad y flexibilidad que podría ser un diferenciador frente a sistemas monolíticos o menos ágiles que Komatsu pueda tener. La reserva de stock al crear pedido es un diferenciador funcional crucial.
+**Evidencia:** suficiente
 
 ## Tema afinado (pre-polish)
-*(Ajustes mínimos tras benchmark; sin inventar hechos internos. Se acota el objeto a partes/repuestos. Destinatario = Komatsu como propuesta/PoC. El problema operativo se formula como **propuesta a validar con la empresa**, no como auditoría interna ya verificada. Evidencia pública (NPS/WMS) se trata como contexto de industria, no como rechazo de la propuesta.)*
-
-**Tema:** Sistema de gestión de pedidos e inventario de partes/repuestos basado en microservicios y contenedores para Komatsu
-
-**Descripción:** Propuesta / PoC empresarial de sistema web sobre servicios cloud para que Komatsu gestione clientes, productos (partes), pedidos, inventario y usuarios. Arquitectura objetivo: Frontend → API Gateway → microservicios Spring Boot contenedorizados → PostgreSQL en la nube → monitoreo. El valor es demostrar y entregar un camino de arquitectura cloud (disponibilidad, escalabilidad, tiempo de respuesta) desplegable en AWS, posicionado frente a procesos fragmentados o centralizados — sin afirmar reemplazo automático de plataformas productivas ya existentes (p. ej. NPS/Infor Nexus o WMS) salvo que Komatsu lo decida en alcance contractual.
-
-**Problema identificado (propuesta a validar):** La falta de integración y escalabilidad en la gestión manual o centralizada de pedidos e inventario genera cuellos de botella en la atención a clientes, riesgo de desabastecimiento e ineficiencia ante picos de demanda. Se propone a Komatsu una arquitectura orientada a microservicios sobre infraestructura cloud para optimizar disponibilidad, escalabilidad y tiempo de respuesta en pedidos e inventario de partes/repuestos.
-
-**Alcance:** PoC/MVP para Komatsu: CRUD de clientes, productos, pedidos, inventario y usuarios + API Gateway + microservicios contenedorizados (Docker) + PostgreSQL en AWS + monitoreo básico. Despliegue preferente ECS/Fargate; Kubernetes/EKS como evolución. Fuera de alcance en esta fase: ERP completo, MRP, EDI, multi-almacén global, IoT de flota; integración profunda con NPS/WMS solo si Komatsu la autoriza como fase posterior.
+**Tema:** Sistema de gestión de pedidos e inventario de partes/repuestos basado en microservicios y contenedores en AWS para Komatsu, enfocado en la resiliencia y el "0 oversell".
+**Descripción:** Desarrollo de un PoC/MVP para Komatsu, que aborda la gestión de clientes, catálogo, pedidos e inventario con una arquitectura de microservicios desplegada en AWS (ECS/Fargate, PostgreSQL, monitoreo). El objetivo es demostrar la optimización de la disponibilidad, escalabilidad y tiempo de respuesta en la gestión de pedidos, con un mecanismo de reserva de stock para garantizar cero oversell.
+**Problema identificado:** Cuellos de botella en la atención al cliente, riesgo de desabastecimiento e ineficiencia operacional debido a la falta de integración y escalabilidad en los sistemas actuales de gestión de pedidos e inventario de Komatsu, exacerbados por picos de demanda.
+**Alcance:** PoC/MVP para Komatsu, abarcando el dominio de gestión de pedidos con reserva de stock, empaquetado en Docker, pruebas de carga, y despliegue en AWS. Arquitectura objetivo microservicios. Excluye ERP/MRP/EDI completos, multi-almacén global, IoT de flota, y reemplazo de NPS/WMS existentes sin acuerdo.
 
 ## Fuentes
-- Komatsu NPS / Infor Nexus — https://dcross.impress.co.jp/docs/usecase/001098.html
-- Komatsu + LOGISTEED ONEsLOGI — https://sol.logisteed.com/en/case/voice/komatsu.html
-- AWS Guidance order & inventory — https://aws.amazon.com/solutions/guidance/implementing-order-and-inventory-management-for-quick-service-restaurants-on-aws/
-- AWS Field Notes ECS + API Gateway — https://aws.amazon.com/blogs/architecture/field-notes-serverless-container-based-apis-with-amazon-ecs-and-amazon-api-gateway/
-- Sparity spare parts microservices — https://www.sparity.com/case-studies/microservices-platform-for-service-supply-chain-transformation/
-- Komatsu DX (contexto estratégico, no operativo de pedidos) — https://www.komatsu.jp/en/-/media/home/ir/library/annual/2025/en/kr25e_strategy_05.pdf
+- Web search realizada el 2026-09-06.
