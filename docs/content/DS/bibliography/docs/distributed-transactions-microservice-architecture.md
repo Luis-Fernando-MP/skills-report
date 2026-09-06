@@ -7,7 +7,7 @@ source_pdf: "bibliography/auto/pdfs/distributed-transactions-microservice-archit
 pdf_path: "bibliography/auto/pdfs/distributed-transactions-microservice-architecture.pdf"
 pages: 11
 technique: section-chunks + finding-hooks + es-aliases
-enriched_at: 2026-09-06T04:02:25+00:00
+enriched_at: 2026-09-06T04:04:55+00:00
 ---
 
 # Distributed Transactions in Microservice Architecture: Informed Decision-Making Strategies
