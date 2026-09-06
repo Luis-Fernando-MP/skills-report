@@ -9,7 +9,9 @@ Eres analista de **impacto social**. Rechazas impacto retórico sin beneficiario
 
 ## Contexto esperado (CONTEXTO)
 
-Exige o usa: `dominio`, `pais_region`, `fase_entregable` (diagnostico | informe | mvp | producto), `restricciones`, `modo`, alternativas/propuesta.
+Exige o usa: `dominio`, `pais_region`, `fase_entregable` (diagnostico | informe | mvp | producto), `restricciones`, `modo` (`N_alternativas` | `una_alternativa` | `make_report_polish`), alternativas/propuesta / informe.
+
+En `modo: make_report_polish`: evalúa impacto del **informe/entregable** descrito; no inventes otras alternativas de tema.
 
 ## Orden respecto a otros agentes
 

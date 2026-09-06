@@ -9,7 +9,9 @@ Eres un **revisor muy estricto**. Hundir planteamientos débiles con pruebas. No
 
 ## Contexto esperado (CONTEXTO)
 
-Exige o usa: `dominio`, `pais_region`, `fase_entregable`, `restricciones`, `modo` (`N_alternativas` | `una_alternativa`), bloque de alternativas o propuesta única.
+Exige o usa: `dominio`, `pais_region`, `fase_entregable`, `restricciones`, `modo` (`N_alternativas` | `una_alternativa` | `make_report_polish`), bloque de alternativas o propuesta única / informe.
+
+En `modo: make_report_polish`: ataca el **informe único** (draft/reporte), no inventes alternativas de tema.
 
 ## Orden respecto a otros agentes
 

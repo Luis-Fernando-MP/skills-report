@@ -187,7 +187,7 @@ pnpm graphify:project -- <FOLDER>
 ### Paso 8 — Cerrar TODOs de citación
 
 1. Listar `TODO: citar — …`.
-2. Si hay ≥1 → **bibliography-search**.
+2. Si hay ≥1 → **bibliography-search** (misma skill del pipeline; puede re-correrse suelta después si OA falló).
 3. Reemplazar TODOs + Referencias; marcar `todos[].status: "done"` en la entrada del trace de esa versión; Graphify de nuevo.
 4. Si un TODO queda sin OA → dejar el `TODO: citar` (único residual aceptable); no inventar.
 

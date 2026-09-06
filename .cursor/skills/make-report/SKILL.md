@@ -63,7 +63,7 @@ No volcar PDFs/MD al contexto. Preferir findings + `src` + página. Incluir quer
 8. Escribir `docs/vN-tag/draft.md` **detallado y profesional** (ver playbook: densidad, reseña histórica real, sin hedges). Huecos de cita → `TODO: citar — …` (únicos placeholders permitidos).
 9. Escanear TODOs; **append** entrada en `docs/reports-trace.json` (`has_draft: true`, `has_polish: false`, `todos[]`). Registrar `config.tools["make-report"]` con `last` + `trace`.
 10. `pnpm graphify:project -- <FOLDER>`.
-11. Si hay TODOs de citación → **bibliography-search** → reemplazar → marcar `todos[].status: "done"` en el trace de esa versión → Graphify otra vez.
+11. Si hay TODOs de citación → **bibliography-search** (misma skill del paso 8 del README; también re-ejecutable suelta si quedó `pendiente_oa`) → reemplazar → marcar `todos[].status: "done"` en el trace de esa versión → Graphify otra vez.
 12. Chat: path draft, trace, secciones, TODOs restantes, search sí/no.
 
 ## Estándar de calidad del draft (no negociable)

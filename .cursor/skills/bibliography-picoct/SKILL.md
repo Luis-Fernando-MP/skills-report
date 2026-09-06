@@ -75,8 +75,8 @@ Usar el grafo para profile / bib previa / dominio antes de releer archivos enter
 
 ## Agentes
 
-- [`.cursor/agents/critico-estricto.md`](../agents/critico-estricto.md)
-- [`.cursor/agents/defensor-fundamento.md`](../agents/defensor-fundamento.md)
+- [`.cursor/agents/critico-estricto.md`](../../agents/critico-estricto.md)
+- [`.cursor/agents/defensor-fundamento.md`](../../agents/defensor-fundamento.md)
 
 CONTEXTO mínimo al lanzarlos:
 

@@ -86,8 +86,12 @@ def resolve_structure_source(project: Path, config: dict) -> tuple[Path | None, 
         if re.search(r"(?m)^#{1,3}\s+\S+", text):
             return local, "local"
     modelo = str(config.get("modelo") or "model1").strip()
-    candidate = REPO_ROOT / "common" / "structure" / f"{modelo}.md"
-    if candidate.exists():
+    # Full path (e.g. common/structure/model1.md) or short slug (model1)
+    if "/" in modelo or modelo.endswith(".md"):
+        candidate = REPO_ROOT / modelo
+    else:
+        candidate = REPO_ROOT / "common" / "structure" / f"{modelo}.md"
+    if candidate.is_file():
         return candidate, "modelo"
     return None, "missing"
 

@@ -58,10 +58,10 @@ graphify query "<q>" --graph docs/content/<FOLDER>/graphify-out/graph.json
 
 ## Agentes
 
-- [`.cursor/agents/critico-estricto.md`](../agents/critico-estricto.md)
-- [`.cursor/agents/defensor-fundamento.md`](../agents/defensor-fundamento.md)
-- [`.cursor/agents/impacto-social.md`](../agents/impacto-social.md)
-- [`.cursor/agents/viabilidad-mvp.md`](../agents/viabilidad-mvp.md)
-- [`.cursor/agents/inversor.md`](../agents/inversor.md)
-- [`.cursor/agents/gramatica-continuidad.md`](../agents/gramatica-continuidad.md)
-- [`.cursor/agents/revisor-cientifico.md`](../agents/revisor-cientifico.md)
+- [`.cursor/agents/critico-estricto.md`](../../agents/critico-estricto.md)
+- [`.cursor/agents/defensor-fundamento.md`](../../agents/defensor-fundamento.md)
+- [`.cursor/agents/impacto-social.md`](../../agents/impacto-social.md)
+- [`.cursor/agents/viabilidad-mvp.md`](../../agents/viabilidad-mvp.md)
+- [`.cursor/agents/inversor.md`](../../agents/inversor.md)
+- [`.cursor/agents/gramatica-continuidad.md`](../../agents/gramatica-continuidad.md)
+- [`.cursor/agents/revisor-cientifico.md`](../../agents/revisor-cientifico.md)

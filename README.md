@@ -27,7 +27,7 @@ Dos vías de arranque del tema; después el pipeline es el mismo.
 | 5 | `bibliography-picoct` | Marco PICO/PICOC/PICOCT, keywords EN/ES y ecuaciones Scopus |
 | 6 | `bibliography-auto` | Hasta 5 fuentes OA (debate utilidad → PDF/MD + `auto/docs.md` + Graphify) |
 | 7 | `make-report` | Draft versionado `docs/vN-tag/draft.md` + `docs/reports-trace.json` (alias `make-informe`) |
-| 8 | `bibliography-search` | OA para huecos `TODO: citar` → `bibliography/search` + `docs/search` + Graphify |
+| 8 | `bibliography-search` | OA para huecos `TODO: citar` → `bibliography/search` + `docs/search` + Graphify (también lo invoca **make-report** si hay TODOs; se puede re-correr suelto) |
 | 9 | `make-report-polish` | Pule último draft → `reporte.md` + `reporte-debate.md` (7 agentes; no toca draft) |
 | — | `bibliographic-search` | *(deprecated)* alias → `bibliography-search` |
 | — | `prepare-bibliography-manual` | *(pendiente)* CSV / búsqueda manual de fuentes |
@@ -64,7 +64,10 @@ common/citation-style/  # APA7.md, IEEE.md  ← config.citation_style
 common/structure/       # model1.md, …     ← config.modelo (si no hay override)
 common/make-report/
 common/make-report-polish/
+common/bibliography-auto/
 common/bibliography-search/
+common/bibliography-picoct/
+common/design-thinking/ # + lean-canvas, foda, rat, as-is-to-be (MVP)
 
 graphify-out/           # memoria del repo (skills, README…)
 ```
@@ -150,6 +153,14 @@ Usa graphify-root
 ```bash
 pnpm graphify:refresh
 ```
+
+## Chequeo local
+
+```bash
+pnpm run check:pipeline
+```
+
+Valida skills/playbooks, links a agentes, paths bib auto vs search, y `reports-trace` de DDS.
 
 ## Orden sugerido
 

@@ -1,5 +1,5 @@
 {
-  "name": "fis-rsl",
+  "name": "itd",
   "private": true,
   "type": "module",
   "description": "Academic project workflow (init + Graphify)",
@@ -11,7 +11,8 @@
     "graphify:project:prepare": "node scripts/graphify-project.mjs",
     "graphify:project:verify": "node scripts/graphify-project.mjs",
     "graphify:query": "graphify query",
-    "graphify:open": "xdg-open graphify-out/graph.html || open graphify-out/graph.html || true"
+    "graphify:open": "xdg-open graphify-out/graph.html || open graphify-out/graph.html || true",
+    "check:pipeline": "node scripts/check-pipeline.mjs"
   },
   "engines": {
     "node": ">=18"

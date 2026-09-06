@@ -46,7 +46,7 @@ flowchart TD
 1. `FOLDER` + leer `profile.md` (tema, problema, alcance, MVP).
 2. Leer `config.json`: `citation_style` (p. ej. `common/citation-style/APA7.md` o IEEE).
 3. Si falta `profile.md` → pedir **init-project**.
-4. Si ya existen archivos en `bibliography/auto/` o `bibliography/docs/` → **preguntar** antes de sobrescribir / complementar.
+4. Si ya existen archivos en `bibliography/auto/` o MD **top-level** en `bibliography/docs/*.md` (no `docs/search/`) → **preguntar** antes de sobrescribir / complementar. No tratar `bibliography/docs/search/` como corpus de auto.
 
 ### Paso 2 — Buscar candidatos (sin descargar)
 

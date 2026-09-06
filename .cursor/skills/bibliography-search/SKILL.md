@@ -81,8 +81,8 @@ Si no hay grafo → pedir **graphify-project**. Tras esta skill, el refresh deja
 
 ## Agentes
 
-- [`.cursor/agents/critico-estricto.md`](../agents/critico-estricto.md)
-- [`.cursor/agents/defensor-fundamento.md`](../agents/defensor-fundamento.md)
+- [`.cursor/agents/critico-estricto.md`](../../agents/critico-estricto.md)
+- [`.cursor/agents/defensor-fundamento.md`](../../agents/defensor-fundamento.md)
 
 ```text
 modo: bibliography_search_utilidad

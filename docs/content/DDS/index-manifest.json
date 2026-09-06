@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-06T06:04:54+00:00",
+  "updated_at": "2026-09-06T07:20:50+00:00",
   "entries": {
     "profile.md": {
       "sha256": "59029f1a325cb211e3b9f4774448b5ffccf7815e9fb4c97b51fe98e9c6a76333",
@@ -107,6 +107,15 @@
       "heading_count": 40,
       "updated_at": "2026-09-06T06:04:54+00:00",
       "graphify_indexed_at": "2026-09-06T06:04:54+00:00"
+    },
+    "modelo:common/structure/model1.md": {
+      "sha256": "5b91217e970e09aee5e13f706f461fd97fe602551f8cdf74bcba488719e191fb",
+      "status": "md_ready",
+      "kind": "structure",
+      "source": "common/structure/model1.md",
+      "index_md": "graphify-out/_corpus/structure.md",
+      "heading_count": 10,
+      "updated_at": "2026-09-06T07:20:50+00:00"
     }
   }
 }

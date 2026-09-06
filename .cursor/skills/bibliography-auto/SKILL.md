@@ -57,7 +57,7 @@ Usar el resultado del grafo (documento, finding, `src`, página/`loc`) para orie
 
 1. Resolver `FOLDER`; leer `profile.md` + `config.json` (`citation_style`).
 2. Leer playbook `common/bibliography-auto/model1.md` y el playbook de citación apuntado por config.
-3. Si ya hay contenido en `bibliography/auto/` o `bibliography/docs/` → **preguntar** antes de sobrescribir.
+3. Si ya hay contenido en `bibliography/auto/` o MD top-level en `bibliography/docs/*.md` (excluir `docs/search/`) → **preguntar** antes de sobrescribir.
 4. Buscar candidatos OA (agente elige bases/queries). **No descargar aún.**
 5. **Debate** (Task / agentes), modo `bibliography_auto_utilidad`:
    - `critico-estricto` — utilidad / ruido / fuera de alcance; WebSearch ≤3.
@@ -88,8 +88,8 @@ Usar el resultado del grafo (documento, finding, `src`, página/`loc`) para orie
 
 ## Agentes
 
-- [`.cursor/agents/critico-estricto.md`](../agents/critico-estricto.md)
-- [`.cursor/agents/defensor-fundamento.md`](../agents/defensor-fundamento.md)
+- [`.cursor/agents/critico-estricto.md`](../../agents/critico-estricto.md)
+- [`.cursor/agents/defensor-fundamento.md`](../../agents/defensor-fundamento.md)
 
 ```text
 modo: bibliography_auto_utilidad
