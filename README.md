@@ -9,14 +9,14 @@ Dos vías de arranque del tema; después el pipeline es el mismo.
 | # | Skill | Qué hace |
 |---|--------|----------|
 | 1 | `init-theme` | De 3–4 tópicos, propone 3 alternativas de proyecto + benchmarking |
-| 2 | `init-theme-polish` | Debate 5 agentes (incl. inversor) sobre las 3 alts → veredicto y tema final |
+| 2 | `init-theme-polish` | Debate 5 agentes de fondo (+ `gramatica-continuidad` en R3) → veredicto y tema final |
 
 ### Vía B — Tema ya propuesto
 
 | # | Skill | Qué hace |
 |---|--------|----------|
 | 1 | `init-theme-audit` | Audita un tema concreto + benchmarking |
-| 2 | `init-theme-audit-polish` | Debate 5 agentes (incl. inversor, una alternativa) → veredicto, tema final y MVP entregables |
+| 2 | `init-theme-audit-polish` | Debate 5 agentes de fondo (+ `gramatica-continuidad` en R3, una alternativa) → veredicto, tema final y MVP |
 
 ### Proyecto e informe (después de A o B)
 

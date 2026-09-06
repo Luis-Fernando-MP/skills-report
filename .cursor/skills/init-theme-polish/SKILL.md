@@ -2,9 +2,9 @@
 name: init-theme-polish
 description: >-
   Debate 3 theme alternatives with critico-estricto, defensor-fundamento,
-  impacto-social, viabilidad-mvp, inversor; write theme-debate.md (scores +
-  diagrama + Q&A) and theme-polish.md (GO/NO_GO + final theme). Use when user
-  says init-theme-polish.
+  impacto-social, viabilidad-mvp, inversor, then gramatica-continuidad on the
+  polish prose; write theme-debate.md and theme-polish.md. Use when user says
+  init-theme-polish.
 ---
 
 # init-theme-polish
@@ -17,7 +17,7 @@ Estresa las **3 alternativas** de `theme.md`. Si el input es un **tema único** 
 docs/topics/<FOLDER>/
   theme.md           # entrada (init-theme)
   theme-debate.md    # acta: scores, diagrama mermaid, preguntas, respuestas
-  theme-polish.md    # veredicto + alternativa final o NO_GO
+  theme-polish.md    # veredicto + alternativa final o NO_GO (prosa limpia)
 ```
 
 ## Invoke
@@ -56,7 +56,7 @@ Si alguna alternativa tiene `tipo_sujeto: empresa|entidad`:
 
 ## Procedure
 
-### CONTEXTO (mismo bloque a los 5)
+### CONTEXTO (mismo bloque a los 5 de fondo)
 
 Tomar de `theme.md` / usuario; si falta, declarar supuestos:
 
@@ -75,7 +75,7 @@ Tomar de `theme.md` / usuario; si falta, declarar supuestos:
 ...
 ```
 
-### Round 1 — parallel
+### Round 1 — parallel (fondo)
 
 Lanzar en paralelo: `critico-estricto`, `defensor-fundamento`, `impacto-social`, `viabilidad-mvp`, `inversor` — con FICHAS_EMPRESA_POR_ALT.
 
@@ -85,6 +85,16 @@ Lanzar en paralelo: `critico-estricto`, `defensor-fundamento`, `impacto-social`,
 2. Pasar **alcance cuestionado** a `viabilidad-mvp` para anclar MVP.
 3. Pasar **propuestas de valor del inversor** a impacto-social, defensor y viabilidad (¿cabe sin re-inflar?).
 4. Extraer choques impacto vs viabilidad vs valor; consolidar scores.
+
+### Borrador de polish (orquestador)
+
+Redactar borrador interno de `theme-polish.md` según veredicto + consensos (aún no escribir a disco como final).
+
+### Round 3 — prosa
+
+1. Pasar el borrador a `gramatica-continuidad` con `modo: theme_polish`.
+2. Integrar reescrituras en el texto final **sin** cambiar veredicto, hechos ni scores.
+3. Si veredicto es `NO_GO`, igual pulir la prosa del cierre (por qué cae / qué reformular).
 
 ### Write `theme-debate.md` (primero)
 
@@ -119,6 +129,9 @@ Acta legible para el humano. Plantilla:
 ## Cruce global
 Choques, réplicas ronda 2, propuestas de valor debatidas, y por qué se eligió (o no) una.
 
+## Calidad de prosa (R3)
+- [gramatica-continuidad] diagnóstico / reescrituras aplicadas: …
+
 ## Diagrama del debate
 \`\`\`mermaid
 flowchart TD
@@ -135,7 +148,9 @@ flowchart TD
   neg -->|"MVP"| out
   crit --> r2
   def --> r2
-  r2 --> out
+  r2 --> draftP[Borrador_polish]
+  draftP --> gram[gramatica_continuidad]
+  gram --> out
 \`\`\`
 *(Personalizar edges con objeciones reales de esta corrida.)*
 
@@ -155,7 +170,7 @@ GO | GO_con_cambios | NO_GO
 Ver `theme-debate.md`.
 
 ## Tema final propuesto
-*(Solo si GO o GO_con_cambios. Un solo planteamiento.)*
+*(Solo si GO o GO_con_cambios. Un solo planteamiento. Prosa continua tras R3.)*
 
 ### Tema
 …
@@ -195,5 +210,15 @@ Path de ambos archivos + veredicto en una línea. Si NO_GO: pedir nuevos tópico
 - Elegir ganador con empresa real **sin** ficha pública.
 - Elegir un ganador si las lecturas fuertes (crítico+viabilidad) son NO_GO.
 - Tumbar solo por `NO_GO` del inversor cuando hay tesis de valor social/adopción mitigada.
+- Omitir Round 3 de `gramatica-continuidad` cuando se escribe `theme-polish.md`.
 - Escribir `informe.md` / proyecto en `docs/content/` aquí.
 - Regenerar Graphify.
+
+## Agentes
+
+- [`.cursor/agents/critico-estricto.md`](../../agents/critico-estricto.md)
+- [`.cursor/agents/defensor-fundamento.md`](../../agents/defensor-fundamento.md)
+- [`.cursor/agents/impacto-social.md`](../../agents/impacto-social.md)
+- [`.cursor/agents/viabilidad-mvp.md`](../../agents/viabilidad-mvp.md)
+- [`.cursor/agents/inversor.md`](../../agents/inversor.md)
+- [`.cursor/agents/gramatica-continuidad.md`](../../agents/gramatica-continuidad.md)

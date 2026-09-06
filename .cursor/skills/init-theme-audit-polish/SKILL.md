@@ -2,10 +2,9 @@
 name: init-theme-audit-polish
 description: >-
   Stress-test one audited theme (theme-audit.md) with critico-estricto,
-  defensor-fundamento, impacto-social, viabilidad-mvp, inversor in
-  una_alternativa mode; write theme-audit-debate.md (scores + diagrama + Q&A)
-  and theme-audit-polish.md (veredicto + tema final + MVP entregables). Use when
-  user says init-theme-audit-polish.
+  defensor-fundamento, impacto-social, viabilidad-mvp, inversor, then
+  gramatica-continuidad on the polish prose; write theme-audit-debate.md and
+  theme-audit-polish.md. Use when user says init-theme-audit-polish.
 ---
 
 # init-theme-audit-polish
@@ -18,7 +17,7 @@ Estresa **el tema único** producido por `init-theme-audit`. Reutiliza los mismo
 docs/topics/<FOLDER>/
   theme-audit.md           # entrada (init-theme-audit)
   theme-audit-debate.md    # acta: scores, diagrama mermaid, Q&A, debate MVP
-  theme-audit-polish.md    # veredicto + tema final + MVP entregables
+  theme-audit-polish.md    # veredicto + tema final + MVP entregables (prosa limpia)
 ```
 
 ## Invoke
@@ -48,7 +47,7 @@ Leer `tipo_sujeto` y **`## Ficha de empresa (investigación)`** de `theme-audit.
 - Si `empresa|entidad` y ficha ausente o `evidencia_empresa: insuficiente` → **completar investigación pública** (WebSearch / sitios oficiales) **antes** de Round 1; volcar hallazgos al CONTEXTO. Sin ficha usable → **NO_GO** o pedir reformulación (no inventar).
 - Distinguir siempre: **reseña histórica pública** ≠ **AS-IS operativo interno** no publicado.
 - Si `dominio_sin_empresa` → no exigir ficha corporativa; el debate se centra en el problema de dominio.
-- Pasar la ficha (o N/A justificado) a los **5** agentes en CONTEXTO.
+- Pasar la ficha (o N/A justificado) a los **5** agentes de fondo en CONTEXTO.
 
 ## Procedure
 
@@ -70,7 +69,7 @@ Leer `tipo_sujeto` y **`## Ficha de empresa (investigación)`** de `theme-audit.
 (pegar tema afinado de theme-audit.md + benchmarking)
 ```
 
-### Round 1 — parallel
+### Round 1 — parallel (fondo)
 
 `critico-estricto`, `defensor-fundamento`, `impacto-social`, `viabilidad-mvp`, `inversor` — todos con `modo: una_alternativa` + FICHA_EMPRESA.
 
@@ -81,6 +80,16 @@ Leer `tipo_sujeto` y **`## Ficha de empresa (investigación)`** de `theme-audit.
 3. Pasar **propuestas de valor del inversor** → impacto-social, defensor y viabilidad (¿cabe sin re-inflar?).
 4. Pasar el bloque MVP entregables → `critico-estricto` (¿inflado / paperware / núcleo equivocado?), `defensor-fundamento`, `impacto-social` e `inversor` (¿cuál arrancar y por qué / valor).
 5. Orquestador fija **MVP de arranque** (casi siempre 1) o documenta disenso; consolidar scores por dimensión.
+
+### Borrador de polish (orquestador)
+
+Redactar borrador interno de `theme-audit-polish.md` (veredicto, tema, MVP, tesis de valor, PICOCT) según consensos.
+
+### Round 3 — prosa
+
+1. Pasar el borrador a `gramatica-continuidad` con `modo: theme_audit_polish`.
+2. Integrar reescrituras en el texto final **sin** cambiar veredicto, hechos, scores ni celdas PICOCT inventadas.
+3. Si veredicto es `NO_GO`, igual pulir la prosa del cierre.
 
 ### Write `theme-audit-debate.md`
 
@@ -115,6 +124,9 @@ Leer `tipo_sujeto` y **`## Ficha de empresa (investigación)`** de `theme-audit.
 - [inversor] tesis / propuestas de valor: …
 - Orquestador — MVP de arranque: N — …
 
+## Calidad de prosa (R3)
+- [gramatica-continuidad] diagnóstico / reescrituras aplicadas: …
+
 ## Diagrama del debate
 \`\`\`mermaid
 flowchart TD
@@ -132,7 +144,9 @@ flowchart TD
   crit --> r2
   def --> r2
   neg --> r2
-  r2 --> out
+  r2 --> draftP[Borrador_polish]
+  draftP --> gram[gramatica_continuidad]
+  gram --> out
 \`\`\`
 *(Personalizar edges con objeciones reales.)*
 
@@ -152,7 +166,7 @@ GO | GO_con_cambios | NO_GO
 Ver `theme-audit-debate.md`.
 
 ## Tema final
-*(Solo si GO o GO_con_cambios.)*
+*(Solo si GO o GO_con_cambios. Prosa continua tras R3.)*
 
 ### Tema
 …
@@ -226,4 +240,14 @@ Paths + veredicto + **MVP de arranque** + si T usó solo año corriente. Si NO_G
 - Regenerar Graphify.
 - Dejar solo un bullet “MVP acordado” sin tabla de entregables debatidos.
 - Omitir **Marco PICOCT**, **Tesis de valor (inversor)** o la ficha de sujeto cuando el veredicto es GO o GO_con_cambios.
+- Omitir Round 3 de `gramatica-continuidad` cuando se escribe `theme-audit-polish.md`.
 - Tumbar solo por `NO_GO` del inversor cuando hay mitigación de valor social/adopción.
+
+## Agentes
+
+- [`.cursor/agents/critico-estricto.md`](../../agents/critico-estricto.md)
+- [`.cursor/agents/defensor-fundamento.md`](../../agents/defensor-fundamento.md)
+- [`.cursor/agents/impacto-social.md`](../../agents/impacto-social.md)
+- [`.cursor/agents/viabilidad-mvp.md`](../../agents/viabilidad-mvp.md)
+- [`.cursor/agents/inversor.md`](../../agents/inversor.md)
+- [`.cursor/agents/gramatica-continuidad.md`](../../agents/gramatica-continuidad.md)
