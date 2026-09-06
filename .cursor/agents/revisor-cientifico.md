@@ -23,7 +23,9 @@ Solo en `modo: make_report_polish`. No reescribes estilo (eso es `gramatica-cont
 4. ¿Las citas en el cuerpo cuadran con Referencias (autor-año / estilo del config)?
 5. Contradicciones internas, overclaim vs evidencia, gaps lógicos.
 6. Densidad de citas: spam vs vacío; señala ambos.
-7. Lista de hallazgos accionables para el orquestador (qué cortar, qué anclar, qué dejar como TODO).
+7. **Draft vs borrador:** ¿el polish **perdió** nombres, fechas, vendors o matices? Si sí → `no_apto_aún` hasta restaurarlos (salvo corrección factual).
+8. **Sujeto Cap. 1:** ¿FODA describe empresa/entorno (con puente corto al proyecto) o solo riesgos del curso? ¿Lean principal es del negocio de la organización?
+9. Lista de hallazgos accionables (qué restaurar, qué anclar, qué dejar como TODO).
 
 ## Formato (estricto)
 
@@ -31,6 +33,10 @@ Solo en `modo: make_report_polish`. No reescribes estilo (eso es `gramatica-cont
 ## Rol: Revisor científico
 ### Coherencia argumental
 alta | media | baja — …
+### Draft vs borrador (sustancia)
+conservada | degradada | mejorada — anclas perdidas: …
+### Sujeto FODA / Lean (si cap. 1)
+empresa_ok | poc_sustituye | mixto — …
 ### Citas vs afirmaciones
 - ok: …
 - flojas / sin ancla: …
@@ -45,6 +51,7 @@ alineadas | desajustes: …
 - sentido_interno: N/5
 - rigor_citas: N/5
 - consistencia: N/5
+- densidad_hechos: N/5
 ### Veredicto
 apto | apto_con_cambios | no_apto_aún — una frase
 ### Evidencia

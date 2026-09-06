@@ -1,0 +1,136 @@
+{
+  "version": 1,
+  "updated_at": "2026-09-06T09:15:43+00:00",
+  "entries": {
+    "profile.md": {
+      "sha256": "cb540730a5679f102f2a4fc48727de859d8a42aff099b675e60b84f73508de01",
+      "status": "graphify_indexed",
+      "kind": "profile",
+      "heading_count": 11,
+      "updated_at": "2026-09-06T08:53:11+00:00",
+      "graphify_indexed_at": "2026-09-06T09:15:43+00:00"
+    },
+    "company.md": {
+      "sha256": "85122e826cab5735c4d20067fa7246885ddafa629b4e9bb02b4f93fea8d649b3",
+      "status": "graphify_indexed",
+      "kind": "company",
+      "heading_count": 7,
+      "updated_at": "2026-09-06T08:53:11+00:00",
+      "graphify_indexed_at": "2026-09-06T09:15:43+00:00"
+    },
+    "modelo:common/structure/model1.md": {
+      "sha256": "5b91217e970e09aee5e13f706f461fd97fe602551f8cdf74bcba488719e191fb",
+      "status": "graphify_indexed",
+      "kind": "structure",
+      "source": "common/structure/model1.md",
+      "index_md": "graphify-out/_corpus/structure.md",
+      "heading_count": 10,
+      "updated_at": "2026-09-06T08:53:11+00:00",
+      "graphify_indexed_at": "2026-09-06T09:15:43+00:00"
+    },
+    "docs/v1-capitulo-1/draft.md": {
+      "sha256": "e1191e9abbf73518a64bb96f9686d63e5d823ac24e3fccc09e03ff2276c3b5b1",
+      "status": "graphify_indexed",
+      "kind": "note",
+      "index_md": "docs/v1-capitulo-1/draft.md",
+      "heading_count": 6,
+      "updated_at": "2026-09-06T08:53:11+00:00",
+      "graphify_indexed_at": "2026-09-06T09:15:43+00:00"
+    },
+    "docs/v1-capitulo-1/reporte-debate.md": {
+      "sha256": "5fec12e58efa1ecf289adf9123e81b031ddbdcd3777989acf0b9edd6f11cbeb2",
+      "status": "graphify_indexed",
+      "kind": "note",
+      "index_md": "docs/v1-capitulo-1/reporte-debate.md",
+      "heading_count": 5,
+      "updated_at": "2026-09-06T08:53:11+00:00",
+      "graphify_indexed_at": "2026-09-06T09:15:43+00:00"
+    },
+    "docs/v1-capitulo-1/reporte.md": {
+      "sha256": "27e5daa28e981b70b4d4ade593fd2c82880de134f2a5d61f3dbdddc478a51c96",
+      "status": "graphify_indexed",
+      "kind": "note",
+      "index_md": "docs/v1-capitulo-1/reporte.md",
+      "heading_count": 6,
+      "updated_at": "2026-09-06T08:53:11+00:00",
+      "graphify_indexed_at": "2026-09-06T09:15:43+00:00"
+    },
+    "mvp/mvp-1-inventario-metraje-fichas/as-is-to-be.md": {
+      "sha256": "ab55693abe025a5fd086f9d34445fd975b07785e14e2c2aea9e6f37aa13a62a9",
+      "status": "graphify_indexed",
+      "kind": "mvp",
+      "mvp_n": 1,
+      "index_md": "mvp/mvp-1-inventario-metraje-fichas/as-is-to-be.md",
+      "heading_count": 7,
+      "updated_at": "2026-09-06T09:15:21+00:00",
+      "graphify_indexed_at": "2026-09-06T09:15:43+00:00"
+    },
+    "mvp/mvp-1-inventario-metraje-fichas/design-thinking.md": {
+      "sha256": "ad3e6267ee9aca54906a8b1c3d1901d8c4bc35acf4359bb0875a069a2d85f0d3",
+      "status": "graphify_indexed",
+      "kind": "mvp",
+      "mvp_n": 1,
+      "index_md": "mvp/mvp-1-inventario-metraje-fichas/design-thinking.md",
+      "heading_count": 6,
+      "updated_at": "2026-09-06T09:15:21+00:00",
+      "graphify_indexed_at": "2026-09-06T09:15:43+00:00"
+    },
+    "mvp/mvp-1-inventario-metraje-fichas/foda.md": {
+      "sha256": "e77d0d0d81a0d666cde8e903505715b52cc3b371cc520d8e3a942436a6ce880d",
+      "status": "graphify_indexed",
+      "kind": "mvp",
+      "mvp_n": 1,
+      "index_md": "mvp/mvp-1-inventario-metraje-fichas/foda.md",
+      "heading_count": 5,
+      "updated_at": "2026-09-06T09:15:21+00:00",
+      "graphify_indexed_at": "2026-09-06T09:15:43+00:00"
+    },
+    "mvp/mvp-1-inventario-metraje-fichas/lean-canvas.md": {
+      "sha256": "c942fba334f1a758847228329b68332244906ca99a48ec253ce6cbab742cbdb4",
+      "status": "graphify_indexed",
+      "kind": "mvp",
+      "mvp_n": 1,
+      "index_md": "mvp/mvp-1-inventario-metraje-fichas/lean-canvas.md",
+      "heading_count": 5,
+      "updated_at": "2026-09-06T09:15:21+00:00",
+      "graphify_indexed_at": "2026-09-06T09:15:43+00:00"
+    },
+    "mvp/mvp-1-inventario-metraje-fichas/rat.md": {
+      "sha256": "9a13e6192158e64eee032b4310eceffd5ecd5daa1b07eb613823dac23383808a",
+      "status": "graphify_indexed",
+      "kind": "mvp",
+      "mvp_n": 1,
+      "index_md": "mvp/mvp-1-inventario-metraje-fichas/rat.md",
+      "heading_count": 4,
+      "updated_at": "2026-09-06T09:15:43+00:00",
+      "graphify_indexed_at": "2026-09-06T09:15:43+00:00"
+    },
+    "docs/v2-capitulo-1/draft.md": {
+      "sha256": "1e915a36693b23cf6853d3f1333da185d6737aa9c2ec0a61b6a1a19eed99f090",
+      "status": "graphify_indexed",
+      "kind": "note",
+      "index_md": "docs/v2-capitulo-1/draft.md",
+      "heading_count": 6,
+      "updated_at": "2026-09-06T09:07:00+00:00",
+      "graphify_indexed_at": "2026-09-06T09:15:43+00:00"
+    },
+    "docs/v2-capitulo-1/reporte-debate.md": {
+      "sha256": "2b742a3bb5df328e6ca8f7eded082459159449d4f06b4ab1c431249715d43e81",
+      "status": "graphify_indexed",
+      "kind": "note",
+      "index_md": "docs/v2-capitulo-1/reporte-debate.md",
+      "heading_count": 10,
+      "updated_at": "2026-09-06T09:07:00+00:00",
+      "graphify_indexed_at": "2026-09-06T09:15:43+00:00"
+    },
+    "docs/v2-capitulo-1/reporte.md": {
+      "sha256": "76c59867519c8bfb055b98018633f26af53b1ababebf4c770998fc7746aec89b",
+      "status": "graphify_indexed",
+      "kind": "note",
+      "index_md": "docs/v2-capitulo-1/reporte.md",
+      "heading_count": 6,
+      "updated_at": "2026-09-06T09:07:00+00:00",
+      "graphify_indexed_at": "2026-09-06T09:15:43+00:00"
+    }
+  }
+}

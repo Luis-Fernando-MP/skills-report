@@ -56,24 +56,59 @@ docs/content/<FOLDER>/
 
 ### Qué sí
 
-- Prosa **académico-profesional**, párrafos desarrollados, secciones con sustancia.
-- Cap. presentación de empresa: **reseña histórica real** (fundación, hitos, expansión) desde `company.md` + fuentes públicas; misión/visión/valores con sustancia.
-- Diagnóstico y Lean Canvas: integrar MVP de forma narrativa **cerrada** (hechos del proyecto como decisiones/criterios del PoC, no como dudas abiertas al lector).
-- Separar en frases distintas lo **documentado con fuente** de lo que es **diseño del PoC** — sin etiquetas internas.
-- Citas donde aportan (teoría, dato corporativo); no repetir la misma cita en cada frase.
+- Prosa **académico-profesional**, párrafos desarrollados, secciones con **hechos nombrables** (fechas, sedes, líneas de negocio, competidores/proxies con nombre cuando existan en `company.md` / theme-audit / benchmark).
+- Cap. presentación de empresa: ver **Reglas Capítulo 1** abajo.
+- Separar en frases distintas lo **documentado con fuente** de lo que es **diseño del proyecto** — en prosa natural, sin etiquetas internas de pipeline.
+- Citas donde aportan; no spam de la misma cita en cada frase.
 - Portada/metadato **alineados** con lo que el draft realmente cubre.
+- Preferir **concreto breve** a **genérico largo**: un párrafo con hitos > tres frases vacías.
 
 ### Qué no (prohibido en el cuerpo del draft)
 
 | Prohibido | Por qué |
 |-----------|---------|
-| `pendiente_campo`, `hipótesis`, `evidencia` como labels de pipeline | Son meta del proceso init/MVP, no del informe |
-| “no se afirma como auditoría certificada”, “valídalo con sponsor”, “propuesta de trabajo no hallazgos” | Descarga la responsabilidad al lector |
-| Reseña histórica de 2 líneas + salvedad metodológica | Confunde falta de AS-IS interno con falta de historia pública |
+| Labels de pipeline (`pendiente_campo`, encabezados `hipótesis:`, `evidencia:`) | Meta del proceso init/MVP |
+| “valídalo con sponsor”, “casi reporte”, “propuesta de trabajo no hallazgos” | Descarga la responsabilidad al lector |
+| Reseña de 1–2 líneas o solo paráfrasis de un párrafo web | Confunde falta de AS-IS con falta de historia pública |
+| FODA cuyas debilidades/amenazas son **solo** riesgos del curso/PoC | El 1.2 es diagnóstico de la **empresa/entorno**, no del sílabo |
+| Lean Canvas **solo** del PoC académico bajo “Modelo de negocio” de la empresa | Sustituye el negocio real por el demo del curso |
+| Frases genéricas sin ancla (“existen soluciones”, “el mercado ofrece tools”) cuando el corpus ya tiene nombres | Produce informe vacío |
 | Inventar hechos internos de la empresa | Solo fuentes públicas / `company.md` |
-| “Casi reporte”, disclaimers de calidad | El polish limpia; esta base debe ser sólida |
 
-**Único placeholder permitido en el draft:** `TODO: citar — <afirmación>` cuando falta fuente verificable.
+**Permitido (una vez, prosa natural):** acotar alcance (“con base en fuentes públicas…”) o decir que no hay misión formal publicada. **No** repetir el disclaimer en cada subsección.
+
+**Único placeholder permitido:** `TODO: citar — <afirmación>` cuando falta fuente verificable.
+
+### Reglas Capítulo 1 (si el alcance lo incluye)
+
+Aplica cuando el outline trae 1.1 / 1.2 / 1.3 (nombres equivalentes del `modelo`).
+
+#### 1.1 Presentación / reseña / M-V-V
+
+1. **Reseña histórica (1.1.1):** ≥ **3 párrafos** útiles con hitos fechados cuando existan (fundación, consolidación, expansión de sedes/líneas). Ampliar `company.md` con investigación pública **antes** de redactar si la ficha es corta. No basta un resumen de marketing.
+2. **Misión / visión / valores:** si no hay enunciado formal, **decirlo una vez** y desarrollar la narrativa institucional publicada (promesa de servicio, posicionamiento, rigor técnico) con citas. **Prohibido** tres bloques idénticos tipo plantilla (“No se publica… El PoC toma…”). Variar estructura; el PoC no sustituye M/V/V.
+3. Intro 1.1: empresa primero; el proyecto como **encuadre breve**, no como protagonista de la presentación.
+
+#### 1.2 Diagnóstico situacional (micro / macro)
+
+**Sujeto del FODA = la organización y su entorno**, no el sílabo.
+
+| Bloque | Debe contener | No debe ser |
+|--------|---------------|-------------|
+| Fortalezas | Hechos públicos de la empresa (con cita) | Lista de features del MVP |
+| Debilidades | Fricciones **organizacionales/operativas** ancladas a lo publicado o a práctica del sector (p. ej. tensión entre promesa de stock inmediato y complejidad de variantes) | Solo “el PoC necesita modelo rollo” / “falta AS-IS de campo” |
+| Oportunidades | Entorno de la empresa (digitalización del vertical, demanda contract, etc.) con **nombres** de referentes cuando el audit/benchmark/company los tenga | “Hay software en el mercado” sin ejemplos |
+| Amenazas | Entorno competitivo/regulatorio/operativo de la **empresa** (suites locales/verticales nombradas, importaciones, saturación de vendors) | Lista de límites del semestre (RFID, multi-sede, EDI) como únicas amenazas |
+
+**Puente al proyecto (obligatorio, corto):** tras micro y/o macro, un párrafo o viñeta **“Implicación para el proyecto / MVP”** con decisiones de diseño. Ahí sí caben límites de curso. **No** mover ese contenido a Debilidades/Amenazas.
+
+Si `theme-audit.md` / benchmark listó vendors (p. ej. Cuenti, Kaypi, PolyPM): **conservar nombres + cita o `TODO: citar`** en oportunidades/amenazas. No bajar a genérico.
+
+#### 1.3 Modelo de negocio / Lean Canvas
+
+1. El lienzo principal describe el **modelo de negocio de la organización** (segmentos reales, propuesta comercial, canales, ingresos/costos públicos o inferibles con cautela).
+2. Si existe Lean del MVP en `tools["mvp-N"]`: usarlo como **contraste breve** después (“Encaje del proyecto”) — métricas/alcance del PoC — **sin reemplazar** el lienzo empresa.
+3. Prohibido: tabla Lean solo del demo académico bajo el título de modelo de negocio de la empresa.
 
 ## Pipeline
 
@@ -136,21 +171,23 @@ Consultas típicas: empresa (`company.md`), tema, papers, conceptos del capítul
 Solo si el outline pide entregables MVP (Lean Canvas, FODA, AS-IS/TO-BE, etc.):
 
 1. Leer `config.tools["mvp-N"]` (`N = config.mvp`).
-2. **Integrar** en prosa profesional; **no** volcar el MD ni labels `hipótesis`/`pendiente_campo`.
+2. **Integrar** según **Reglas Capítulo 1**: FODA/Lean del MVP **alimentan** el puente al proyecto y el contraste; **no** sustituyen el diagnóstico ni el modelo de negocio de la empresa.
+3. No volcar el MD ni labels de pipeline.
+
+También leer, si existen: `docs/topics/<FOLDER|tema>/theme-audit.md` (o polish) y benchmark — para **nombres** de referentes/competidores a conservar en 1.2.
 
 ### Paso 6 — Redactar `draft.md`
 
 1. Crear `docs/v<N>-<tag>/draft.md`.
 2. Portada breve: FOLDER, tema, fecha, versión — sin contradecir el contenido.
-3. **1.1 / presentación de empresa** (si aplica): redactar desde `company.md`:
-   - **1.1.1 Reseña histórica:** varios párrafos (fundación, hitos, expansión global/sector) con citas a fuentes de la ficha.
-   - Misión, visión, valores: desarrollados, no un bullet cada uno.
-4. Resto del outline: densidad alta, coherencia narrativa.
+3. Si el alcance incluye cap. 1 → aplicar **Reglas Capítulo 1** al pie (reseña, M/V/V, FODA sujeto empresa, Lean empresa + contraste PoC).
+4. Resto del outline: densidad alta, hechos nombrables, coherencia narrativa.
 5. Citas según `citation_style`. Falta de fuente → solo `TODO: citar — …`.
-6. **Referencias** al final (entradas reales usadas).
+6. **Referencias** al final (entradas reales usadas), incluidas las de vendors nombrados.
 7. Anexos solo si el alcance/modelo lo pide.
+8. **Autochequeo pre-cierre (cap. 1):** ¿debilidades/amenazas son de la empresa/entorno? ¿Lean principal es de la empresa? ¿Quedaron nombres propios del audit? ¿Reseña ≥ 3 párrafos útiles?
 
-**Forbidden en redacción:** inventar DOI/papers; Sci-Hub; verbatim largos; sobrescribir `vN`; labels de pipeline; disclaimers de “no auditoría”.
+**Forbidden en redacción:** inventar DOI/papers; Sci-Hub; verbatim largos; sobrescribir `vN`; labels de pipeline; FODA/Lean solo-PoC; genéricos sin ancla.
 
 ### Paso 7 — Registrar trace y Graphify
 
@@ -202,7 +239,7 @@ Path, tag/N, trace, secciones, uso de `company.md` sí/no, TODOs restantes, sear
 - Omitir Referencias.
 - Volcar tools MVP; inventar fuentes.
 - Redactar empresa sin `company.md` cuando el sujeto es empresa/entidad.
-- Meter `pendiente_campo` / disclaimers de pipeline en el draft.
+- Labels de pipeline; FODA/Lean solo-PoC; genéricos sin ancla cuando el corpus tiene nombres.
 - Mezclar catálogo de search con `bibliography/auto`.
 - Escribir `reporte.md` aquí (usar **make-report-polish**).
 - Refresh graphify-root.

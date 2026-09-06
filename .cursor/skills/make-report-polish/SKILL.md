@@ -10,7 +10,9 @@ description: >-
 
 Pule el **último** `draft.md` de `make-report` en un informe profesional limpio. El draft **no se toca**.
 
-**SoT del cómo:** `common/make-report-polish/model1.md`. Seguir ese playbook al pie.
+**SoT del cómo:** `common/make-report-polish/model1.md`. Seguir ese playbook al pie (incluye **gate anti-genérico**).
+
+**Polish = más claro y breve, no más genérico.** Conservar nombres, fechas, vendors, cifras y matices del draft (salvo corrección factual). Si el draft falló en FODA/Lean (sujeto PoC), el **reporte** debe corregirlo.
 
 ## Salida
 
@@ -47,14 +49,15 @@ graphify query "<q>" --graph docs/content/<FOLDER>/graphify-out/graph.json
 
 1. Resolver `FOLDER`; leer `profile.md` + `config.json` (+ `company.md` si aplica).
 2. Leer `common/make-report-polish/model1.md`.
-3. Resolver draft vía `docs/reports-trace.json` → **última** entrada `has_draft: true`; si no hay trace, usar `config.tools["make-report"].last` si el archivo existe (y crear/actualizar el trace al cerrar).
-4. Round 1 (5): critico, defensor, impacto, viabilidad, **inversor**.
-5. Round 2: cruce; propuestas de valor del inversor; soft-veto (no tumbar solo).
-6. Orquestador: borrador de `reporte.md` (misma estructura que draft; prosa limpia).
-7. Round 3: `gramatica-continuidad` + `revisor-cientifico` con `modo: make_report_polish`.
-8. Escribir `reporte-debate.md` + `reporte.md`; actualizar/crear trace (`has_polish`); `config.tools["make-report-polish"].last`.
-9. `pnpm graphify:project -- <FOLDER>`.
-10. Chat: paths, tesis de valor, TODOs residuales.
+3. Resolver draft; **extraer lista de anclas** (nombres propios, fechas, RUC, vendors) del draft.
+4. Round 1 (5): critico, defensor, impacto, viabilidad, **inversor** — crítico ataca FODA/Lean sujeto, pérdida de sustancia, reseña delgada.
+5. Round 2: cruce; si FODA/Lean mal → corregir en borrador.
+6. Orquestador: borrador `reporte.md` (misma estructura; prosa limpia **con** anclas).
+7. **Gate anti-genérico** (playbook 4b). Fallo → reescribir antes de R3.
+8. Round 3: `gramatica-continuidad` + `revisor-cientifico` (`modo: make_report_polish`); revisor compara draft vs borrador.
+9. Escribir `reporte-debate.md` **con sustancia** (≥3 Q&A, ataques, gate) + `reporte.md`; actualizar trace; `config.tools["make-report-polish"].last`.
+10. `pnpm graphify:project -- <FOLDER>`.
+11. Chat: paths, veredicto **honesto**, anclas conservadas, tesis de valor, TODOs residuales.
 
 ## Forbidden
 
@@ -62,6 +65,8 @@ graphify query "<q>" --graph docs/content/<FOLDER>/graphify-out/graph.json
 - Pulir versión que no sea la última del trace.
 - Inventar fuentes; graphify-root.
 - Soft consensus vacío.
+- Vaciar sustancia / quitar vendors “para limpio”.
+- Acta scorecard-only o mermaid solo del pipeline de skills.
 
 ## Agentes
 

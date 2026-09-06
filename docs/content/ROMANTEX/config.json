@@ -17,12 +17,19 @@
   },
   "tools": {
     "company": "./company.md",
+    "mvp-1": {
+      "design-thinking": "./mvp/mvp-1-inventario-metraje-fichas/design-thinking.md",
+      "lean-canvas": "./mvp/mvp-1-inventario-metraje-fichas/lean-canvas.md",
+      "foda": "./mvp/mvp-1-inventario-metraje-fichas/foda.md",
+      "rat": "./mvp/mvp-1-inventario-metraje-fichas/rat.md",
+      "as-is-to-be": "./mvp/mvp-1-inventario-metraje-fichas/as-is-to-be.md"
+    },
     "make-report": {
-      "last": "./docs/v1-capitulo-1/draft.md",
+      "last": "./docs/v2-capitulo-1/draft.md",
       "trace": "./docs/reports-trace.json"
     },
     "make-report-polish": {
-      "last": "./docs/v1-capitulo-1/reporte.md"
+      "last": "./docs/v2-capitulo-1/reporte.md"
     }
   }
 }

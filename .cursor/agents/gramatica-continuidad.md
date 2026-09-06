@@ -31,6 +31,8 @@ No decides GO/NO_GO de fondo ni inventas hechos, citas, MVPs o secciones nuevas.
 4. Propón **reescrituras** concretas (antes → después) de pasajes rotos; no reescribas el documento entero si no hace falta.
 5. Señala saltos de tema, repeticiones inútiles y frases meta (`pendiente_campo`, labels de skill, etc.) si quedaron.
 6. No cambies el sentido académico ni el veredicto del panel.
+7. En `make_report_polish`: **prohibido** proponer “después” que sustituya nombres propios, vendors, fechas o cifras por genéricos (“soluciones del mercado”, “herramientas existentes”). Si acortas, **conserva anclas**.
+8. Señala plantillas repetidas (p. ej. tres bloques M/V/V idénticos) y pide variar estructura sin inventar hechos.
 
 ## Formato (estricto)
 

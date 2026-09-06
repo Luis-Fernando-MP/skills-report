@@ -137,6 +137,35 @@ for (const name of readdirSync(skillsRoot)) {
   if (!polishB.includes('theme-audit-brainstorm.md')) {
     fail('init-theme-audit-polish should mention theme-audit-brainstorm.md as optional context');
   }
+  const makeReport = readFileSync(join(skillsRoot, 'make-report', 'SKILL.md'), 'utf8');
+  if (!makeReport.includes('FODA') || !makeReport.includes('solo-PoC')) {
+    fail('make-report skill should warn against PoC-only FODA/Lean');
+  }
+  if (!makeReport.includes('company.md')) {
+    fail('make-report skill should require company.md for empresa');
+  }
+  const makePolish = readFileSync(join(skillsRoot, 'make-report-polish', 'SKILL.md'), 'utf8');
+  for (const needle of ['anti-genérico', 'anclas', 'Vaciar sustancia']) {
+    if (!makePolish.includes(needle)) fail(`make-report-polish missing: ${needle}`);
+  }
+  const mrPlay = readFileSync(join(root, 'common/make-report/model1.md'), 'utf8');
+  for (const needle of [
+    'Reglas Capítulo 1',
+    'Sujeto del FODA',
+    'Encaje del proyecto',
+    'existen soluciones',
+  ]) {
+    if (!mrPlay.includes(needle)) fail(`common/make-report/model1.md missing: ${needle}`);
+  }
+  const mpPlay = readFileSync(join(root, 'common/make-report-polish/model1.md'), 'utf8');
+  for (const needle of [
+    'Gate anti-genérico',
+    'NOMBRES_PROPIOS_DRAFT',
+    'anclas_conservadas',
+    'Vaciar sustancia',
+  ]) {
+    if (!mpPlay.includes(needle)) fail(`common/make-report-polish/model1.md missing: ${needle}`);
+  }
 }
 
 // 6) Python import + bib listing for DDS/DS

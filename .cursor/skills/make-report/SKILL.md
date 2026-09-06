@@ -11,7 +11,7 @@ description: >-
 
 Redacta un **draft versionado, profesional y sustancial** del informe del proyecto en `docs/content/<FOLDER>/` según `config.modelo` y `config.alcance`.
 
-**SoT del cómo:** `common/make-report/model1.md`. Seguir ese playbook al pie.
+**SoT del cómo:** `common/make-report/model1.md`. Seguir ese playbook al pie (incluye **Reglas Capítulo 1**).
 
 **Alias:** `make-informe` → esta skill.
 
@@ -57,29 +57,30 @@ No volcar PDFs/MD al contexto. Preferir findings + `src` + página. Incluir quer
 2. Leer `common/make-report/model1.md` + playbook de `citation_style`.
 3. Resolver índice: `structure.md` local útil → override; si no → `config.modelo`.
 4. Filtrar outline por `alcance` (`[]` = todo). Decidir `vN-tag`.
-5. **Validación pre-redacción** (obligatoria): coherencia profile / company / MVP / bib. Si hay dudas o contradicciones → lanzar subagente `critico-estricto` (modo validación de informe) **antes** de escribir. Corregir o acotar con hechos públicos; **no** volcar meta-dudas al draft.
-6. Graphify query mientras se redacta (`company`, profile, bib, MVP activo si aplica).
-7. Tools `mvp-N` **solo** si el outline lo pide — integrar, no volcar. Cap. presentación de empresa → **solo** desde `company.md` + fuentes allí listadas (ampliar investigación pública si la ficha es corta).
-8. Escribir `docs/vN-tag/draft.md` **detallado y profesional** (ver playbook: densidad, reseña histórica real, sin hedges). Huecos de cita → `TODO: citar — …` (únicos placeholders permitidos).
-9. Escanear TODOs; **append** entrada en `docs/reports-trace.json` (`has_draft: true`, `has_polish: false`, `todos[]`). Registrar `config.tools["make-report"]` con `last` + `trace`.
+5. **Validación pre-redacción** (obligatoria): coherencia profile / company / MVP / bib. Si hay dudas o contradicciones → lanzar subagente `critico-estricto` (modo `validacion_informe`) **antes** de escribir. Corregir o acotar con hechos públicos; **no** volcar meta-dudas al draft.
+6. Graphify query mientras se redacta (`company`, profile, bib, MVP activo si aplica). Si existe theme-audit/benchmark del tema → usar **nombres** de vendors/referentes.
+7. Tools `mvp-N` **integran** puente al proyecto; **no** sustituyen FODA/Lean de la empresa (ver Reglas Cap. 1 del playbook). Cap. presentación → `company.md` + fuentes; ampliar ficha si es corta.
+8. Escribir `docs/vN-tag/draft.md` **detallado y concreto** (reseña real, FODA sujeto empresa, Lean empresa + contraste PoC). Huecos de cita → `TODO: citar — …`.
+9. Autochequeo Cap. 1 del playbook. Escanear TODOs; **append** `docs/reports-trace.json`; registrar `config.tools["make-report"]`.
 10. `pnpm graphify:project -- <FOLDER>`.
-11. Si hay TODOs de citación → **bibliography-search** (misma skill del paso 8 del README; también re-ejecutable suelta si quedó `pendiente_oa`) → reemplazar → marcar `todos[].status: "done"` en el trace de esa versión → Graphify otra vez.
+11. Si hay TODOs de citación → **bibliography-search** → reemplazar → Graphify otra vez.
 12. Chat: path draft, trace, secciones, TODOs restantes, search sí/no.
 
 ## Estándar de calidad del draft (no negociable)
 
-- Informe **verídico, bien explicado, sustancial** — base para polish, no borrador evasivo.
-- **Prohibido en el cuerpo del informe:** `pendiente_campo`, “hipótesis a validar con sponsor”, “no se afirma como auditoría”, “propuesta de trabajo no hallazgos”, “casi”, “valídalo tú”, disclaimers metodológicos meta. Eso pertenece a skills de auditoría/MVP, **no** al draft.
-- Separar hechos públicos confirmados de proyecciones del proyecto **sin** etiquetas internas de pipeline.
-- Reseña histórica (1.1.1): sustancia con fuentes públicas (fundación, hitos, expansión). No confundir con falta de AS-IS interno.
-- Citas: necesarias donde hay afirmación teórica/corporativa; evitar spam de la misma cita en cada frase (el polish posterior afinará densidad).
-- Metadato de portada alineado con el contenido (si el capítulo está completo según alcance, no contradecir en la prosa).
+- Informe **verídico, concreto, sustancial** — base para polish, no borrador evasivo ni genérico.
+- **Prohibido en el cuerpo:** labels de pipeline (`pendiente_campo`, etc.); “valídalo tú”; FODA/Lean solo-PoC; frases “existen soluciones” sin nombres cuando el corpus los tiene.
+- **Permitido:** acotar con fuentes públicas; decir que no hay misión formal publicada (sin repetir disclaimer en cada subsección).
+- Separar hechos públicos de diseño del proyecto **en prosa**, sin etiquetas internas.
+- Reseña histórica: ≥3 párrafos útiles con hitos; no confundir falta de AS-IS con falta de historia pública.
+- Citas necesarias; evitar spam. Metadato de portada alineado con el contenido.
 
 ## Forbidden
 
 - Draft fuera de `docs/vN-tag/`; sobrescribir versión.
 - Inventar fuentes; omitir Referencias; volcar MVP entero.
 - Redactar cap. empresa **sin** `company.md` cuando el sujeto es empresa/entidad.
-- Meter labels de pipeline (`pendiente_campo`, etc.) en el draft.
+- Meter labels de pipeline en el draft.
+- Sustituir diagnóstico/modelo de negocio de la empresa por solo riesgos/demo del curso.
 - Mezclar catálogo search con `bibliography/auto`; graphify-root.
 - Editar `reporte.md` aquí (eso es **make-report-polish**).
