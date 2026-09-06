@@ -1,0 +1,25 @@
+{
+  "citation_style": "common/citation-style/APA7.md",
+  "modelo": "common/structure/model1.md",
+  "alcance": [
+    {
+      "capitulo": 1,
+      "secciones": ["*"]
+    }
+  ],
+  "mvp": 1,
+  "playbooks": {
+    "design-thinking": "common/design-thinking/model1.md",
+    "lean-canvas": "common/lean-canvas/model1.md",
+    "rat": "common/rat/model1.md",
+    "foda": "common/foda/model1.md",
+    "as-is-to-be": "common/as-is-to-be/model1.md"
+  },
+  "tools": {
+    "company": "./company.md",
+    "make-report": {
+      "last": "./docs/v1-capitulo-1/draft.md",
+      "trace": "./docs/reports-trace.json"
+    }
+  }
+}
