@@ -26,7 +26,8 @@ Dos vías de arranque del tema; después el pipeline es el mismo.
 | 4 | `init-project-mvp` | Genera pack MVP (`mvp/mvp-N-slug/*.md`) y registra `tools["mvp-N"]` |
 | 5 | `bibliography-picoct` | Marco PICO/PICOC/PICOCT, keywords EN/ES y ecuaciones Scopus |
 | 6 | `bibliography-auto` | Hasta 5 fuentes OA (debate utilidad → PDF/MD + `auto/docs.md` + Graphify) |
-| 7 | `make-informe` | *(pendiente)* Redacta el informe según structure + alcance + tools |
+| 7 | `make-report` | Draft versionado `docs/vN-tag/draft.md` (alias `make-informe`; ≠ `rsl-make-report`) |
+| 8 | `bibliographic-search` | OA para huecos `TODO: citar` → `bibliographic/search` + `docs` + Graphify |
 | — | `prepare-bibliography-manual` | *(pendiente)* CSV / búsqueda manual de fuentes |
 
 ### Memoria Graphify (cuando haga falta)
@@ -61,13 +62,17 @@ docs/content/<FOLDER>/
   config.json           # citation_style, modelo (paths), alcance, mvp, playbooks, tools
   profile.md            # tema, descripción, problema, alcance
   structure.md          # opcional — si existe, pisa config.modelo
-  docs/                 # apuntes md/qmd
+  docs/                 # apuntes md/qmd + drafts vN-tag/draft.md (make-report)
   mvp/                  # packs generados (init-project-mvp)
+  bibliography/         # bibliography-auto (auto/ + docs/)
+  bibliographic/        # bibliographic-search (search/ + docs/)
   graphify-out/         # memoria del proyecto (gitignored)
   index-manifest.json
 
 common/citation-style/  # APA7.md, IEEE.md  ← config.citation_style
 common/structure/       # model1.md, …     ← config.modelo (si no hay override)
+common/make-report/     # playbook make-report
+common/bibliographic-search/
 
 graphify-out/           # memoria del repo (skills, README…)
 ```
@@ -159,15 +164,15 @@ pnpm graphify:refresh
 ```text
 # Vía A
 init-theme → init-theme-polish → init-project → init-project-mvp
-  → bibliography-picoct → bibliography-auto → make-informe
+  → bibliography-picoct → bibliography-auto → make-report
 
 # Vía B (tema ya propuesto)
 init-theme-audit → init-theme-audit-polish → init-project → init-project-mvp
-  → bibliography-picoct → bibliography-auto → make-informe
+  → bibliography-picoct → bibliography-auto → make-report
 
 # Memoria (cuando cambies docs / skills)
 graphify-project | graphify-root
-# bibliography-auto invoca graphify-project al cerrar (bibliography/docs + auto/docs.md)
+# bibliography-auto / bibliographic-search / make-report invocan graphify-project al cerrar
 ```
 
 ## Requisitos Graphify

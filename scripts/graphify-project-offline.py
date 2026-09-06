@@ -2,9 +2,9 @@
 """
 Project Graphify pipeline (docs/content/<FOLDER>).
 
-Corpus: profile.md, structure.md (local or common/structure/{modelo}),
-docs/**/*.{md,qmd}, active MVP from config.mvp → tools["mvp-N"],
-bibliography/auto/docs.md, bibliography/docs/**/*.md
+Corpus: profile.md, structure via config.modelo, docs/**/*.{md,qmd} (incl. drafts vN),
+active MVP from config.mvp → tools["mvp-N"], bibliography/auto + bibliography/docs,
+bibliographic/search + bibliographic/docs
 Manifest: docs/content/<FOLDER>/index-manifest.json
 Resolved copies (qmd / modelo): graphify-out/_corpus/ (gitignored with graphify-out)
 """
@@ -218,6 +218,29 @@ def list_bib_auto_files(project: Path) -> list[tuple[Path, str]]:
     return out
 
 
+def list_bib_search_files(project: Path) -> list[tuple[Path, str]]:
+    """Return (path, kind) for bibliographic-search corpus.
+
+    kind: bib_search_index | bib_search
+    Layout: bibliographic/search/{docs.md,pdfs/} + bibliographic/docs/*.md
+    """
+    out: list[tuple[Path, str]] = []
+    catalog = project / "bibliographic" / "search" / "docs.md"
+    if catalog.is_file() and catalog.stat().st_size > 20:
+        out.append((catalog, "bib_search_index"))
+    bib_docs = project / "bibliographic" / "docs"
+    if bib_docs.is_dir():
+        for p in sorted(bib_docs.rglob("*.md")):
+            if not p.is_file() or p.name.startswith(".") or p.name == ".gitkeep":
+                continue
+            out.append((p, "bib_search"))
+    return out
+
+
+def list_all_bib_files(project: Path) -> list[tuple[Path, str]]:
+    return list_bib_auto_files(project) + list_bib_search_files(project)
+
+
 def ensure_corpus_md(project: Path, source: Path, dest_rel: str, transform=None) -> Path:
     corpus = project / "graphify-out" / "_corpus"
     dest = corpus / dest_rel
@@ -405,13 +428,15 @@ def prepare(project: Path, force: bool = False) -> dict:
         else:
             print(f"prepared: {rel} (headings={headings})")
 
-    # bibliography auto: catalog + PDF→MD under bibliography/docs/
-    for bib_path, bib_kind in list_bib_auto_files(project):
+    # bibliography auto + bibliographic-search
+    for bib_path, bib_kind in list_all_bib_files(project):
         rel = entry_key(str(bib_path.relative_to(project)))
         digest = sha256_file(bib_path)
         ent = entries.get(rel)
+        is_paper = bib_kind in {"bib_auto", "bib_search"}
+        is_index = bib_kind in {"bib_auto_index", "bib_search_index"}
         needs_enrich = False
-        if bib_kind == "bib_auto":
+        if is_paper:
             peek = bib_path.read_text(encoding="utf-8", errors="replace")
             needs_enrich = "section-chunks + finding-hooks" not in peek
         if (
@@ -424,16 +449,27 @@ def prepare(project: Path, force: bool = False) -> dict:
             skipped.append(rel)
             continue
 
-        # bib_auto papers: enrich with finding hooks + page locators before hash/index
-        if bib_kind == "bib_auto":
+        if is_paper:
             try:
-                # import sibling script next to this file
                 sys.path.insert(0, str(Path(__file__).resolve().parent))
                 from graphify_bib_enrich import enrich_bib_md
 
-                pdf_candidate = (
-                    project / "bibliography" / "auto" / "pdfs" / f"{bib_path.stem}.pdf"
-                )
+                if bib_kind == "bib_search":
+                    pdf_candidate = (
+                        project
+                        / "bibliographic"
+                        / "search"
+                        / "pdfs"
+                        / f"{bib_path.stem}.pdf"
+                    )
+                else:
+                    pdf_candidate = (
+                        project
+                        / "bibliography"
+                        / "auto"
+                        / "pdfs"
+                        / f"{bib_path.stem}.pdf"
+                    )
                 enrich_bib_md(
                     bib_path,
                     pdf_candidate if pdf_candidate.is_file() else None,
@@ -445,7 +481,7 @@ def prepare(project: Path, force: bool = False) -> dict:
         digest = sha256_file(bib_path)
         text = bib_path.read_text(encoding="utf-8", errors="replace")
         headings = count_md_headings(text)
-        min_h = 1 if bib_kind == "bib_auto_index" else MIN_HEADINGS_NOTE
+        min_h = 1 if is_index else MIN_HEADINGS_NOTE
         status = "md_ready" if headings >= min_h else "needs_agent"
         entry: dict = {
             "sha256": digest,
@@ -455,10 +491,19 @@ def prepare(project: Path, force: bool = False) -> dict:
             "heading_count": headings,
             "updated_at": utc_now(),
         }
-        if bib_kind == "bib_auto":
-            pdf_candidate = (
-                project / "bibliography" / "auto" / "pdfs" / f"{bib_path.stem}.pdf"
-            )
+        if is_paper:
+            if bib_kind == "bib_search":
+                pdf_candidate = (
+                    project
+                    / "bibliographic"
+                    / "search"
+                    / "pdfs"
+                    / f"{bib_path.stem}.pdf"
+                )
+            else:
+                pdf_candidate = (
+                    project / "bibliography" / "auto" / "pdfs" / f"{bib_path.stem}.pdf"
+                )
             if pdf_candidate.is_file():
                 entry["source_pdf"] = entry_key(
                     str(pdf_candidate.relative_to(project))
@@ -690,17 +735,19 @@ def verify(project: Path) -> dict:
         if len(note_nodes) < 1:
             warnings.append("docs/ notes present but no note nodes in graph")
 
-    bib_files = list_bib_auto_files(project)
+    bib_files = list_all_bib_files(project)
     if bib_files:
         bib_nodes = [
             n
             for n in nodes
             if (sf := str(n.get("source_file", "")).replace("\\", "/")).startswith(
-                "bibliography/"
+                ("bibliography/", "bibliographic/")
             )
         ]
         if len(bib_nodes) < 1:
-            warnings.append("bibliography auto MD present but no bibliography nodes in graph")
+            warnings.append(
+                "bibliography/bibliographic MD present but no bibliography nodes in graph"
+            )
 
     config = load_config(project)
     mvp_n, mvp_files = list_active_mvp_files(project, config)

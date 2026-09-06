@@ -25,10 +25,11 @@ A prepare → (B agent headings si needs_agent) → C build → D verify
 ## Corpus
 
 - `profile.md`
-- `structure.md` local **o** `common/structure/{config.modelo}.md`
-- `docs/**/*.{md,qmd}` (apuntes del curso)
+- `structure.md` local **o** path de `config.modelo`
+- `docs/**/*.{md,qmd}` (apuntes del curso **y** drafts `docs/vN-*/draft.md`)
 - **MVP activo** = `config.mvp` (N) → `config.tools["mvp-N"]` paths (solo ese N; otros MVP → `mvp_inactive` en manifest, no al grafo). Fallback: `mvp/mvp-<N>-*/**/*.md`
-- `bibliography/auto/docs.md` + `bibliography/docs/**/*.md` (fuentes de **bibliography-auto**)
+- `bibliography/auto/docs.md` + `bibliography/docs/**/*.md` (**bibliography-auto** → `bib_auto*`)
+- `bibliographic/search/docs.md` + `bibliographic/docs/**/*.md` (**bibliographic-search** → `bib_search*`)
 - Manifest: `docs/content/<FOLDER>/index-manifest.json`
 - Copias resueltas (qmd / modelo): `graphify-out/_corpus/` (gitignored)
 
@@ -57,13 +58,13 @@ graphify query "<q>" --graph docs/content/<FOLDER>/graphify-out/graph.json
 graphify explain "<concept>" --graph docs/content/<FOLDER>/graphify-out/graph.json
 ```
 
-Papers de **bibliography-auto** llevan finding hooks EN + alias ES y locators `[PDF p.N]` en el MD. Preferir queries con términos del paper (EN o ES). **No** abrir el PDF a mano si Graphify ya devolvió `src` + nodo Finding/Hallazgo + página.
+Papers de **bibliography-auto** y **bibliographic-search** llevan finding hooks EN + alias ES y locators `[PDF p.N]` en el MD. Preferir queries con términos del paper (EN o ES). **No** abrir el PDF a mano si Graphify ya devolvió `src` + nodo Finding/Hallazgo + página.
 
-**Otras skills de proyecto** (bibliography-*, init-project-mvp, redacción sobre el FOLDER) **deben** usar este grafo como lookup por defecto — no Grep/Read masivo del corpus.
+**Otras skills de proyecto** (bibliography-*, bibliographic-search, make-report, init-project-mvp, redacción sobre el FOLDER) **deben** usar este grafo como lookup por defecto — no Grep/Read masivo del corpus.
 
-Preferir este grafo para profile / structure / apuntes / **mvp activo** / bib-auto del proyecto. Root → **graphify-root**. Temas RSL legado → **graphify-theme**.
+Preferir este grafo para profile / structure / apuntes / drafts / **mvp activo** / bib-auto / bib-search del proyecto. Root → **graphify-root**. Temas RSL legado → **graphify-theme**.
 
-`--force` regenera y re-enriquece MD de bib-auto; re-indexa el MVP de `config.mvp`.
+`--force` regenera y re-enriquece MD de bib-auto/bib-search; re-indexa el MVP de `config.mvp`.
 
 ## Forbidden
 

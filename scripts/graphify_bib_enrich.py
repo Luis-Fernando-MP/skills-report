@@ -251,14 +251,25 @@ def enrich_bib_md(
             break
 
     stem = md_path.stem
+    parent = md_path.parent  # …/docs
+    grand = parent.parent  # bibliography | bibliographic | …
+
+    def project_root() -> Path:
+        """Project dir = parent of bibliography/ or bibliographic/."""
+        if grand.name in {"bibliography", "bibliographic"}:
+            return grand.parent
+        return md_path.parent.parent.parent
+
     if pdf_path is None:
-        # convention: bibliography/docs/<slug>.md → auto/pdfs/<slug>.pdf
-        cand = md_path.parent.parent / "auto" / "pdfs" / f"{stem}.pdf"
+        # bibliography/docs/<slug>.md → auto/pdfs/<slug>.pdf
+        # bibliographic/docs/<slug>.md → search/pdfs/<slug>.pdf
+        if grand.name == "bibliographic" and parent.name == "docs":
+            cand = grand / "search" / "pdfs" / f"{stem}.pdf"
+        else:
+            cand = grand / "auto" / "pdfs" / f"{stem}.pdf"
         pdf_path = cand if cand.is_file() else None
         if not pdf_path and meta.get("pdf_path"):
-            # resolve relative to project (parent of bibliography/)
-            project = md_path.parent.parent.parent
-            alt = project / meta["pdf_path"]
+            alt = project_root() / meta["pdf_path"]
             if alt.is_file():
                 pdf_path = alt
 
@@ -267,10 +278,16 @@ def enrich_bib_md(
     if pdf_path and pdf_path.is_file():
         try:
             pages = split_pdf_pages(pdftotext_raw(pdf_path))
-            # relative from project root = parent of bibliography/
-            project = md_path.parent.parent.parent
+            proj = project_root()
+            # climb from PDF if needed
+            walk = pdf_path
+            for _ in range(6):
+                walk = walk.parent
+                if (walk / "profile.md").exists() or (walk / "config.json").exists():
+                    proj = walk
+                    break
             try:
-                pdf_rel = str(pdf_path.resolve().relative_to(project.resolve())).replace(
+                pdf_rel = str(pdf_path.resolve().relative_to(proj.resolve())).replace(
                     "\\", "/"
                 )
             except ValueError:

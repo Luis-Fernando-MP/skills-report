@@ -1,7 +1,7 @@
 {
   "citation_style": "common/citation-style/APA7.md",
   "modelo": "common/structure/model1.md",
-  "alcance": [],
+  "alcance": [{ "capitulo": 1, "secciones": ["*"] }],
   "mvp": 1,
   "playbooks": {
     "design-thinking": "common/design-thinking/model1.md",
