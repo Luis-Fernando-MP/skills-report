@@ -43,6 +43,16 @@ docs/content/<FOLDER>/
 
 Sin `profile.md` → pedir **init-project** primero.
 
+## Lookup Graphify (obligatorio en el proyecto)
+
+Antes de Grep/Read amplio de `bibliography/`, `mvp/`, `docs/` o PDFs:
+
+```bash
+graphify query "<q>" --graph docs/content/<FOLDER>/graphify-out/graph.json
+```
+
+Usar el resultado del grafo (documento, finding, `src`, página/`loc`) para orientar; no volcar MD/PDF al contexto. Si no hay `graphify-out/graph.json` → pedir **graphify-project**. Tras esta skill, el refresh (paso 10) deja el grafo al día.
+
 ## Procedure
 
 1. Resolver `FOLDER`; leer `profile.md` + `config.json` (`citation_style`).

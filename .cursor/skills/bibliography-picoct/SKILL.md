@@ -37,6 +37,14 @@ Sin arg de marco → **PICOCT**.
 
 Sin `profile.md` → pedir **init-project** primero.
 
+## Lookup Graphify (obligatorio en el proyecto)
+
+```bash
+graphify query "<q>" --graph docs/content/<FOLDER>/graphify-out/graph.json
+```
+
+Usar el grafo para profile / bib previa / dominio antes de releer archivos enteros. Sin grafo → pedir **graphify-project** (o seguir solo con `profile.md` si aún no hay corpus indexable).
+
 ## Procedure
 
 1. Resolver `FOLDER`; leer `profile.md`. Si existe **`## Marco PICOCT`**, usarlo como base del marco (no reinventar). Opcional: `config.tools["mvp-"+mvp]` solo como contexto de dominio — **no** pegar artefactos enteros.

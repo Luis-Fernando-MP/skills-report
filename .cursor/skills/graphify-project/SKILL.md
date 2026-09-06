@@ -58,6 +58,8 @@ graphify explain "<concept>" --graph docs/content/<FOLDER>/graphify-out/graph.js
 
 Papers de **bibliography-auto** llevan finding hooks EN + alias ES y locators `[PDF p.N]` en el MD. Preferir queries con términos del paper (EN o ES). **No** abrir el PDF a mano si Graphify ya devolvió `src` + nodo Finding/Hallazgo + página.
 
+**Otras skills de proyecto** (bibliography-*, init-project-mvp, redacción sobre el FOLDER) **deben** usar este grafo como lookup por defecto — no Grep/Read masivo del corpus.
+
 Preferir este grafo para profile / structure / apuntes / bib-auto del proyecto. Root → **graphify-root**. Temas RSL legado → **graphify-theme**.
 
 `--force` regenera y re-enriquece MD de bib-auto.

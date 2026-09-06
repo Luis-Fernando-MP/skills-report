@@ -105,7 +105,15 @@ Si `tools` apunta a `common/...` y no hay `playbooks`: tratar esos valores como 
    - `mvp`: arranque del polish o `1`.
    - `playbooks`: default todos model1; si el usuario pide subconjunto o `model2`, validar paths bajo `common/`.
    - `tools`: `{}` (los rellena **init-project-mvp**).
-6. Chat: path, `FOLDER`, `config.mvp`, playbooks, si PICOCT quedó en profile, siguiente **`init-project-mvp mvp-<N>`**.
+6. Chat: path, `FOLDER`, `config.mvp`, playbooks, si PICOCT quedó en profile, siguiente **`init-project-mvp mvp-<N>`** (y luego **graphify-project** cuando haya corpus que indexar).
+
+## Lookup (después de creado el proyecto)
+
+Cuando el grafo exista, skills/agentes sobre este `FOLDER` usan:
+
+```bash
+graphify query "<q>" --graph docs/content/<FOLDER>/graphify-out/graph.json
+```
 
 ## Forbidden
 

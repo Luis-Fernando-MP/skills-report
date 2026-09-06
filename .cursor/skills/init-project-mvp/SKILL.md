@@ -57,6 +57,14 @@ mvp/mvp-<N>-<slug>/
 
 Sin profile + MVP entregables → pedir **init-project** primero.
 
+## Lookup Graphify (obligatorio si existe grafo)
+
+```bash
+graphify query "<q>" --graph docs/content/<FOLDER>/graphify-out/graph.json
+```
+
+Antes de releer `profile`/`mvp` enteros o bib: consultar el grafo del proyecto. Si no hay grafo, usar `profile.md` + playbooks y al cerrar sugerir **graphify-project**.
+
 ## Resolución de N
 
 1. Arg `mvp-N` / `MVP: N`

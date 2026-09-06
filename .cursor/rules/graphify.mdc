@@ -13,7 +13,7 @@ Three graph scopes:
 | Theme RSL (legado) | `docs/[titulo-breve]/graphify-out/graph.json` | `npm run graphify:theme -- <slug>` / skill **graphify-theme** |
 | Proyecto académico | `docs/content/[FOLDER]/graphify-out/graph.json` | `pnpm graphify:project -- <FOLDER>` / skill **graphify-project** |
 
-## Lookup (default — agents MAY query)
+## Lookup (default — agents MUST prefer graph before wide Read)
 
 Root:
 
@@ -35,9 +35,13 @@ Proyecto (require `--graph`):
 graphify query "<question>" --graph docs/content/[FOLDER]/graphify-out/graph.json
 ```
 
-Prefer **project** graph for `profile.md`, `structure`/`modelo`, and course notes under `docs/content/[FOLDER]/docs/`. Prefer theme graph for legado RSL (`informe`, SLRs, PDFs, `topic.md`). Prefer root for skills, README, cross-project layout.
+**Skills que operan sobre un proyecto** (`docs/content/<FOLDER>/`: bibliography-*, init-project-mvp, redacción/citas del proyecto, etc.) **deben** consultar primero el grafo del proyecto. Objetivo: menos tokens (no volcar PDFs/MD) y búsqueda localizable (nodo + `src` + página/`loc`). Responder con lo que Graphify devolvió; solo Read puntual de líneas si hace falta citar.
+
+Prefer **project** graph for `profile.md`, `structure`/`modelo`, course notes, `bibliography/auto` + `bibliography/docs`. Prefer theme graph for legado RSL (`informe`, SLRs, PDFs, `topic.md`). Prefer root for skills, README, cross-project layout.
 
 If `graphify-out/wiki/index.md` (or project/theme wiki) exists, navigate it before dumping large files.
+
+Si el grafo del proyecto no existe → pedir **graphify-project** (no inventar; no sustituir con grep masivo del corpus).
 
 ## Índice del informe (proyectos)
 
