@@ -1,11 +1,49 @@
 # ITD — Proyectos académicos + Graphify
 
-Skills de inicio:
+## Skills (orden de ejecución)
 
-- Explorar: `init-theme` → `init-theme-polish` → `init-project`
-- Tema ya propuesto: `init-theme-audit` → `init-theme-audit-polish` → `init-project`
+Dos vías de arranque del tema; después el pipeline es el mismo.
 
-Graphify: `graphify-project`, `graphify-root`.
+### Vía A — Explorar tópicos
+
+| # | Skill | Qué hace |
+|---|--------|----------|
+| 1 | `init-theme` | De 3–4 tópicos, propone 3 alternativas de proyecto + benchmarking |
+| 2 | `init-theme-polish` | Debate 4 agentes sobre las 3 alts → veredicto y tema final |
+
+### Vía B — Tema ya propuesto
+
+| # | Skill | Qué hace |
+|---|--------|----------|
+| 1 | `init-theme-audit` | Audita un tema concreto + benchmarking |
+| 2 | `init-theme-audit-polish` | Debate 4 agentes (una alternativa) → veredicto, tema final y MVP entregables |
+
+### Proyecto e informe (después de A o B)
+
+| # | Skill | Qué hace |
+|---|--------|----------|
+| 3 | `init-project` | Crea `docs/content/<FOLDER>/` con `profile.md` + `config.json` |
+| 4 | `init-project-mvp` | Genera pack MVP (`mvp/mvp-N-slug/*.md`) y registra `tools["mvp-N"]` |
+| 5 | `bibliography-picoct` | Marco PICO/PICOC/PICOCT, keywords EN/ES y ecuaciones Scopus |
+| 6 | `make-informe` | *(pendiente)* Redacta el informe según structure + alcance + tools |
+| — | `prepare-bibliography-manual` / `automatic` | *(pendiente)* CSV / búsqueda de fuentes |
+
+### Memoria Graphify (cuando haga falta)
+
+| Skill | Qué hace |
+|--------|----------|
+| `graphify-project` | Indexa un proyecto académico (`docs/content/<FOLDER>/graphify-out/`) |
+| `graphify-root` | Indexa el repo (skills, README, layout) |
+| `graphify-theme` | Indexa un tema RSL legado (`docs/[titulo-breve]/`) |
+
+### RSL legado (opcional, paralelo al flujo init)
+
+| Skill | Qué hace |
+|--------|----------|
+| `rsl-make-report` | Arma `informe.md` UTP + PDFs RSL |
+| `rsl-polish-report` | Pule el informe con debate 4 agentes |
+| `rsl-make-paper` | Arma introducción académica `paper.md` |
+| `rsl-polish-paper` | Pule el paper con debate 4 agentes |
 
 ## Layout
 
@@ -36,18 +74,6 @@ graphify-out/           # memoria del repo (skills, README…)
 **Índice del informe:** `structure.md` local si existe con contenido útil; si no → path en `config.modelo` (p. ej. `common/structure/model1.md`).
 
 **Config (resumen):** `playbooks` = cómo generar (`common/…`); `tools` = mapa `mvp-N` → artefactos en `./mvp/mvp-N-slug/*.md`.
-
-## Skills
-
-| Skill | Qué hace | Salida |
-|-------|----------|--------|
-| `init-theme` | 3–4 tópicos → 3 alternativas + benchmarking | `theme.md` |
-| `init-theme-polish` | Debate 4 agentes sobre las 3 alts | `theme-debate.md` + `theme-polish.md` |
-| `init-theme-audit` | 1 tema propuesto + benchmarking | `theme-audit.md` |
-| `init-theme-audit-polish` | Debate 4 agentes (modo una_alternativa) | `theme-audit-debate.md` + `theme-audit-polish.md` |
-| `init-project` | Inicializa proyecto (profile + config) | `docs/content/<FOLDER>/` |
-| `graphify-project` | Memoria Graphify de un proyecto | `docs/content/<FOLDER>/graphify-out/` |
-| `graphify-root` | Memoria Graphify del repo | `graphify-out/` |
 
 ## Init — explorar tópicos
 
@@ -130,18 +156,17 @@ pnpm graphify:refresh
 ## Orden sugerido
 
 ```text
-# Explorar
-init-theme → init-theme-polish → init-project → …
+# Vía A
+init-theme → init-theme-polish → init-project → init-project-mvp
+  → bibliography-picoct → (bib manual/auto) → make-informe
 
-# Tema ya propuesto (ej. Romantex)
-init-theme-audit → init-theme-audit-polish → init-project → …
-  → pegar/ajustar structure.md (override) o config.modelo (path)
-  → apuntes en docs/content/<FOLDER>/docs/
-  → init-project-mvp (rellena tools["mvp-N"])
-  → graphify-project (PASS)
+# Vía B (tema ya propuesto)
+init-theme-audit → init-theme-audit-polish → init-project → init-project-mvp
+  → bibliography-picoct → (bib manual/auto) → make-informe
+
+# Memoria (cuando cambies docs / skills)
+graphify-project | graphify-root
 ```
-
-De vez en cuando **`graphify-root`** si cambias skills / README.
 
 ## Requisitos Graphify
 
