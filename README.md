@@ -25,12 +25,12 @@ Dos vías de arranque del tema; después el pipeline es el mismo.
 | 3 | `init-project` | Crea `docs/content/<FOLDER>/` con `profile.md` + `config.json` |
 | 4 | `init-project-mvp` | Genera pack MVP (`mvp/mvp-N-slug/*.md`) y registra `tools["mvp-N"]` |
 | 5 | `bibliography-picoct` | Marco PICO/PICOC/PICOCT, keywords EN/ES y ecuaciones Scopus |
-| 6 | `bibliography-auto` | Hasta 5 fuentes OA (debate utilidad → PDF/MD + `auto/docs.md` + Graphify) |
+| 6 | `bibliography-auto` | Hasta 5 fuentes OA vía **bibliography-oa-sources** (debate → PDF/MD + `auto/docs.md` + Graphify) |
 | 7 | `make-report` | Draft versionado `docs/vN-tag/draft.md` + `docs/reports-trace.json` (alias `make-informe`) |
-| 8 | `bibliography-search` | OA para huecos `TODO: citar` → `bibliography/search` + `docs/search` + Graphify (también lo invoca **make-report** si hay TODOs; se puede re-correr suelto) |
+| 8 | `bibliography-search` | OA para huecos `TODO: citar` vía **bibliography-oa-sources** → `bibliography/search` + `docs/search` + Graphify |
 | 9 | `make-report-polish` | Pule último draft → `reporte.md` + `reporte-debate.md` (7 agentes; no toca draft) |
-| — | `bibliographic-search` | *(deprecated)* alias → `bibliography-search` |
-| — | `prepare-bibliography-manual` | *(pendiente)* CSV / búsqueda manual de fuentes |
+| — | `bibliography-oa-sources` | Capacidad compartida OA multi-fuente (OpenAlex/S2/arXiv/PubMed); la usan auto y search |
+| — | `prepare-bibliography-manual` | *(pendiente)* CSV / búsqueda manual / PRISMA |
 
 ### Memoria Graphify (cuando haga falta)
 
@@ -66,6 +66,7 @@ common/make-report/
 common/make-report-polish/
 common/bibliography-auto/
 common/bibliography-search/
+common/bibliography-oa-sources/  # capacidad OA multi-fuente (auto + search)
 common/bibliography-picoct/
 common/design-thinking/ # + lean-canvas, foda, rat, as-is-to-be (MVP)
 

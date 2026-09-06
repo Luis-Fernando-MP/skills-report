@@ -12,7 +12,8 @@ description: >-
 
 Busca **hasta 5** fuentes **OA públicas** para un proyecto en `docs/content/<FOLDER>/`, valida utilidad con **2 agentes** antes de descargar, escribe PDF + MD + catálogo y refresca Graphify.
 
-**SoT del cómo:** `common/bibliography-auto/model1.md`. Seguir ese playbook al pie.
+**SoT del cómo:** `common/bibliography-auto/model1.md`. Seguir ese playbook al pie.  
+**Búsqueda OA (Paso 2):** `common/bibliography-oa-sources/model1.md` (obligatorio).
 
 **Independiente de PICOCT** — no usar `bibliography/PICOCT|PICOC|PICO/` como input.
 
@@ -56,9 +57,9 @@ Usar el resultado del grafo (documento, finding, `src`, página/`loc`) para orie
 ## Procedure
 
 1. Resolver `FOLDER`; leer `profile.md` + `config.json` (`citation_style`).
-2. Leer playbook `common/bibliography-auto/model1.md` y el playbook de citación apuntado por config.
+2. Leer playbook `common/bibliography-auto/model1.md`, el playbook de citación apuntado por config, y **`common/bibliography-oa-sources/model1.md`**.
 3. Si ya hay contenido en `bibliography/auto/` o MD top-level en `bibliography/docs/*.md` (excluir `docs/search/`) → **preguntar** antes de sobrescribir.
-4. Buscar candidatos OA (agente elige bases/queries). **No descargar aún.**
+4. Buscar candidatos OA **según bibliography-oa-sources** (OpenAlex, S2, arXiv, PubMed, …). **No descargar aún.**
 5. **Debate** (Task / agentes), modo `bibliography_auto_utilidad`:
    - `critico-estricto` — utilidad / ruido / fuera de alcance; WebSearch ≤3.
    - `defensor-fundamento` — evidencia o `punto_debil`; WebSearch ≤3.
@@ -67,7 +68,7 @@ Usar el resultado del grafo (documento, finding, `src`, página/`loc`) para orie
 8. **Al final del material** (después de 7, antes de Graphify): escribir `bibliography/auto/docs.md` **solo** con fuentes que tengan PDF + MD reales. Si hay 2 PDFs → 2 secciones. No inventar `pendiente_oa` ni paths.
 9. Registrar `config.tools["bibliography-auto"]` (catalog, debate, pdfs, docs).
 10. Invocar **graphify-project**: `pnpm graphify:project -- <FOLDER>` (create o update; manifest skip por hash).
-11. Chat: aceptadas (con path), rechazadas, `pendiente_oa` (solo chat/debate), Graphify skipped vs nuevos.
+11. Chat: aceptadas (con path), rechazadas, `pendiente_oa` (solo chat/debate), Graphify skipped vs nuevos, fuentes OA usadas.
 
 ## Formato `docs.md` (por fuente real)
 
@@ -76,7 +77,8 @@ Usar el resultado del grafo (documento, finding, `src`, página/`loc`) para orie
 
 ## Forbidden
 
-- Ignorar el playbook.
+- Ignorar el playbook auto u **oa-sources**.
+- Buscar candidatos **sin** seguir `common/bibliography-oa-sources/model1.md`.
 - Usar PICOCT como dependencia.
 - Descargar antes del debate.
 - Escribir `docs.md` antes de terminar descargas/MD, o con más entradas que archivos reales.

@@ -23,12 +23,20 @@ function warn(msg) {
 const REQUIRED_PLAYBOOKS = {
   'bibliography-auto': 'common/bibliography-auto/model1.md',
   'bibliography-search': 'common/bibliography-search/model1.md',
+  'bibliography-oa-sources': 'common/bibliography-oa-sources/model1.md',
   'bibliography-picoct': 'common/bibliography-picoct/model1.md',
   'make-report': 'common/make-report/model1.md',
   'make-report-polish': 'common/make-report-polish/model1.md',
 };
 
-const FORBIDDEN_SKILLS = ['graphify-theme', 'rsl-make-report', 'rsl-make-paper', 'rsl-polish-report', 'rsl-polish-paper'];
+const FORBIDDEN_SKILLS = [
+  'graphify-theme',
+  'rsl-make-report',
+  'rsl-make-paper',
+  'rsl-polish-report',
+  'rsl-polish-paper',
+  'bibliographic-search',
+];
 
 // 1) Forbidden leftover skills
 for (const name of FORBIDDEN_SKILLS) {
@@ -43,13 +51,12 @@ for (const [skill, pb] of Object.entries(REQUIRED_PLAYBOOKS)) {
   if (!existsSync(join(root, pb))) fail(`missing playbook for ${skill}: ${pb}`);
 }
 
-// 3) Stub bibliographic-search must redirect
-const stub = join(root, '.cursor', 'skills', 'bibliographic-search', 'SKILL.md');
-if (existsSync(stub)) {
-  const t = readFileSync(stub, 'utf8');
-  if (!t.includes('bibliography-search')) fail('bibliographic-search stub does not mention bibliography-search');
-} else {
-  warn('bibliographic-search stub missing (optional redirect)');
+// 3) bibliographic-search must NOT exist
+{
+  const stub = join(root, '.cursor', 'skills', 'bibliographic-search');
+  if (existsSync(stub)) fail('forbidden skill present: bibliographic-search');
+  const stubCommon = join(root, 'common', 'bibliographic-search');
+  if (existsSync(stubCommon)) fail('forbidden path present: common/bibliographic-search');
 }
 
 // 4) Broken relative links in skills
@@ -71,11 +78,14 @@ for (const name of readdirSync(skillsRoot)) {
 
 // 5) Forbidden path strings in live skills (except stub)
 const badPatterns = [
-  { re: /bibliographic\//, allowIn: ['bibliographic-search'] },
+  { re: /bibliographic\//, allowIn: [] },
+  { re: /\bbibliographic-search\b/, allowIn: [] },
   { re: /graphify-theme/, allowIn: [] },
   { re: /graphify:theme/, allowIn: [] },
   { re: /rsl-make-report/, allowIn: [] },
   { re: /rsl-polish-/, allowIn: [] },
+  { re: /\bDEPRECATED\b/, allowIn: [] },
+  { re: /\*\(deprecated\)\*/, allowIn: [] },
 ];
 for (const name of readdirSync(skillsRoot)) {
   const skillMd = join(skillsRoot, name, 'SKILL.md');
@@ -84,6 +94,16 @@ for (const name of readdirSync(skillsRoot)) {
   for (const { re, allowIn } of badPatterns) {
     if (allowIn.includes(name)) continue;
     if (re.test(text)) fail(`legacy pattern ${re} in skill ${name}`);
+  }
+}
+
+// 5b) auto/search must reference oa-sources
+for (const name of ['bibliography-auto', 'bibliography-search']) {
+  const skillMd = join(skillsRoot, name, 'SKILL.md');
+  if (!existsSync(skillMd)) continue;
+  const text = readFileSync(skillMd, 'utf8');
+  if (!text.includes('bibliography-oa-sources')) {
+    fail(`${name} SKILL.md must reference bibliography-oa-sources`);
   }
 }
 

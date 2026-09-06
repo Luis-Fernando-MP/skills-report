@@ -11,7 +11,8 @@ description: >-
 
 Busca **hasta 5** fuentes **OA** para cerrar huecos de citación en un proyecto `docs/content/<FOLDER>/`, valida utilidad con **2 agentes** antes de descargar, escribe PDF + MD + catálogo bajo **`bibliography/search/`** y refresca Graphify.
 
-**SoT del cómo:** `common/bibliography-search/model1.md`. Seguir ese playbook al pie.
+**SoT del cómo:** `common/bibliography-search/model1.md`. Seguir ese playbook al pie.  
+**Búsqueda OA (Paso 2):** `common/bibliography-oa-sources/model1.md` (obligatorio).
 
 **No confundir con `bibliography-auto`** (`bibliography/auto/`). Aquí: `bibliography/search/**` + `bibliography/docs/search/`.
 
@@ -53,9 +54,9 @@ Si no hay grafo → pedir **graphify-project**. Tras esta skill, el refresh deja
 ## Procedure
 
 1. Resolver `FOLDER`; leer `profile.md` + `config.json` (`citation_style`).
-2. Leer playbook `common/bibliography-search/model1.md` y el playbook de citación.
+2. Leer playbook `common/bibliography-search/model1.md`, el playbook de citación, y **`common/bibliography-oa-sources/model1.md`**.
 3. Recoger queries (TODOs del draft o lista del usuario). Si ya hay `bibliography/search/` → **preguntar** antes de sobrescribir.
-4. Buscar candidatos OA. **No descargar aún.**
+4. Buscar candidatos OA **según bibliography-oa-sources** (OpenAlex, S2, arXiv, PubMed, …). **No descargar aún.**
 5. **Debate** (Task / agentes), modo `bibliography_search_utilidad`:
    - `critico-estricto` — utilidad / ruido / fuera de alcance; WebSearch ≤3.
    - `defensor-fundamento` — evidencia o `punto_debil`; WebSearch ≤3.
@@ -64,7 +65,7 @@ Si no hay grafo → pedir **graphify-project**. Tras esta skill, el refresh deja
 8. **Al final del material:** escribir `bibliography/search/docs.md` **solo** con fuentes que tengan PDF + MD reales.
 9. Registrar `config.tools["bibliography-search"]`. Si hay `docs/reports-trace.json`, marcar TODOs `done` cuando se cierren.
 10. Invocar **graphify-project**: `pnpm graphify:project -- <FOLDER>`.
-11. Chat: aceptadas, rechazadas, `pendiente_oa` (solo chat/debate), citas listas para TODOs si aplica.
+11. Chat: aceptadas, rechazadas, `pendiente_oa` (solo chat/debate), citas listas para TODOs si aplica, fuentes OA usadas.
 
 ## Formato `docs.md`
 
@@ -74,7 +75,8 @@ Si no hay grafo → pedir **graphify-project**. Tras esta skill, el refresh deja
 ## Forbidden
 
 - Mezclar catálogos auto vs search.
-- Ignorar el playbook; PICOCT como dependencia.
+- Ignorar el playbook search u **oa-sources**; buscar sin `common/bibliography-oa-sources/model1.md`.
+- PICOCT como dependencia.
 - Descargar antes del debate; inventar fichas / `pendiente_oa` en el catálogo.
 - Paywall bypass / Sci-Hub; más de 5 PDFs.
 - graphify-root; sobrescribir en silencio.

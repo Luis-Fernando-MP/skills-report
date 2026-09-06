@@ -50,7 +50,10 @@ flowchart TD
 
 ### Paso 2 — Buscar candidatos (sin descargar)
 
-El agente elige bases y queries (Semantic Scholar, OpenAlex, Unpaywall, arXiv, SciELO, publishers OA, etc.).
+**Obligatorio:** seguir `common/bibliography-oa-sources/model1.md` (OpenAlex, Semantic Scholar, arXiv, PubMed, …; ≥2 fuentes; dedupe; priorizar OA con `pdf_oa_url`).
+
+- **auto:** queries derivadas del profile (`modo_consumidor: bibliography_auto`).
+- No inventar bases a ciegas: el playbook oa-sources manda el orden y campos del candidato.
 
 Por cada candidato anotar (lista corta; puede ser >5 para filtrar):
 
@@ -59,8 +62,9 @@ Por cada candidato anotar (lista corta; puede ser >5 para filtrar):
 - keywords (si hay)
 - DOI / URL landing
 - URL PDF OA candidata (si existe) — **aún no descargar**
+- fuente + query_origen + is_oa
 
-**Forbidden:** Sci-Hub, paywall bypass, inventar DOI/PDF, descargar en este paso.
+**Forbidden:** Sci-Hub, paywall bypass, inventar DOI/PDF, descargar en este paso, saltarse oa-sources.
 
 ### Paso 3 — Debate de utilidad (obligatorio)
 
@@ -179,6 +183,7 @@ Informar: aceptadas con PDF+MD / rechazadas / `pendiente_oa` (solo chat+debate, 
 ## Forbidden
 
 - Usar PICOCT / keywords del marco como input obligatorio.
+- Saltar `common/bibliography-oa-sources/model1.md` en el Paso 2.
 - Descargar PDF **antes** del debate de utilidad.
 - Escribir `docs.md` **antes** de terminar descargas/conversiones, o con más entradas que PDFs+MD reales.
 - Inventar fichas, `pendiente_oa` o paths en `docs.md`.
@@ -189,6 +194,13 @@ Informar: aceptadas con PDF+MD / rechazadas / `pendiente_oa` (solo chat+debate, 
 - Indexar binarios PDF en Graphify (solo MD + `docs.md`).
 - Refresh graphify-root desde esta skill.
 - Sobrescribir en silencio.
+
+## Relación
+
+| Recurso | Rol |
+|---------|-----|
+| **bibliography-oa-sources** | Paso 2 — candidatos OA multi-fuente |
+| **graphify-project** | Refresh al cerrar |
 
 ## Agentes
 
