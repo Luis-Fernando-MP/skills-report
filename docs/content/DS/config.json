@@ -1,7 +1,14 @@
 {
   "citation_style": "common/citation-style/APA7.md",
   "modelo": "common/structure/model1.md",
-  "alcance": [{ "capitulo": 1, "secciones": ["*"] }],
+  "alcance": [
+    {
+      "capitulo": 1,
+      "secciones": [
+        "*"
+      ]
+    }
+  ],
   "mvp": 1,
   "playbooks": {
     "design-thinking": "common/design-thinking/model1.md",
@@ -27,11 +34,11 @@
     "make-report": {
       "last": "./docs/v1-capitulo-1/draft.md"
     },
-    "bibliographic-search": {
-      "catalog": "./bibliographic/search/docs.md",
-      "debate": "./bibliographic/search/debate.md",
-      "pdfs": "./bibliographic/search/pdfs/",
-      "docs": "./bibliographic/docs/"
+    "bibliography-search": {
+      "catalog": "./bibliography/search/docs.md",
+      "debate": "./bibliography/search/debate.md",
+      "pdfs": "./bibliography/search/pdfs/",
+      "docs": "./bibliography/docs/search/"
     }
   }
 }

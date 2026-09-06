@@ -2,9 +2,9 @@
 name: init-theme-audit-polish
 description: >-
   Stress-test one audited theme (theme-audit.md) with critico-estricto,
-  defensor-fundamento, impacto-social, viabilidad-mvp in una_alternativa mode;
-  write theme-audit-debate.md (scores + diagrama + Q&A) and
-  theme-audit-polish.md (veredicto + tema final + MVP entregables). Use when
+  defensor-fundamento, impacto-social, viabilidad-mvp, inversor in
+  una_alternativa mode; write theme-audit-debate.md (scores + diagrama + Q&A)
+  and theme-audit-polish.md (veredicto + tema final + MVP entregables). Use when
   user says init-theme-audit-polish.
 ---
 
@@ -39,6 +39,8 @@ Mismos agentes y límites de búsqueda. Debate **componentes internos** (problem
 **GO_con_cambios** si resiste con ajustes de alcance/MVP.  
 **GO** si crítico y viabilidad ≥ 3 y no quedan ataques fuertes abiertos.
 
+**Inversor (soft-veto):** un `NO_GO` solo del inversor **no tumba** el tema si impacto/defensor mitigan con beneficio (ahorro, riesgo evitado, adopción o valor social vendible). Documentar disenso; exigir **Tesis de valor (inversor)** en el polish.
+
 ## Empresa / sujeto
 
 Leer `tipo_sujeto` y **`## Ficha de empresa (investigación)`** de `theme-audit.md`.
@@ -46,7 +48,7 @@ Leer `tipo_sujeto` y **`## Ficha de empresa (investigación)`** de `theme-audit.
 - Si `empresa|entidad` y ficha ausente o `evidencia_empresa: insuficiente` → **completar investigación pública** (WebSearch / sitios oficiales) **antes** de Round 1; volcar hallazgos al CONTEXTO. Sin ficha usable → **NO_GO** o pedir reformulación (no inventar).
 - Distinguir siempre: **reseña histórica pública** ≠ **AS-IS operativo interno** no publicado.
 - Si `dominio_sin_empresa` → no exigir ficha corporativa; el debate se centra en el problema de dominio.
-- Pasar la ficha (o N/A justificado) a los 4 agentes en CONTEXTO.
+- Pasar la ficha (o N/A justificado) a los **5** agentes en CONTEXTO.
 
 ## Procedure
 
@@ -70,14 +72,15 @@ Leer `tipo_sujeto` y **`## Ficha de empresa (investigación)`** de `theme-audit.
 
 ### Round 1 — parallel
 
-`critico-estricto`, `defensor-fundamento`, `impacto-social`, `viabilidad-mvp` — todos con `modo: una_alternativa` + FICHA_EMPRESA.
+`critico-estricto`, `defensor-fundamento`, `impacto-social`, `viabilidad-mvp`, `inversor` — todos con `modo: una_alternativa` + FICHA_EMPRESA.
 
 ### Round 2 — cross-debate
 
 1. Pasar ataques/preguntas del crítico → `defensor-fundamento`.
 2. Pasar alcance cuestionado → `viabilidad-mvp` (debe devolver `### MVP entregables` con 2–4 MVPs: objetivo, entregables concretos, criterio de éxito, dependencias).
-3. Pasar el bloque MVP entregables → `critico-estricto` (¿inflado / paperware / núcleo equivocado?), `defensor-fundamento` e `impacto-social` (¿cuál arrancar y por qué).
-4. Orquestador fija **MVP de arranque** (casi siempre 1) o documenta disenso; consolidar scores por dimensión.
+3. Pasar **propuestas de valor del inversor** → impacto-social, defensor y viabilidad (¿cabe sin re-inflar?).
+4. Pasar el bloque MVP entregables → `critico-estricto` (¿inflado / paperware / núcleo equivocado?), `defensor-fundamento`, `impacto-social` e `inversor` (¿cuál arrancar y por qué / valor).
+5. Orquestador fija **MVP de arranque** (casi siempre 1) o documenta disenso; consolidar scores por dimensión.
 
 ### Write `theme-audit-debate.md`
 
@@ -85,19 +88,21 @@ Leer `tipo_sujeto` y **`## Ficha de empresa (investigación)`** de `theme-audit.
 # Debate de auditoría — [FOLDER]
 
 ## Puntuación (dimensiones)
-| Dimensión / eje | Critico | Defensa | Impacto | Viabilidad | Notas |
-|-----------------|---------|---------|---------|------------|-------|
-| problema | | | | | |
-| alcance | | | | | |
-| evidencia_aporte | | | | | |
-| manejabilidad / MVP | | | | | |
-| Total / veredicto | | | | | pasa / cae |
+| Dimensión / eje | Critico | Defensa | Impacto | Viabilidad | Inversor | Notas |
+|-----------------|---------|---------|---------|------------|----------|-------|
+| problema | | | | | | |
+| alcance | | | | | | |
+| evidencia_aporte | | | | | | |
+| manejabilidad / MVP | | | | | | |
+| camino_valor | | | | | | |
+| Total / veredicto | | | | | | pasa / cae |
 
 ## Preguntas y respuestas (cronológico)
 - [critico-estricto] …
   - [defensor-fundamento] …
 - [impacto-social] …
 - [viabilidad-mvp] …
+- [inversor] …
 
 ## Cruce global
 …
@@ -107,6 +112,7 @@ Leer `tipo_sujeto` y **`## Ficha de empresa (investigación)`** de `theme-audit.
 - [critico-estricto] …
 - [defensor-fundamento] …
 - [impacto-social] …
+- [inversor] tesis / propuestas de valor: …
 - Orquestador — MVP de arranque: N — …
 
 ## Diagrama del debate
@@ -117,11 +123,13 @@ flowchart TD
   r1 --> def[defensor-fundamento]
   r1 --> soc[impacto-social]
   r1 --> neg[viabilidad-mvp]
+  r1 --> inv[inversor]
   crit -->|"objecion"| def
   def -->|"respuesta"| crit
+  inv -->|"propuesta_valor"| r2[Ronda2]
   soc -->|"exigencia"| out[Veredicto]
   neg -->|"MVP entregables"| out
-  crit --> r2[Ronda2]
+  crit --> r2
   def --> r2
   neg --> r2
   r2 --> out
@@ -174,6 +182,10 @@ MVP N — una frase + por qué gana el debate
 ### Fuera de secuencia / descartado
 - …
 
+## Tesis de valor (inversor)
+*(Obligatoria si GO o GO_con_cambios.)*
+…
+
 ## Marco PICOCT (para bibliography)
 *(Obligatorio si GO o GO_con_cambios. Alimenta `bibliography-picoct` y se espeja en `profile.md`.)*
 
@@ -213,4 +225,5 @@ Paths + veredicto + **MVP de arranque** + si T usó solo año corriente. Si NO_G
 - Escribir proyecto en `docs/content/` aquí.
 - Tocar skills `rsl-*` / regenerar Graphify.
 - Dejar solo un bullet “MVP acordado” sin tabla de entregables debatidos.
-- Omitir **Marco PICOCT** o la ficha de sujeto cuando el veredicto es GO o GO_con_cambios.
+- Omitir **Marco PICOCT**, **Tesis de valor (inversor)** o la ficha de sujeto cuando el veredicto es GO o GO_con_cambios.
+- Tumbar solo por `NO_GO` del inversor cuando hay mitigación de valor social/adopción.

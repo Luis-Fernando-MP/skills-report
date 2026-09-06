@@ -35,9 +35,9 @@ Proyecto (require `--graph`):
 graphify query "<question>" --graph docs/content/[FOLDER]/graphify-out/graph.json
 ```
 
-**Skills que operan sobre un proyecto** (`docs/content/<FOLDER>/`: bibliography-*, bibliographic-search, make-report, init-project-mvp, redacción/citas del proyecto, etc.) **deben** consultar primero el grafo del proyecto. Objetivo: menos tokens (no volcar PDFs/MD) y búsqueda localizable (nodo + `src` + página/`loc`). Responder con lo que Graphify devolvió; solo Read puntual de líneas si hace falta citar.
+**Skills que operan sobre un proyecto** (`docs/content/<FOLDER>/`: bibliography-*, bibliography-search, make-report, make-report-polish, init-project-mvp, redacción/citas del proyecto, etc.) **deben** consultar primero el grafo del proyecto. Objetivo: menos tokens (no volcar PDFs/MD) y búsqueda localizable (nodo + `src` + página/`loc`). Responder con lo que Graphify devolvió; solo Read puntual de líneas si hace falta citar.
 
-Prefer **project** graph for `profile.md`, `structure`/`modelo`, course notes, drafts `docs/vN-*/`, **MVP activo** (`config.mvp` → `tools["mvp-N"]`), `bibliography/auto` + `bibliography/docs`, `bibliographic/search` + `bibliographic/docs`. Prefer theme graph for legado RSL (`informe`, SLRs, PDFs, `topic.md`). Prefer root for skills, README, cross-project layout.
+Prefer **project** graph for `profile.md`, `structure`/`modelo`, course notes, drafts `docs/vN-*/`, **MVP activo** (`config.mvp` → `tools["mvp-N"]`), `bibliography/auto` + `bibliography/docs`, `bibliography/search` + `bibliography/docs/search`. Prefer theme graph for legado RSL (`informe`, SLRs, PDFs, `topic.md`). Prefer root for skills, README, cross-project layout.
 
 If `graphify-out/wiki/index.md` (or project/theme wiki) exists, navigate it before dumping large files.
 
@@ -52,4 +52,4 @@ Si el grafo del proyecto no existe → pedir **graphify-project** (no inventar; 
 
 **Never** run `npm run graphify:refresh`, `npm run graphify:theme`, `pnpm graphify:project`, or `graphify update` from casual coding unless the user **explicitly** invokes **graphify-root** / **graphify-theme** / **graphify-project** (or asks to refresh).
 
-**Excepción (skills de proyecto):** **bibliography-auto**, **bibliographic-search** y **make-report** **sí** invocan `pnpm graphify:project -- <FOLDER>` al cerrar su pipeline (según su playbook). No usar esa excepción para refresh root/theme ni para coding casual.
+**Excepción (skills de proyecto):** **bibliography-auto**, **bibliography-search**, **make-report** y **make-report-polish** **sí** invocan `pnpm graphify:project -- <FOLDER>` al cerrar su pipeline (según su playbook). No usar esa excepción para refresh root/theme ni para coding casual.

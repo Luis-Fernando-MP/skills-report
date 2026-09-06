@@ -2,8 +2,9 @@
 name: init-theme-polish
 description: >-
   Debate 3 theme alternatives with critico-estricto, defensor-fundamento,
-  impacto-social, viabilidad-mvp; write theme-debate.md (scores + diagrama + Q&A)
-  and theme-polish.md (GO/NO_GO + final theme). Use when user says init-theme-polish.
+  impacto-social, viabilidad-mvp, inversor; write theme-debate.md (scores +
+  diagrama + Q&A) and theme-polish.md (GO/NO_GO + final theme). Use when user
+  says init-theme-polish.
 ---
 
 # init-theme-polish
@@ -42,6 +43,8 @@ No es un brainstorm amable. Respeta límites de búsqueda de cada agente y el pr
 
 Por alternativa, **cae** si el crítico marca `NO_GO` **o** (puntuación crítico ≤ 2 **y** viabilidad ≤ 2). **Pasa** solo si al menos un eje fuerte (crítico ≥ 3 y viabilidad ≥ 3) y no hay ≥2 ataques fuertes sin mitigar tras ronda 2. Si todas caen → veredicto global `NO_GO`.
 
+**Inversor (soft-veto):** un `NO_GO` solo del inversor **no tumba** la alternativa si el resto sostiene PoC con tesis de valor (ahorro, riesgo evitado, adopción o beneficio social vendible) tras R2. Documentar disenso y exigir bloque **Tesis de valor** en el polish.
+
 ## Empresa / sujeto
 
 Si alguna alternativa tiene `tipo_sujeto: empresa|entidad`:
@@ -53,7 +56,7 @@ Si alguna alternativa tiene `tipo_sujeto: empresa|entidad`:
 
 ## Procedure
 
-### CONTEXTO (mismo bloque a los 4)
+### CONTEXTO (mismo bloque a los 5)
 
 Tomar de `theme.md` / usuario; si falta, declarar supuestos:
 
@@ -74,13 +77,14 @@ Tomar de `theme.md` / usuario; si falta, declarar supuestos:
 
 ### Round 1 — parallel
 
-Lanzar en paralelo: `critico-estricto`, `defensor-fundamento` (usará checklist si aún no hay crítico), `impacto-social`, `viabilidad-mvp` — con FICHAS_EMPRESA_POR_ALT.
+Lanzar en paralelo: `critico-estricto`, `defensor-fundamento`, `impacto-social`, `viabilidad-mvp`, `inversor` — con FICHAS_EMPRESA_POR_ALT.
 
 ### Round 2 — cross-debate
 
 1. Pasar **ataques/preguntas del crítico** a `defensor-fundamento` (follow-up).
 2. Pasar **alcance cuestionado** a `viabilidad-mvp` para anclar MVP.
-3. Extraer choques impacto vs viabilidad; consolidar scores.
+3. Pasar **propuestas de valor del inversor** a impacto-social, defensor y viabilidad (¿cabe sin re-inflar?).
+4. Extraer choques impacto vs viabilidad vs valor; consolidar scores.
 
 ### Write `theme-debate.md` (primero)
 
@@ -90,11 +94,11 @@ Acta legible para el humano. Plantilla:
 # Debate de temas — [FOLDER]
 
 ## Puntuación
-| Alternativa | Critico | Defensa | Impacto | Viabilidad | Total | Veredicto |
-|-------------|---------|---------|---------|------------|-------|-----------|
-| A1 … | | | | | | pasa / cae |
-| A2 … | | | | | | |
-| A3 … | | | | | | |
+| Alternativa | Critico | Defensa | Impacto | Viabilidad | Inversor | Total | Veredicto |
+|-------------|---------|---------|---------|------------|----------|-------|-----------|
+| A1 … | | | | | | | pasa / cae |
+| A2 … | | | | | | | |
+| A3 … | | | | | | | |
 
 ## Alternativa 1 — [título corto]
 ### Por qué esta puntuación
@@ -105,13 +109,15 @@ Acta legible para el humano. Plantilla:
   - respuesta / resolución: …
 - [viabilidad-mvp] objeción MVP: …
   - respuesta / resolución: …
+- [inversor] tesis / propuesta de valor: …
+  - respuesta / resolución: …
 ### Fuentes
 
 ## Alternativa 2 — …
 ## Alternativa 3 — …
 
 ## Cruce global
-Choques, réplicas ronda 2, y por qué se eligió (o no) una.
+Choques, réplicas ronda 2, propuestas de valor debatidas, y por qué se eligió (o no) una.
 
 ## Diagrama del debate
 \`\`\`mermaid
@@ -121,11 +127,13 @@ flowchart TD
   r1 --> def[defensor-fundamento]
   r1 --> soc[impacto-social]
   r1 --> neg[viabilidad-mvp]
+  r1 --> inv[inversor]
   crit -->|"objecion"| def
   def -->|"contraataque"| crit
+  inv -->|"propuesta_valor"| r2[Ronda2]
   soc -->|"exigencia"| out[Veredicto]
   neg -->|"MVP"| out
-  crit --> r2[Ronda2]
+  crit --> r2
   def --> r2
   r2 --> out
 \`\`\`
@@ -165,6 +173,10 @@ empresa | entidad | dominio_sin_empresa | ficticio
 - MVP 1 (se trabaja): …
 - Fuera de alcance ahora: …
 
+### Tesis de valor (inversor)
+*(Obligatoria si GO o GO_con_cambios: camino a beneficio — dinero, ahorro, riesgo evitado, adopción o valor social vendible.)*
+…
+
 ## Si NO_GO
 Ninguna alternativa fue aceptada. Traer otros tópicos o áreas e invocar de nuevo `init-theme`.
 
@@ -181,7 +193,8 @@ Path de ambos archivos + veredicto en una línea. Si NO_GO: pedir nuevos tópico
 - Soft consensus sin presión del crítico.
 - Inventar fuentes o empresas.
 - Elegir ganador con empresa real **sin** ficha pública.
-- Elegir un ganador si las 4 lecturas son NO_GO.
+- Elegir un ganador si las lecturas fuertes (crítico+viabilidad) son NO_GO.
+- Tumbar solo por `NO_GO` del inversor cuando hay tesis de valor social/adopción mitigada.
 - Escribir `informe.md` / proyecto en `docs/content/` aquí.
 - Tocar skills `rsl-*`.
 - Regenerar Graphify.

@@ -100,23 +100,23 @@
       "updated_at": "2026-09-06T04:55:42+00:00",
       "graphify_indexed_at": "2026-09-06T04:55:42+00:00"
     },
-    "bibliographic/search/docs.md": {
+    "bibliography/search/docs.md": {
       "sha256": "3036d57c83960ade7f19ce02ef630ac12943a3089ba1ee0e802a11d65250b0dd",
       "status": "graphify_indexed",
       "kind": "bib_search_index",
-      "index_md": "bibliographic/search/docs.md",
+      "index_md": "bibliography/search/docs.md",
       "heading_count": 2,
       "updated_at": "2026-09-06T04:55:42+00:00",
       "graphify_indexed_at": "2026-09-06T04:55:42+00:00"
     },
-    "bibliographic/docs/theory-factors-continuous-experimentation-face.md": {
+    "bibliography/docs/theory-factors-continuous-experimentation-face.md": {
       "sha256": "25eb13b77dd4b82034c52cb6e627e23cdc898993286007a91405eeabcd597cb0",
       "status": "graphify_indexed",
       "kind": "bib_search",
-      "index_md": "bibliographic/docs/theory-factors-continuous-experimentation-face.md",
+      "index_md": "bibliography/docs/theory-factors-continuous-experimentation-face.md",
       "heading_count": 32,
       "updated_at": "2026-09-06T04:55:42+00:00",
-      "source_pdf": "bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf",
+      "source_pdf": "bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf",
       "technique": "section-chunks + finding-hooks + es-aliases",
       "graphify_indexed_at": "2026-09-06T04:55:42+00:00"
     }

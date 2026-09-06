@@ -1,6 +1,6 @@
 # Make report — model1
 
-Playbook para la skill **`make-report`** (alias **`make-informe`**). Redacta un **draft versionado, profesional y sustancial** del informe académico según `config.modelo` + `config.alcance`, usa **`company.md`** cuando hay organización ancla, Graphify durante la redacción, y cierra huecos de citación con **bibliographic-search**.
+Playbook para la skill **`make-report`** (alias **`make-informe`**). Redacta un **draft versionado, profesional y sustancial** del informe académico según `config.modelo` + `config.alcance`, usa **`company.md`** cuando hay organización ancla, Graphify durante la redacción, y cierra huecos de citación con **bibliography-search**.
 
 **No es `rsl-make-report`**. Aquí: `docs/content/<FOLDER>/`.
 
@@ -10,9 +10,10 @@ Producir:
 
 ```text
 docs/content/<FOLDER>/docs/v<N>-<tag>/draft.md
+docs/content/<FOLDER>/docs/reports-trace.json
 ```
 
-Esta skill deja la **base completa** del informe (detalle, prosa académica, secciones llenas). Una skill de polish posterior limpiará estilo/citas; **aquí no se entrega un “casi informe”**.
+Esta skill deja la **base completa** del informe. **`make-report-polish`** escribe `reporte.md` sin tocar el draft.
 
 ## Layout
 
@@ -23,8 +24,9 @@ docs/content/<FOLDER>/
   config.json
   structure.md         # opcional
   docs/vN-tag/draft.md
+  docs/reports-trace.json
   mvp/…
-  bibliographic/…
+  bibliography/…
   graphify-out/
 ```
 
@@ -88,7 +90,7 @@ flowchart TD
   out --> gp1[pnpm_graphify_project]
   draftWrite --> todos[TODO_citar]
   gp1 --> todos
-  todos -->|hay_pendientes| search[bibliographic_search]
+  todos -->|hay_pendientes| search[bibliography_search]
   search --> replace[Reemplazar_TODOs]
   replace --> gp3[graphify_project]
   todos -->|sin_pendientes| done[Listo]
@@ -150,11 +152,31 @@ Solo si el outline pide entregables MVP (Lean Canvas, FODA, AS-IS/TO-BE, etc.):
 
 **Forbidden en redacción:** inventar DOI/papers; Sci-Hub; verbatim largos; sobrescribir `vN`; labels de pipeline; disclaimers de “no auditoría”.
 
-### Paso 7 — Registrar y Graphify
+### Paso 7 — Registrar trace y Graphify
+
+Escanear `TODO: citar — …` del draft. Append (o actualizar si mismo `dir`) en `docs/reports-trace.json`:
+
+```json
+{
+  "dir": "docs/v<N>-<tag>",
+  "version": N,
+  "tag": "<tag>",
+  "draft": "./docs/v<N>-<tag>/draft.md",
+  "has_draft": true,
+  "todos": [{ "text": "…", "status": "open" }],
+  "has_polish": false,
+  "reporte": null,
+  "reporte_debate": null,
+  "created_at": "ISO-8601"
+}
+```
+
+Nunca mutar `dir` de versiones previas. Registrar:
 
 ```json
 "make-report": {
-  "last": "./docs/v<N>-<tag>/draft.md"
+  "last": "./docs/v<N>-<tag>/draft.md",
+  "trace": "./docs/reports-trace.json"
 }
 ```
 
@@ -165,13 +187,13 @@ pnpm graphify:project -- <FOLDER>
 ### Paso 8 — Cerrar TODOs de citación
 
 1. Listar `TODO: citar — …`.
-2. Si hay ≥1 → **bibliographic-search**.
-3. Reemplazar TODOs + Referencias; Graphify de nuevo.
+2. Si hay ≥1 → **bibliography-search**.
+3. Reemplazar TODOs + Referencias; marcar `todos[].status: "done"` en la entrada del trace de esa versión; Graphify de nuevo.
 4. Si un TODO queda sin OA → dejar el `TODO: citar` (único residual aceptable); no inventar.
 
 ### Paso 9 — Chat
 
-Path, tag/N, secciones, uso de `company.md` sí/no, TODOs restantes, search sí/no, Graphify ok.
+Path, tag/N, trace, secciones, uso de `company.md` sí/no, TODOs restantes, search sí/no, Graphify ok.
 
 ## Forbidden
 
@@ -182,7 +204,8 @@ Path, tag/N, secciones, uso de `company.md` sí/no, TODOs restantes, search sí/
 - Volcar tools MVP; inventar fuentes.
 - Redactar empresa sin `company.md` cuando el sujeto es empresa/entidad.
 - Meter `pendiente_campo` / disclaimers de pipeline en el draft.
-- Resultados de search en `bibliography/auto`.
+- Mezclar catálogo de search con `bibliography/auto`.
+- Escribir `reporte.md` aquí (usar **make-report-polish**).
 - Refresh graphify-root / graphify-theme.
 
 ## Relación con otras skills
@@ -191,6 +214,7 @@ Path, tag/N, secciones, uso de `company.md` sí/no, TODOs restantes, search sí/
 |-------|-----|
 | **init-project** | Crea `company.md` + profile |
 | **graphify-project** | Lookup + refresh |
-| **bibliographic-search** | Cerrar `TODO: citar` |
+| **bibliography-search** | Cerrar `TODO: citar` |
 | **bibliography-auto** | Corpus base previo (opcional) |
+| **make-report-polish** | `reporte.md` desde último draft |
 | **rsl-make-report** | Otro dominio |

@@ -1,6 +1,6 @@
-# Debate bibliographic-search — DDS
+# Debate bibliography-search — DDS
 
-Modo: `bibliographic_search_utilidad`  
+Modo: `bibliography_search_utilidad`  
 **TODO origen:** `TODO: citar — marco académico de gestión de inventarios de spare parts / aftermarket OEM (fill rate, demanda intermitente).`  
 Draft: `docs/v1-completo/draft.md`
 

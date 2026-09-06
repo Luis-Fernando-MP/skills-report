@@ -26,12 +26,14 @@
       "docs": "./bibliography/docs/"
     },
     "make-report": {
-      "last": "./docs/v1-completo/draft.md"
+      "last": "./docs/v1-completo/draft.md",
+      "trace": "./docs/reports-trace.json"
     },
-    "bibliographic-search": {
-      "debate": "./bibliographic/search/debate.md",
-      "pdfs": "./bibliographic/search/pdfs/",
-      "docs": "./bibliographic/docs/"
+    "bibliography-search": {
+      "catalog": "./bibliography/search/docs.md",
+      "debate": "./bibliography/search/debate.md",
+      "pdfs": "./bibliography/search/pdfs/",
+      "docs": "./bibliography/docs/search/"
     }
   }
 }

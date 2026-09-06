@@ -2,9 +2,9 @@
 name: make-report
 description: >-
   Draft a versioned professional academic report under docs/content/<FOLDER>/docs/vN-tag/draft.md
-  from config.modelo + alcance + company.md, using Graphify and bibliographic-search
-  for citation gaps. Alias make-informe. Use when user says make-report or make-informe.
-  Not rsl-make-report.
+  from config.modelo + alcance + company.md, using Graphify and bibliography-search
+  for citation gaps; appends docs/reports-trace.json. Alias make-informe. Use when
+  user says make-report or make-informe. Not rsl-make-report.
 ---
 
 # make-report
@@ -15,12 +15,13 @@ Redacta un **draft versionado, profesional y sustancial** del informe del proyec
 
 **Alias:** `make-informe` → esta skill. **No** es `rsl-make-report`.
 
-Esta skill deja la **base completa** del informe (detalle, prosa, secciones llenas). Una skill de polish posterior limpiará estilo/citas; **aquí no se entrega un “casi informe” ni un “valídalo tú”**.
+Esta skill deja la **base completa** del informe (detalle, prosa, secciones llenas). **`make-report-polish`** produce `reporte.md` sin tocar el draft; **aquí no se entrega un “casi informe” ni un “valídalo tú”**.
 
 ## Salida
 
 ```text
 docs/content/<FOLDER>/docs/v<N>-<tag>/draft.md
+docs/content/<FOLDER>/docs/reports-trace.json   # append por versión
 ```
 
 | Alcance | tag típico |
@@ -60,9 +61,10 @@ No volcar PDFs/MD al contexto. Preferir findings + `src` + página. Incluir quer
 6. Graphify query mientras se redacta (`company`, profile, bib, MVP activo si aplica).
 7. Tools `mvp-N` **solo** si el outline lo pide — integrar, no volcar. Cap. presentación de empresa → **solo** desde `company.md` + fuentes allí listadas (ampliar investigación pública si la ficha es corta).
 8. Escribir `docs/vN-tag/draft.md` **detallado y profesional** (ver playbook: densidad, reseña histórica real, sin hedges). Huecos de cita → `TODO: citar — …` (únicos placeholders permitidos).
-9. Registrar `config.tools["make-report"].last`; `pnpm graphify:project -- <FOLDER>`.
-10. Si hay TODOs de citación → **bibliographic-search** → reemplazar → Graphify otra vez.
-11. Chat: path draft, secciones, TODOs restantes, search sí/no.
+9. Escanear TODOs; **append** entrada en `docs/reports-trace.json` (`has_draft: true`, `has_polish: false`, `todos[]`). Registrar `config.tools["make-report"]` con `last` + `trace`.
+10. `pnpm graphify:project -- <FOLDER>`.
+11. Si hay TODOs de citación → **bibliography-search** → reemplazar → marcar `todos[].status: "done"` en el trace de esa versión → Graphify otra vez.
+12. Chat: path draft, trace, secciones, TODOs restantes, search sí/no.
 
 ## Estándar de calidad del draft (no negociable)
 
@@ -80,4 +82,5 @@ No volcar PDFs/MD al contexto. Preferir findings + `src` + página. Incluir quer
 - Inventar fuentes; omitir Referencias; volcar MVP entero.
 - Redactar cap. empresa **sin** `company.md` cuando el sujeto es empresa/entidad.
 - Meter labels de pipeline (`pendiente_campo`, etc.) en el draft.
-- Guardar search en `bibliography/`; graphify-root / graphify-theme.
+- Mezclar catálogo search con `bibliography/auto`; graphify-root / graphify-theme.
+- Editar `reporte.md` aquí (eso es **make-report-polish**).

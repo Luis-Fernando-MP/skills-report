@@ -251,23 +251,35 @@ def enrich_bib_md(
             break
 
     stem = md_path.stem
-    parent = md_path.parent  # …/docs
-    grand = parent.parent  # bibliography | bibliographic | …
+    parent = md_path.parent
 
     def project_root() -> Path:
-        """Project dir = parent of bibliography/ or bibliographic/."""
-        if grand.name in {"bibliography", "bibliographic"}:
-            return grand.parent
+        """Project dir = parent of bibliography/ (or climb to profile/config)."""
+        walk = md_path
+        for _ in range(8):
+            walk = walk.parent
+            if walk.name == "bibliography":
+                return walk.parent
+            if (walk / "profile.md").exists() or (walk / "config.json").exists():
+                return walk
         return md_path.parent.parent.parent
 
     if pdf_path is None:
-        # bibliography/docs/<slug>.md → auto/pdfs/<slug>.pdf
-        # bibliographic/docs/<slug>.md → search/pdfs/<slug>.pdf
-        if grand.name == "bibliographic" and parent.name == "docs":
-            cand = grand / "search" / "pdfs" / f"{stem}.pdf"
+        bib_root = None
+        walk = md_path
+        for _ in range(8):
+            walk = walk.parent
+            if walk.name == "bibliography":
+                bib_root = walk
+                break
+        if bib_root is not None and parent.name == "search" and parent.parent.name == "docs":
+            cand = bib_root / "search" / "pdfs" / f"{stem}.pdf"
+        elif bib_root is not None:
+            cand = bib_root / "auto" / "pdfs" / f"{stem}.pdf"
         else:
-            cand = grand / "auto" / "pdfs" / f"{stem}.pdf"
-        pdf_path = cand if cand.is_file() else None
+            cand = None
+
+        pdf_path = cand if cand and cand.is_file() else None
         if not pdf_path and meta.get("pdf_path"):
             alt = project_root() / meta["pdf_path"]
             if alt.is_file():

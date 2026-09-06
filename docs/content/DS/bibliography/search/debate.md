@@ -1,4 +1,4 @@
-# Debate bibliográfico — DS (bibliographic-search)
+# Debate bibliográfico — DS (bibliography-search)
 
 Query / TODO: `TODO: citar — marco metodológico Lean Canvas (p. ej. Maurya)`
 

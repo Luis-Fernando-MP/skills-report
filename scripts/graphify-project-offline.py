@@ -4,7 +4,7 @@ Project Graphify pipeline (docs/content/<FOLDER>).
 
 Corpus: profile.md, company.md (optional), structure via config.modelo, docs/**/*.{md,qmd} (incl. drafts vN),
 active MVP from config.mvp → tools["mvp-N"], bibliography/auto + bibliography/docs,
-bibliographic/search + bibliographic/docs
+bibliography/search + bibliography/docs/search
 Manifest: docs/content/<FOLDER>/index-manifest.json
 Resolved copies (qmd / modelo): graphify-out/_corpus/ (gitignored with graphify-out)
 """
@@ -214,21 +214,23 @@ def list_bib_auto_files(project: Path) -> list[tuple[Path, str]]:
         for p in sorted(bib_docs.rglob("*.md")):
             if not p.is_file() or p.name.startswith(".") or p.name == ".gitkeep":
                 continue
+            if "search" in p.relative_to(bib_docs).parts:
+                continue
             out.append((p, "bib_auto"))
     return out
 
 
 def list_bib_search_files(project: Path) -> list[tuple[Path, str]]:
-    """Return (path, kind) for bibliographic-search corpus.
+    """Return (path, kind) for bibliography-search corpus.
 
     kind: bib_search_index | bib_search
-    Layout: bibliographic/search/{docs.md,pdfs/} + bibliographic/docs/*.md
+    Layout: bibliography/search/{docs.md,pdfs/} + bibliography/docs/search/*.md
     """
     out: list[tuple[Path, str]] = []
-    catalog = project / "bibliographic" / "search" / "docs.md"
+    catalog = project / "bibliography" / "search" / "docs.md"
     if catalog.is_file() and catalog.stat().st_size > 20:
         out.append((catalog, "bib_search_index"))
-    bib_docs = project / "bibliographic" / "docs"
+    bib_docs = project / "bibliography" / "docs" / "search"
     if bib_docs.is_dir():
         for p in sorted(bib_docs.rglob("*.md")):
             if not p.is_file() or p.name.startswith(".") or p.name == ".gitkeep":
@@ -459,7 +461,7 @@ def prepare(project: Path, force: bool = False) -> dict:
         else:
             print(f"prepared: {rel} (headings={headings})")
 
-    # bibliography auto + bibliographic-search
+    # bibliography auto + bibliography-search
     for bib_path, bib_kind in list_all_bib_files(project):
         rel = entry_key(str(bib_path.relative_to(project)))
         digest = sha256_file(bib_path)
@@ -488,7 +490,7 @@ def prepare(project: Path, force: bool = False) -> dict:
                 if bib_kind == "bib_search":
                     pdf_candidate = (
                         project
-                        / "bibliographic"
+                        / "bibliography"
                         / "search"
                         / "pdfs"
                         / f"{bib_path.stem}.pdf"
@@ -526,7 +528,7 @@ def prepare(project: Path, force: bool = False) -> dict:
             if bib_kind == "bib_search":
                 pdf_candidate = (
                     project
-                    / "bibliographic"
+                    / "bibliography"
                     / "search"
                     / "pdfs"
                     / f"{bib_path.stem}.pdf"
@@ -772,12 +774,12 @@ def verify(project: Path) -> dict:
             n
             for n in nodes
             if (sf := str(n.get("source_file", "")).replace("\\", "/")).startswith(
-                ("bibliography/", "bibliographic/")
+                ("bibliography/", "bibliography/search/")
             )
         ]
         if len(bib_nodes) < 1:
             warnings.append(
-                "bibliography/bibliographic MD present but no bibliography nodes in graph"
+                "bibliography MD present but no bibliography nodes in graph"
             )
 
     config = load_config(project)

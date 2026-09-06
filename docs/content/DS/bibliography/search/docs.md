@@ -9,6 +9,6 @@
 - **Razón:** GO tras debate: define Lean Canvas (adaptación de BMC según Maurya) con bloques producto/mercado; OA en arXiv. Citar solo como ancla de definición, no como método CE del PoC.
 - **Cita:** Ros, R., Bjarnason, E., & Runeson, P. (2022). A theory of factors affecting continuous experimentation (FACE). *arXiv*. https://doi.org/10.48550/arXiv.2210.05192
 - **DOI / URL:** https://arxiv.org/abs/2210.05192
-- **PDF:** `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf`
-- **MD:** `bibliographic/docs/theory-factors-continuous-experimentation-face.md`
+- **PDF:** `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf`
+- **MD:** `bibliography/docs/search/theory-factors-continuous-experimentation-face.md`
 - **Estado:** `ok`

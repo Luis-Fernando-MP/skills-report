@@ -1,7 +1,7 @@
 ---
 title: "A Theory of Factors Affecting Continuous Experimentation (FACE)"
-source_pdf: "bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf"
-pdf_path: "bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf"
+source_pdf: "bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf"
+pdf_path: "bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf"
 pages: 43
 technique: section-chunks + finding-hooks + es-aliases
 enriched_at: 2026-09-06T04:55:00+00:00
@@ -9,11 +9,11 @@ enriched_at: 2026-09-06T04:55:00+00:00
 
 # A Theory of Factors Affecting Continuous Experimentation (FACE)
 
-> Fuente PDF: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · técnica **section-chunks + finding-hooks + es-aliases**
+> Fuente PDF: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · técnica **section-chunks + finding-hooks + es-aliases**
 
 ## Metadata
 - Stem: `theory-factors-continuous-experimentation-face`
-- PDF: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf`
+- PDF: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf`
 - DOI: `unknown`
 - Pages: `43`
 - Technique: `section-chunks + finding-hooks + es-aliases`
@@ -46,57 +46,57 @@ Abstract Context: Continuous experimentation (CE) is used by many companies with
 _Cada ### es un nodo Graphify; el título es el snippet consultable (EN + alias ES)._
 
 ### [PDF p.1] Finding: Abstract Context: Continuous experimentation (CE) is used by many companies with internet-facing products to improve their software based on user data.
-- Locator: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1**
+- Locator: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1**
 
 Abstract Context: Continuous experimentation (CE) is used by many companies with internet-facing products to improve their software based on user data.
 
 ### [PDF p.1] Finding: Some companies deliberately adopt an experiment-driven approach to software devel- opment while some companies use CE in a more ad-hoc fashion.
-- Locator: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1**
+- Locator: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1**
 
 Some companies deliberately adopt an experiment-driven approach to software devel- opment while some companies use CE in a more ad-hoc fashion.
 
 ### [PDF p.1] Hallazgo: Some companies deliberately adopt an experimentos-driven approach to software devel- opment while some companies use CE in a more ad-hoc fashion.
-- Locator: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1** · alias ES
+- Locator: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1** · alias ES
 
 Some companies deliberately adopt an experimentos-driven approach to software devel- opment while some companies use CE in a more ad-hoc fashion.
 
 ### [PDF p.1] Finding: Results: We introduce a theory of Factors Af- fecting Continuous Experimentation (FACE).
-- Locator: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1**
+- Locator: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1**
 
 Results: We introduce a theory of Factors Af- fecting Continuous Experimentation (FACE).
 
 ### [PDF p.1] Finding: Objective: The goal of the study is to identify factors that explain the variations in the utility and efficacy of CE between different companies.
-- Locator: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1**
+- Locator: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1**
 
 Objective: The goal of the study is to identify factors that explain the variations in the utility and efficacy of CE between different companies.
 
 ### [PDF p.1] Finding: Method: We conducted a multi- case study of 12 companies involved with CE and performed 27 interviewees with practitioners at these companies.
-- Locator: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1**
+- Locator: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1**
 
 Method: We conducted a multi- case study of 12 companies involved with CE and performed 27 interviewees with practitioners at these companies.
 
 ### [PDF p.1] Finding: Based on that empirical data, we then built a theory of factors at play in CE.
-- Locator: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1**
+- Locator: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1**
 
 Based on that empirical data, we then built a theory of factors at play in CE.
 
 ### [PDF p.1] Finding: The theory includes three factors, namely 1) processes and infrastructure for CE, 2) the user problem complexity of the product offering, and 3) incentive structures for CE.
-- Locator: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1**
+- Locator: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1**
 
 The theory includes three factors, namely 1) processes and infrastructure for CE, 2) the user problem complexity of the product offering, and 3) incentive structures for CE.
 
 ### [PDF p.1] Finding: It explains how these factors affect the effectiveness of CE and its ability to achieve problem-solution and product-market fit.
-- Locator: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1**
+- Locator: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1**
 
 It explains how these factors affect the effectiveness of CE and its ability to achieve problem-solution and product-market fit.
 
 ### [PDF p.1] Finding: Conclusions: Our theory can be used by practitioners to assess an organisation’s potential for adopting CE, as well as, identifying factors which pose challenges in gaining value from CE practices.
-- Locator: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1**
+- Locator: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1**
 
 Conclusions: Our theory can be used by practitioners to assess an organisation’s potential for adopting CE, as well as, identifying factors which pose challenges in gaining value from CE practices.
 
 ### [PDF p.1] Finding: Our results also provide a starting point for further research on how contextual factors affect CE and how these may be mitigated.
-- Locator: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1**
+- Locator: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1**
 
 Our results also provide a starting point for further research on how contextual factors affect CE and how these may be mitigated.
 
@@ -109,7 +109,7 @@ _(sin keywords)_
 ## Sections
 
 ### [PDF p.1] Section: Abstract / body (pdftotext)
-- Locator: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1**
+- Locator: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1**
 
 Noname manuscript No.
                                          (will be inserted by the editor)
@@ -239,7 +239,7 @@ method is outlined in Sec
 _Nodos por página del PDF (acotado)._
 
 ### [PDF p.1] Noname manuscript No.
-- Locator: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1** / 43
+- Locator: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **1** / 43
 
 Noname manuscript No.
                                          (will be inserted by the editor)
@@ -295,7 +295,7 @@ arXiv:2210.05192v1 [cs.SE] 11 Oct 2022
                                          E-mail: per.runeson@cs.lth.se
 
 ### [PDF p.2] 1 Introduction
-- Locator: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **2** / 43
+- Locator: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **2** / 43
 
 2                                                                            Ros et al.
 
@@ -351,7 +351,7 @@ how well an organization can expect to conduct CE. These factors are: (1) CE
 processes and infrastructure, in particular, the data infrastructure that companies
 
 ### [PDF p.3] A Theory of Factors Affecting Continuous Experimentation (FACE) 3
-- Locator: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **3** / 43
+- Locator: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **3** / 43
 
 A Theory of Factors Affecting Continuous Experimentation (FACE)                   3
 
@@ -407,7 +407,7 @@ where the focus is more on product improvement [18], and changing the business
 model might be considered out of scope for daily software engineering work. In
 
 ### [PDF p.4] addition, successfully implementing changes in an established business model is
-- Locator: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **4** / 43
+- Locator: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **4** / 43
 
 4                                                                            Ros et al.
 
@@ -463,7 +463,7 @@ direct sales & marketing activities (e.g. advertisement or cold calling) of the 
 led business models. The purpose is to have an offering that can scale to high levels
 
 ### [PDF p.5] A Theory of Factors Affecting Continuous Experimentation (FACE) 5
-- Locator: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **5** / 43
+- Locator: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **5** / 43
 
 A Theory of Factors Affecting Continuous Experimentation (FACE)                     5
 
@@ -518,7 +518,7 @@ but is less comprehensive. These reports and models served as a starting point f
 the questions in the interview guide in this study, in particular the RIGHT model.
 
 ### [PDF p.6] The process model in RIGHT is inspired by the build–measure–learn cycle of
-- Locator: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **6** / 43
+- Locator: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **6** / 43
 
 6                                                                            Ros et al.
 
@@ -574,7 +574,7 @@ companies with a business-to-consumer (B2C) business model. Whether a com-
 pany is B2B or B2C is not an explicit part of FACE; these challenges are instead
 
 ### [PDF p.7] A Theory of Factors Affecting Continuous Experimentation (FACE) 7
-- Locator: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **7** / 43
+- Locator: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **7** / 43
 
 A Theory of Factors Affecting Continuous Experimentation (FACE)                       7
 
@@ -630,7 +630,7 @@ on existing theory from other fields or grounded theory [22, 65], which is used
 when the researchers want no preconceived notions about how the data should be
 
 ### [PDF p.8] Objectives Current CE practices Theorising
-- Locator: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **8** / 43
+- Locator: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **8** / 43
 
 8                                                                                                 Ros et al.
 
@@ -690,7 +690,7 @@ guide, participated in two interviews each, and performed independent coding of
 one interview to improve the coding process.
 
 ### [PDF p.9] A Theory of Factors Affecting Continuous Experimentation (FACE) 9
-- Locator: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **9** / 43
+- Locator: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **9** / 43
 
 A Theory of Factors Affecting Continuous Experimentation (FACE)                  9
 
@@ -746,7 +746,7 @@ recorded after permission for this was granted by the interviewees. The majority
 the interviews were performed at the companies’ premises. For six companies, this
 
 ### [PDF p.10] 10 Ros et al.
-- Locator: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **10** / 43
+- Locator: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **10** / 43
 
 10                                                                          Ros et al.
 
@@ -802,7 +802,7 @@ theory may be applicable to. Explanations for our theory are provided as part of
 the definition and description of each construct and proposition.
 
 ### [PDF p.11] A Theory of Factors Affecting Continuous Experimentation (FACE) 11
-- Locator: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **11** / 43
+- Locator: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **11** / 43
 
 A Theory of Factors Affecting Continuous Experimentation (FACE)                    11
 
@@ -858,7 +858,7 @@ licenses to other companies and the company has salespersons working with direct
 sales as their only source of revenue. Company A has experienced several periods
 
 ### [PDF p.12] 12 Ros et al.
-- Locator: `bibliographic/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **12** / 43
+- Locator: `bibliography/search/pdfs/theory-factors-continuous-experimentation-face.pdf` · página **12** / 43
 
 12                                                                                Ros et al.
 
