@@ -56,7 +56,7 @@ Fórmula HMW (curso): *“¿Cómo podríamos [acción] para que [usuario especí
 
 ### Prototipar — tangible y barato (≤1 día de diseño)
 
-Artefacto concreto (Sheets, papel, flujo dibujado). Roles, frecuencia, maestro mínimo. No MVP+1. **SoT** del artefacto para Lean Solución y TO-BE.
+Artefacto concreto (Sheets, papel, flujo dibujado). Roles, frecuencia, maestro mínimo. No MVP+1. **SoT** del artefacto para Lean Solución y TO-BE. Si hay mermaid del prototipo: **paso a paso nodo a nodo** (qué caja sigue a cuál; definir X/Y); no dejar el dibujo sin lectura.
 
 ### Test — después del RAT; usuario usa, tú callas
 

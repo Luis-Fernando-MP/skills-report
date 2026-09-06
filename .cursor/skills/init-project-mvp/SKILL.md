@@ -152,10 +152,10 @@ Default:
 4. Lanzar agente **`design-thinking`** con CONTEXTO + playbooks + diagrama + degradación + WebSearch + amarre FODA/TOWS.
 5. Escribir **un archivo por tool presente** (contenido **aplicado** al caso):
    - `design-thinking.md` — Empathize…Prototype (+ Test post-RAT); preguntas al equipo al final si hay DT.
-   - `lean-canvas.md` — tabla 9 bloques + flujo del feature si aplica.
-   - `foda.md` — 2×2 + TOWS (candidatos) + amarre tras RAT.
+   - `lean-canvas.md` — lienzo con varias tablas (layout plantilla Lean Canvas) + flujo del feature si aplica (si hay mermaid: paso a nodo, mismo criterio que AS-IS).
+   - `foda.md` — cuadrante 2×2 (o 4 tablas) + TOWS (candidatos) + amarre tras RAT.
    - `rat.md` — fichas R# + cola.
-   - `as-is-to-be.md` — AS-IS / TO-BE / brecha.
+   - `as-is-to-be.md` — AS-IS / TO-BE en carriles Mermaid, nodos numerados en el label (`🟢 1. …`), glosario de X/Y, **paso a paso = 1 nodo o 1 cambio de carril** (playbook `common/as-is-to-be/model1.md`). Prohibido resumir tres nodos en un bullet.
    - Diagramas solo del **dominio** (prototipo, consulta, AS-IS/TO-BE), no del método.
    - Sin sección **Notas**.
 6. Si no hay DT, poner **Preguntas al equipo** al final del último archivo escrito.
@@ -172,3 +172,4 @@ Default:
 - Pedagogía / Notas / diagramas de método en generados.
 - Gastar reserva RAT en Empathize.
 - Reabrir tema / inventar hechos / Graphify / RSL / autoevaluación RAT.
+- Lectura de flujo que salte nodos, no nombre el carril, no defina X/Y (u otras letras del label) o no declare el **cambio de carril** en el handoff.
