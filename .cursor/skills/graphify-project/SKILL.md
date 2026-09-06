@@ -27,6 +27,7 @@ A prepare → (B agent headings si needs_agent) → C build → D verify
 - `profile.md`
 - `structure.md` local **o** `common/structure/{config.modelo}.md`
 - `docs/**/*.{md,qmd}` (apuntes del curso)
+- **MVP activo** = `config.mvp` (N) → `config.tools["mvp-N"]` paths (solo ese N; otros MVP → `mvp_inactive` en manifest, no al grafo). Fallback: `mvp/mvp-<N>-*/**/*.md`
 - `bibliography/auto/docs.md` + `bibliography/docs/**/*.md` (fuentes de **bibliography-auto**)
 - Manifest: `docs/content/<FOLDER>/index-manifest.json`
 - Copias resueltas (qmd / modelo): `graphify-out/_corpus/` (gitignored)
@@ -60,9 +61,9 @@ Papers de **bibliography-auto** llevan finding hooks EN + alias ES y locators `[
 
 **Otras skills de proyecto** (bibliography-*, init-project-mvp, redacción sobre el FOLDER) **deben** usar este grafo como lookup por defecto — no Grep/Read masivo del corpus.
 
-Preferir este grafo para profile / structure / apuntes / bib-auto del proyecto. Root → **graphify-root**. Temas RSL legado → **graphify-theme**.
+Preferir este grafo para profile / structure / apuntes / **mvp activo** / bib-auto del proyecto. Root → **graphify-root**. Temas RSL legado → **graphify-theme**.
 
-`--force` regenera y re-enriquece MD de bib-auto.
+`--force` regenera y re-enriquece MD de bib-auto; re-indexa el MVP de `config.mvp`.
 
 ## Forbidden
 

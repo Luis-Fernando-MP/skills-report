@@ -3,7 +3,8 @@
 Project Graphify pipeline (docs/content/<FOLDER>).
 
 Corpus: profile.md, structure.md (local or common/structure/{modelo}),
-docs/**/*.{md,qmd}, bibliography/auto/docs.md, bibliography/docs/**/*.md
+docs/**/*.{md,qmd}, active MVP from config.mvp → tools["mvp-N"],
+bibliography/auto/docs.md, bibliography/docs/**/*.md
 Manifest: docs/content/<FOLDER>/index-manifest.json
 Resolved copies (qmd / modelo): graphify-out/_corpus/ (gitignored with graphify-out)
 """
@@ -112,6 +113,91 @@ def list_note_files(project: Path) -> list[Path]:
         if p.suffix.lower() in {".md", ".qmd"}:
             out.append(p)
     return out
+
+
+def active_mvp_n(config: dict) -> int:
+    raw = config.get("mvp", 1)
+    try:
+        n = int(raw)
+    except (TypeError, ValueError):
+        n = 1
+    return n if n >= 1 else 1
+
+
+def list_active_mvp_files(project: Path, config: dict) -> tuple[int, list[Path]]:
+    """MD of the MVP in progress: config.mvp → tools['mvp-N'] (only that N).
+
+    Returns (mvp_n, paths). Prefer paths registered under config.tools['mvp-N'];
+    fallback: mvp/mvp-<N>-*/**/*.md on disk.
+    """
+    n = active_mvp_n(config)
+    tools = config.get("tools") or {}
+    key = f"mvp-{n}"
+    block = tools.get(key) if isinstance(tools, dict) else None
+    paths: list[Path] = []
+    seen: set[str] = set()
+
+    if isinstance(block, dict):
+        for _tool, rel in sorted(block.items()):
+            if not isinstance(rel, str) or not rel.strip():
+                continue
+            rel_clean = rel.strip().lstrip("./")
+            p = (project / rel_clean).resolve()
+            try:
+                p.relative_to(project.resolve())
+            except ValueError:
+                continue
+            if not p.is_file() or p.suffix.lower() != ".md":
+                continue
+            k = str(p)
+            if k in seen:
+                continue
+            seen.add(k)
+            paths.append(p)
+
+    if not paths:
+        mvp_root = project / "mvp"
+        if mvp_root.is_dir():
+            for folder in sorted(mvp_root.glob(f"mvp-{n}-*")):
+                if not folder.is_dir():
+                    continue
+                for p in sorted(folder.glob("*.md")):
+                    if p.name.startswith("."):
+                        continue
+                    k = str(p.resolve())
+                    if k in seen:
+                        continue
+                    seen.add(k)
+                    paths.append(p)
+
+    return n, paths
+
+
+def deactivate_other_mvp_entries(entries: dict, active_n: int) -> list[str]:
+    """Mark manifest mvp entries that are not the active MVP as inactive (not built)."""
+    deactivated: list[str] = []
+    prefix = f"mvp/mvp-{active_n}-"
+    for key, ent in list(entries.items()):
+        if ent.get("kind") != "mvp":
+            continue
+        rel = key.replace("\\", "/")
+        # also honor explicit mvp_n on entry
+        ent_n = ent.get("mvp_n")
+        active = False
+        if ent_n is not None:
+            try:
+                active = int(ent_n) == active_n
+            except (TypeError, ValueError):
+                active = False
+        else:
+            active = rel.startswith(prefix) or f"/mvp-{active_n}-" in f"/{rel}"
+        if active:
+            continue
+        if ent.get("status") != "mvp_inactive":
+            ent["status"] = "mvp_inactive"
+            ent["updated_at"] = utc_now()
+            deactivated.append(key)
+    return deactivated
 
 
 def list_bib_auto_files(project: Path) -> list[tuple[Path, str]]:
@@ -266,6 +352,49 @@ def prepare(project: Path, force: bool = False) -> dict:
             "status": status,
             "kind": "note",
             "index_md": index_rel,
+            "heading_count": headings,
+            "updated_at": utc_now(),
+        }
+        prepared.append(rel)
+        if status == "needs_agent":
+            needs_agent.append(rel)
+            print(f"needs_agent: {rel} (headings={headings})")
+        else:
+            print(f"prepared: {rel} (headings={headings})")
+
+    # active MVP only (config.mvp → tools["mvp-N"])
+    mvp_n, mvp_files = list_active_mvp_files(project, config)
+    deactivated = deactivate_other_mvp_entries(entries, mvp_n)
+    for d in deactivated:
+        print(f"mvp_inactive: {d} (active mvp-{mvp_n})")
+    if mvp_files:
+        print(f"active_mvp: mvp-{mvp_n} ({len(mvp_files)} files)")
+    else:
+        print(f"warn: no MVP files for config.mvp={mvp_n} (tools['mvp-{mvp_n}'] or mvp/mvp-{mvp_n}-*)", file=sys.stderr)
+
+    for mvp_path in mvp_files:
+        rel = entry_key(str(mvp_path.relative_to(project)))
+        digest = sha256_file(mvp_path)
+        ent = entries.get(rel)
+        if (
+            not force
+            and ent
+            and ent.get("sha256") == digest
+            and ent.get("status") in {"md_ready", "graphify_indexed"}
+            and ent.get("kind") == "mvp"
+        ):
+            skipped.append(rel)
+            continue
+
+        text = mvp_path.read_text(encoding="utf-8", errors="replace")
+        headings = count_md_headings(text)
+        status = "md_ready" if headings >= MIN_HEADINGS_NOTE else "needs_agent"
+        entries[rel] = {
+            "sha256": digest,
+            "status": status,
+            "kind": "mvp",
+            "mvp_n": mvp_n,
+            "index_md": rel,
             "heading_count": headings,
             "updated_at": utc_now(),
         }
@@ -572,6 +701,20 @@ def verify(project: Path) -> dict:
         ]
         if len(bib_nodes) < 1:
             warnings.append("bibliography auto MD present but no bibliography nodes in graph")
+
+    config = load_config(project)
+    mvp_n, mvp_files = list_active_mvp_files(project, config)
+    if mvp_files:
+        mvp_nodes = [
+            n
+            for n in nodes
+            if (sf := str(n.get("source_file", "")).replace("\\", "/")).startswith("mvp/")
+            and f"mvp-{mvp_n}-" in sf.replace("\\", "/")
+        ]
+        if len(mvp_nodes) < 1:
+            warnings.append(
+                f"mvp-{mvp_n} files present but no mvp nodes in graph (config.mvp={mvp_n})"
+            )
 
     entries = manifest.get("entries") or {}
     for key, ent in entries.items():

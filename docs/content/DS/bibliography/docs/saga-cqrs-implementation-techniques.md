@@ -7,7 +7,7 @@ source_pdf: "bibliography/auto/pdfs/saga-cqrs-implementation-techniques.pdf"
 pdf_path: "bibliography/auto/pdfs/saga-cqrs-implementation-techniques.pdf"
 pages: 6
 technique: section-chunks + finding-hooks + es-aliases
-enriched_at: 2026-09-06T03:52:54+00:00
+enriched_at: 2026-09-06T04:02:25+00:00
 ---
 
 # SAGA and CQRS Implementation Techniques for Distributed Transaction Management
