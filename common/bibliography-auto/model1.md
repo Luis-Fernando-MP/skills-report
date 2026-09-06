@@ -18,11 +18,11 @@ Obtener hasta **5** papers públicos útiles al tema del proyecto, con:
 docs/content/<FOLDER>/
   bibliography/
     auto/
-      docs.md           # catálogo SoT (aceptadas + pendiente_oa)
-      debate.md         # acta utilidad por candidato
-      pdfs/<slug>.pdf   # solo GO con OA
+      docs.md           # catálogo SoT FINAL: 1:1 con pdfs/ (sin inventar)
+      debate.md         # acta utilidad (+ rechazos / pendiente_oa)
+      pdfs/<slug>.pdf   # solo GO con OA descargado
     docs/
-      <slug>.md         # PDF → MD (solo GO)
+      <slug>.md         # PDF → MD (solo GO descargado)
   index-manifest.json
   graphify-out/
 ```
@@ -37,9 +37,8 @@ flowchart TD
   debate -->|GO| pdfs[auto_pdfs]
   debate -->|NO_GO| reject[debate_md_rechazo]
   pdfs --> bibDocs[bibliography_docs_md]
-  debate -->|GO| catalog[auto_docs_md]
+  bibDocs --> catalog[auto_docs_md]
   catalog --> gp[graphify_project]
-  bibDocs --> gp
 ```
 
 ### Paso 1 — Resolver proyecto
@@ -88,13 +87,13 @@ objetivo: decidir GO|NO_GO por utilidad al profile; no descargar aún
 |-----------|--------|
 | `GO` / `GO_con_cambios` | Elegible a descarga (si hay PDF OA) |
 | `NO_GO` / empate débil | **No** descargar ni transformar; rechazo breve en `debate.md` |
-| GO sin PDF OA | Ficha `pendiente_oa` en `docs.md`; **no** cuenta como slot PDF |
+| GO sin PDF OA / descarga fallida | Solo en `debate.md` + chat como `pendiente_oa`; **no** inventar ficha en `docs.md` |
 
 Desempate: ante duda razonable → **no descargar**.
 
 Escribir acta en `bibliography/auto/debate.md` (ataques, defensas, veredicto por candidato).
 
-Tope: como máximo **5** aceptadas con PDF. Si hay más GO, priorizar las más alineadas al profile.
+Tope: como máximo **5** PDFs. Si hay más GO, priorizar las más alineadas al profile.
 
 ### Paso 4 — Descargar y convertir (solo GO)
 
@@ -103,13 +102,15 @@ Tope: como máximo **5** aceptadas con PDF. Si hay más GO, priorizar las más a
 3. Convertir con `pdftotext -layout` → `bibliography/docs/<slug>.md`:
    - Front matter breve: título, DOI/URL, path del PDF, fecha captura.
    - Cuerpo con **≥3** headings `##` / `###` (páginas o secciones) — requerido por Graphify (`MIN_HEADINGS_NOTE`).
-4. Si la descarga falla → marcar en `docs.md` / `debate.md`; no inventar contenido.
+4. Si la descarga falla → anotar en `debate.md` y chat; **no** inventar PDF, MD ni entrada en `docs.md`.
 
 Slug: 3–8 palabras, lowercase, hyphenated, estable (mismo nombre pdf y md).
 
-### Paso 5 — Escribir `docs.md`
+### Paso 5 — Escribir `docs.md` (al final del material, antes de Graphify)
 
-Catálogo SoT. Una sección `##` por fuente **aceptada** o `pendiente_oa`.
+**Orden obligatorio:** debate → descargas + MD → **verificar en disco** → recién entonces `docs.md` → config → Graphify → chat.
+
+Catálogo SoT. **Solo** fuentes con PDF real en `auto/pdfs/<slug>.pdf` **y** MD en `bibliography/docs/<slug>.md`. Si se descargaron 2, el catálogo tiene 2 secciones — ni más ni menos. **Prohibido** inventar fichas, `pendiente_oa` o paths que no existan.
 
 Campos obligatorios por fuente:
 
@@ -120,14 +121,14 @@ Campos obligatorios por fuente:
 | Keywords | Keywords del paper |
 | Razón | Por qué se eligió (alineación profile + veredicto debate) |
 | Cita | Formato según playbook de `config.citation_style` |
-| Paths | `auto/pdfs/…`, `docs/…` (si aplica), DOI/URL, estado (`ok` \| `pendiente_oa`) |
+| Paths | `auto/pdfs/…`, `docs/…`, DOI/URL, estado `ok` |
 
 Plantilla mínima:
 
 ```markdown
 # Bibliografía auto — <FOLDER>
 
-## <Título corto o slug>
+## <slug>
 
 - **Título:** …
 - **Autores:** …
@@ -135,9 +136,9 @@ Plantilla mínima:
 - **Razón:** …
 - **Cita:** …
 - **DOI / URL:** …
-- **PDF:** `bibliography/auto/pdfs/<slug>.pdf` | `pendiente_oa`
-- **MD:** `bibliography/docs/<slug>.md` | —
-- **Estado:** `ok` | `pendiente_oa`
+- **PDF:** `bibliography/auto/pdfs/<slug>.pdf`
+- **MD:** `bibliography/docs/<slug>.md`
+- **Estado:** `ok`
 ```
 
 ### Paso 6 — Graphify del proyecto (obligatorio)
@@ -170,12 +171,14 @@ Si un MD queda `needs_agent` (<3 headings): enriquecer headings y stamp antes de
 
 ### Paso 8 — Chat
 
-Informar: aceptadas / rechazadas, pendientes OA, paths, Graphify skipped vs nuevos, `needs_agent` restantes.
+Informar: aceptadas con PDF+MD / rechazadas / `pendiente_oa` (solo chat+debate, no en `docs.md`), paths reales, Graphify skipped vs nuevos, `needs_agent` restantes.
 
 ## Forbidden
 
 - Usar PICOCT / keywords del marco como input obligatorio.
 - Descargar PDF **antes** del debate de utilidad.
+- Escribir `docs.md` **antes** de terminar descargas/conversiones, o con más entradas que PDFs+MD reales.
+- Inventar fichas, `pendiente_oa` o paths en `docs.md`.
 - Paywall bypass / Sci-Hub.
 - Inventar DOI, PDF o texto del paper.
 - Más de 5 PDFs descargados.

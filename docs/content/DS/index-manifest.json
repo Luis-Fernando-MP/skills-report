@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "updated_at": "2026-09-06T03:42:56+00:00",
+  "entries": {
+    "profile.md": {
+      "sha256": "468d5091c41f15fb7e76d3c80fedf5856a7798235350eef1b4a7f60c7f089893",
+      "status": "graphify_indexed",
+      "kind": "profile",
+      "heading_count": 11,
+      "updated_at": "2026-09-06T03:37:18+00:00",
+      "graphify_indexed_at": "2026-09-06T03:42:56+00:00"
+    },
+    "bibliography/auto/docs.md": {
+      "sha256": "31ec6fe63f6538c9d1041d223d4ba233a92b1b3cc425be3a256c0aac7a0d9cc6",
+      "status": "graphify_indexed",
+      "kind": "bib_auto_index",
+      "index_md": "bibliography/auto/docs.md",
+      "heading_count": 3,
+      "updated_at": "2026-09-06T03:42:56+00:00",
+      "graphify_indexed_at": "2026-09-06T03:42:56+00:00"
+    },
+    "bibliography/docs/distributed-transactions-microservice-architecture.md": {
+      "sha256": "c0a7b536eacb51a9c03b84c1f3b133ba68093b16fadec3f764eb62d6a247d4d8",
+      "status": "graphify_indexed",
+      "kind": "bib_auto",
+      "index_md": "bibliography/docs/distributed-transactions-microservice-architecture.md",
+      "heading_count": 14,
+      "updated_at": "2026-09-06T03:37:18+00:00",
+      "source_pdf": "bibliography/auto/pdfs/distributed-transactions-microservice-architecture.pdf",
+      "graphify_indexed_at": "2026-09-06T03:42:56+00:00"
+    },
+    "bibliography/docs/saga-cqrs-implementation-techniques.md": {
+      "sha256": "7861aab5e84fddbc10fd2166bb8cf15feec7173d9bb1863a73ce77256b39613a",
+      "status": "graphify_indexed",
+      "kind": "bib_auto",
+      "index_md": "bibliography/docs/saga-cqrs-implementation-techniques.md",
+      "heading_count": 18,
+      "updated_at": "2026-09-06T03:37:18+00:00",
+      "source_pdf": "bibliography/auto/pdfs/saga-cqrs-implementation-techniques.pdf",
+      "graphify_indexed_at": "2026-09-06T03:42:56+00:00"
+    }
+  }
+}

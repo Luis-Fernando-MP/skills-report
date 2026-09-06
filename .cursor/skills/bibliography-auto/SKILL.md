@@ -4,13 +4,13 @@ description: >-
   Find up to 5 open-access sources from a project profile (no PICOCT), debate
   usefulness with critico-estricto and defensor-fundamento before download,
   save PDFs under bibliography/auto/pdfs, MD under bibliography/docs, catalog
-  in auto/docs.md, then create/refresh project Graphify. Use when user says
-  bibliography-auto.
+  in auto/docs.md (only what was actually downloaded), then create/refresh
+  project Graphify. Use when user says bibliography-auto.
 ---
 
 # bibliography-auto
 
-Busca **hasta 5** fuentes **OA públicas** para un proyecto en `docs/content/<FOLDER>/`, valida utilidad con **2 agentes** antes de descargar, escribe catálogo + PDF + MD y refresca Graphify.
+Busca **hasta 5** fuentes **OA públicas** para un proyecto en `docs/content/<FOLDER>/`, valida utilidad con **2 agentes** antes de descargar, escribe PDF + MD + catálogo y refresca Graphify.
 
 **SoT del cómo:** `common/bibliography-auto/model1.md`. Seguir ese playbook al pie.
 
@@ -24,8 +24,8 @@ docs/content/<FOLDER>/
   config.json
   bibliography/
     auto/
-      docs.md             # catálogo (ficha + cita según citation_style)
-      debate.md           # acta utilidad
+      docs.md             # catálogo FINAL: solo lo descargado (1:1 con pdfs/)
+      debate.md           # acta utilidad (+ pendiente_oa / rechazos)
       pdfs/<slug>.pdf
     docs/
       <slug>.md           # PDF → MD
@@ -53,22 +53,25 @@ Sin `profile.md` → pedir **init-project** primero.
    - `critico-estricto` — utilidad / ruido / fuera de alcance; WebSearch ≤3.
    - `defensor-fundamento` — evidencia o `punto_debil`; WebSearch ≤3.
 6. Consolidar → `bibliography/auto/debate.md`. Solo `GO` / `GO_con_cambios` pasan; ante duda → no descargar.
-7. Descargar ≤5 PDFs OA → `auto/pdfs/`; `pdftotext` → `bibliography/docs/<slug>.md` (≥3 headings).
-8. Escribir `bibliography/auto/docs.md` (título, autores, keywords, razón, cita según style, paths, estado).
+7. Descargar ≤5 PDFs OA → `auto/pdfs/`; `pdftotext` → `bibliography/docs/<slug>.md` (≥3 headings). Verificar archivos en disco.
+8. **Al final del material** (después de 7, antes de Graphify): escribir `bibliography/auto/docs.md` **solo** con fuentes que tengan PDF + MD reales. Si hay 2 PDFs → 2 secciones. No inventar `pendiente_oa` ni paths.
 9. Registrar `config.tools["bibliography-auto"]` (catalog, debate, pdfs, docs).
 10. Invocar **graphify-project**: `pnpm graphify:project -- <FOLDER>` (create o update; manifest skip por hash).
-11. Chat: aceptadas / rechazadas, `pendiente_oa`, paths, Graphify skipped vs nuevos.
+11. Chat: aceptadas (con path), rechazadas, `pendiente_oa` (solo chat/debate), Graphify skipped vs nuevos.
 
-## Formato `docs.md` (por fuente)
+## Formato `docs.md` (por fuente real)
 
-- Título, Autores, Keywords, Razón, Cita (`citation_style`), DOI/URL, PDF, MD, Estado (`ok` | `pendiente_oa`).
+- Título, Autores, Keywords, Razón, Cita (`citation_style`), DOI/URL, PDF, MD, Estado (`ok`).
+- **Regla:** el número de secciones `##` = número de PDFs en `auto/pdfs/`. Nada más.
 
 ## Forbidden
 
 - Ignorar el playbook.
 - Usar PICOCT como dependencia.
 - Descargar antes del debate.
-- Paywall bypass / Sci-Hub / inventar DOI o PDF.
+- Escribir `docs.md` antes de terminar descargas/MD, o con más entradas que archivos reales.
+- Inventar fichas / DOI / PDF / `pendiente_oa` en el catálogo.
+- Paywall bypass / Sci-Hub.
 - Más de 5 PDFs; guardar PDF fuera de `auto/pdfs/`.
 - graphify-root / graphify-theme; make-informe.
 - Sobrescribir en silencio.
