@@ -21,7 +21,7 @@ docs/topics/<FOLDER>/
   theme-polish.md       # veredicto + alternativa final o NO_GO (prosa limpia)
 ```
 
-Leer `theme.md` (obligatorio). Si existe `theme-brainstorm.md`, usarlo como contexto de ángulos; **no** editarlo.
+Leer `theme.md` (obligatorio). Si existe `theme-brainstorm.md`, pasar a CONTEXTO un **`ANGULOS_RESUMEN`** fiel (candidatas + descartados; ~8–15 líneas). No editar el acta. No privar a los agentes de ángulos relevantes por “ahorrar”.
 
 ## Invoke
 

@@ -21,7 +21,7 @@ docs/topics/<FOLDER>/
   theme-audit-polish.md       # veredicto + tema final + MVP entregables (prosa limpia)
 ```
 
-Leer `theme-audit.md` (obligatorio). Si existe `theme-audit-brainstorm.md`, usarlo como contexto de ángulos; **no** editarlo.
+Leer `theme-audit.md` (obligatorio). Si existe `theme-audit-brainstorm.md`, pasar **`ANGULOS_RESUMEN`** fiel (~8–15 líneas). No editar el acta. No omitir ángulos relevantes por ahorro.
 
 ## Invoke
 

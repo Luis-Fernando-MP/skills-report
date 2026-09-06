@@ -52,12 +52,12 @@ Si una alternativa depende de empresa real y no hay evidencia pública mínima �
 1. Leer tópicos (3–4) y carpeta opcional.
 2. **Resolver `FOLDER`:** código del usuario (`ITD`, `MOST`, …) o slug corto; crear `docs/topics/<FOLDER>/` si no existe.
 3. Armar CONTEXTO con `modo: N_alternativas`.
-4. Lanzar **`brainstorm-theme`** (3 lentes) → escribir **`theme-brainstorm.md`** con la salida del agente (plantilla abajo).
-5. Clasificar sujeto por candidata; **investigar empresa** cuando aplique (WebSearch / oficiales).
-6. Lanzar **`benchmark-theme`** con CONTEXTO + candidatas + fichas. Si `evidencia: insuficiente`, reflejar proxies en `theme.md`.
-7. Escribir **`theme.md`** con **exactamente 3 alternativas** (plantilla abajo). Bien definido: listo para polish. Ante conflicto: evidencia del benchmark manda en “qué existe”; brainstorm en ángulos de problema/alcance.
+4. Lanzar **un** agente `brainstorm-theme` (**un pase completo** con 3 lentes; **sin** 3 Task redundantes). Escribir **`theme-brainstorm.md`**. Si la salida omite una lente o candidatas incompletas → **re-lanzar el mismo agente una vez** pidiendo completar; no seguir a medias.
+5. Clasificar sujeto por candidata; **investigar empresa** cuando aplique hasta ficha usable (identidad + historia o sitio oficial). No inventar.
+6. Lanzar **`benchmark-theme`** con CONTEXTO + candidatas + fichas (síntesis + lo del acta que haga falta). Exigir ≥2 casos o `evidencia: insuficiente` explícita. Si sale vacío sin justificación → **re-lanzar una vez**.
+7. Escribir **`theme.md`** con **exactamente 3 alternativas** bien definidas (plantilla abajo). Listo para polish sin que el usuario tenga que re-correr init por huecos obvios.
 8. No escribir `theme-debate.md` ni `theme-polish.md` aquí.
-9. Chat: paths de `theme-brainstorm.md` + `theme.md`, resumen de las 3, siguiente **`init-theme-polish`**.
+9. Chat: paths + resumen claro de las 3 → **`init-theme-polish`**.
 
 ### Plantilla `theme-brainstorm.md`
 
@@ -77,8 +77,10 @@ Si una alternativa depende de empresa real y no hay evidencia pública mínima �
 3. …
 
 ## Acta (brainstorm-theme)
-… (pegar salida del agente: lentes + síntesis de candidatas)
+… (salida completa del agente en formato del agente; sin recortar lentes ni síntesis)
 ```
+
+**Calidad:** preferir una ejecución completa a un md incompleto. Evitar 3 Task paralelos (desperdicio); no omitir sustancia.
 
 ### Plantilla `theme.md`
 

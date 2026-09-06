@@ -76,11 +76,11 @@ Si no hay evidencia mínima → `evidencia_empresa: insuficiente` o pedir aclara
 3. Si empresa/entidad → **investigación de empresa**.
 4. **Resolver `FOLDER`:** código o slug; crear carpeta si falta.
 5. Armar CONTEXTO con `modo: una_alternativa` + resumen ficha.
-6. Lanzar **`brainstorm-theme`** (ángulos del mismo tema) → escribir **`theme-audit-brainstorm.md`**.
-7. Lanzar **`benchmark-theme`** con CONTEXTO + tema + ficha + ángulos. Si evidencia insuficiente → proxies en el md.
-8. Escribir **`theme-audit.md`** bien definido (plantilla abajo).
+6. Lanzar **un** `brainstorm-theme` (pase completo; ángulos del mismo tema; **sin** 3 Task). Si omite lentes/ángulos → **re-lanzar una vez**. Escribir **`theme-audit-brainstorm.md`**.
+7. Lanzar **`benchmark-theme`** con CONTEXTO + tema + ficha + ángulos. Exigir ≥2 casos o evidencia insuficiente explícita; si sale vacío → **re-lanzar una vez**.
+8. Escribir **`theme-audit.md`** bien definido (plantilla abajo) — listo para polish sin huecos obvios.
 9. No lanzar polish aquí.
-10. Chat: paths + `tipo_sujeto` + resumen → **`init-theme-audit-polish`**.
+10. Chat: paths + `tipo_sujeto` + resumen claro → **`init-theme-audit-polish`**.
 
 ### Plantilla `theme-audit-brainstorm.md`
 
@@ -96,7 +96,7 @@ Si no hay evidencia mínima → `evidencia_empresa: insuficiente` o pedir aclara
 …
 
 ## Acta (brainstorm-theme)
-… (lentes + ángulos/variantes del mismo tema)
+… (salida completa del agente; sin recortar)
 ```
 
 ### Plantilla `theme-audit.md`

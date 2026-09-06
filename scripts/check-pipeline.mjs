@@ -97,13 +97,45 @@ for (const name of readdirSync(skillsRoot)) {
   }
 }
 
-// 5b) auto/search must reference oa-sources
-for (const name of ['bibliography-auto', 'bibliography-search']) {
-  const skillMd = join(skillsRoot, name, 'SKILL.md');
-  if (!existsSync(skillMd)) continue;
-  const text = readFileSync(skillMd, 'utf8');
-  if (!text.includes('bibliography-oa-sources')) {
-    fail(`${name} SKILL.md must reference bibliography-oa-sources`);
+// 5c) Theme flow: agents + init skills must wire brainstorm → benchmark
+{
+  const agents = ['brainstorm-theme', 'benchmark-theme'];
+  for (const a of agents) {
+    if (!existsSync(join(root, '.cursor', 'agents', `${a}.md`))) {
+      fail(`missing agent: .cursor/agents/${a}.md`);
+    }
+  }
+  const initTheme = readFileSync(join(skillsRoot, 'init-theme', 'SKILL.md'), 'utf8');
+  for (const needle of [
+    'brainstorm-theme',
+    'benchmark-theme',
+    'theme-brainstorm.md',
+    'sobrescribir',
+  ]) {
+    if (!initTheme.includes(needle)) fail(`init-theme missing: ${needle}`);
+  }
+  if (/Lanzar \*\*`?competitive-analysis/.test(initTheme) || initTheme.includes('Skill externa (aparte)')) {
+    fail('init-theme still wires external competitive-analysis as a step');
+  }
+  const initAudit = readFileSync(join(skillsRoot, 'init-theme-audit', 'SKILL.md'), 'utf8');
+  for (const needle of [
+    'brainstorm-theme',
+    'benchmark-theme',
+    'theme-audit-brainstorm.md',
+    'sobrescribir',
+  ]) {
+    if (!initAudit.includes(needle)) fail(`init-theme-audit missing: ${needle}`);
+  }
+  if (initAudit.includes('Skill externa (aparte)')) {
+    fail('init-theme-audit still wires external competitive-analysis as a step');
+  }
+  const polishA = readFileSync(join(skillsRoot, 'init-theme-polish', 'SKILL.md'), 'utf8');
+  if (!polishA.includes('theme-brainstorm.md')) {
+    fail('init-theme-polish should mention theme-brainstorm.md as optional context');
+  }
+  const polishB = readFileSync(join(skillsRoot, 'init-theme-audit-polish', 'SKILL.md'), 'utf8');
+  if (!polishB.includes('theme-audit-brainstorm.md')) {
+    fail('init-theme-audit-polish should mention theme-audit-brainstorm.md as optional context');
   }
 }
 
