@@ -70,6 +70,13 @@ const config = {
   modelo: 'model1',
   alcance: [],
   mvp: 1,
+  tools: {
+    'design-thinking': 'common/design-thinking/model1.md',
+    'lean-canvas': 'common/lean-canvas/model1.md',
+    rat: 'common/rat/model1.md',
+    foda: 'common/foda/model1.md',
+    'as-is-to-be': 'common/as-is-to-be/model1.md',
+  },
 };
 
 mkdirSync(path.join(projectAbs, 'docs'), { recursive: true });
@@ -78,7 +85,9 @@ writeFileSync(path.join(projectAbs, 'profile.md'), profileTemplate, 'utf8');
 writeFileSync(path.join(projectAbs, 'docs', '.gitkeep'), '', 'utf8');
 
 console.log(`PASS: project mold → ${projectRel}`);
-console.log('  config.json  (citation_style=APA7, modelo=model1, alcance=[], mvp=1)');
+console.log(
+  '  config.json  (citation_style=APA7, modelo=model1, alcance=[], mvp=1, tools=all model1)'
+);
 console.log('  profile.md   (empty template — mirror polish via init-project)');
 console.log('  docs/        (apuntes)');
 console.log('  structure.md not created — index from common/structure/model1.md via config.modelo');

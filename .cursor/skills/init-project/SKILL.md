@@ -3,7 +3,7 @@ name: init-project
 description: >-
   Create an academic project under docs/content/{FOLDER}: derive folder name
   from the topic, fill profile.md (mirror of theme-audit-polish) and config.json
-  (citation_style, modelo, alcance, mvp). Use when user says init-project
+  (citation_style, modelo, alcance, mvp, tools). Use when user says init-project
   (legacy: project-init).
 ---
 
@@ -15,21 +15,26 @@ Tercer paso de la familia **init-*** (tras `init-theme-audit-polish` / `init-the
 
 | Vía | Input | Qué hace |
 |-----|--------|----------|
-| `pnpm project:init <FOLDER>` | **Solo** nombre de carpeta | Molde vacío + `APA7` + `modelo: model1` + `mvp: 1` |
+| `pnpm project:init <FOLDER>` | **Solo** nombre de carpeta | Molde vacío + defaults (`mvp: 1`, `tools` completos) |
 | Esta skill | Tema + extras / polish | **Deriva** `FOLDER`, crea molde, rellena **profile** y **config** |
 
 ## Layout
 
 ```text
 docs/content/<FOLDER>/
-  config.json          # citation_style, modelo, alcance, mvp
+  config.json          # citation_style, modelo, alcance, mvp, tools
   profile.md           # espejo del tema final + MVP entregables del polish
   structure.md         # opcional — si existe, pisa al modelo común
   docs/                # apuntes md/qmd del curso
-  design-thinking/     # lo crea init-project-mvp (no esta skill)
+  mvp/                 # lo crea init-project-mvp → mvp/mvp-N-slug.md
 
 common/citation-style/<id>.md
-common/structure/<modelo>.md   # índice si no hay structure.md local
+common/structure/<modelo>.md
+common/design-thinking/model1.md   # playbook tool DT (no carpeta de salida)
+common/lean-canvas/model1.md
+common/rat/model1.md
+common/foda/model1.md
+common/as-is-to-be/model1.md
 ```
 
 ## Resolución del índice
@@ -41,74 +46,46 @@ common/structure/<modelo>.md   # índice si no hay structure.md local
 ## Procedure
 
 1. Leer lo que aportó el usuario. **Fuente preferida:** `docs/topics/<…>/theme-audit-polish.md` (Tema final + MVP entregables); si no, `theme-polish.md`; si no, input manual. No inventar hechos de empresa.
-2. **Derivar `FOLDER`:**
-   - Si el usuario da un código corto (`MOST`, `PASS`) → usarlo.
-   - Si no → slug corto; si `docs/content/<FOLDER>/` ya existe, preguntar o elegir variante.
+2. **Derivar `FOLDER`:** código corto del usuario o slug; si ya existe, preguntar.
 3. Si la carpeta no existe → `pnpm project:init <FOLDER>` desde la raíz del repo.
-4. Escribir **`profile.md`** como espejo del polish (misma información; sin inventar):
-
-```markdown
-# Perfil del proyecto
-
-## Tema
-…
-
-## Descripción
-…
-
-## Problema identificado
-…
-
-## Alcance
-…
-
-## MVP entregables
-
-### MVP de arranque (recomendado al equipo)
-MVP N — …
-
-### Secuencia
-| MVP | Objetivo | Entregables | Criterio de éxito | Estado |
-|-----|----------|-------------|-------------------|--------|
-| 1 | … | … | … | se trabaja ahora |
-| … | … | … | … | … |
-
-### Fuera de secuencia / descartado
-- …
-
-## Origen
-- polish: docs/topics/…/theme-audit-polish.md (o theme-polish.md / manual)
-- veredicto: GO | GO_con_cambios | (n/a)
-```
-
+4. Escribir **`profile.md`** como espejo del polish (Tema / Descripción / Problema / Alcance / MVP entregables / Origen).
 5. Escribir **`config.json`:**
-   - `citation_style`: el del usuario si existe `common/citation-style/<id>.md`; default `APA7`.
-   - `modelo`: el pedido tras verificar `common/structure/X.md`; default `model1`.
-   - `alcance`: capítulos/secciones si los indica; si no → `[]` y avisar.
-   - `mvp`: número del **MVP de arranque** del polish/profile; default **`1`**.
-6. **Índice:** modelo común → solo `config.modelo`; índice pegado → `structure.md` local; nada → `model1` sin structure local.
-7. Chat: path, `FOLDER`, `config.mvp`, índice efectivo, qué falta (`alcance`, apuntes), siguiente skill **`init-project-mvp mvp-<N>`**.
+   - `citation_style`: default `APA7` (verificar `common/citation-style/`).
+   - `modelo`: default `model1` (verificar `common/structure/`).
+   - `alcance`: array de capítulos o `[]` + avisar.
+   - `mvp`: arranque del polish o `1`.
+   - `tools`: objeto tool → path de playbook. **Default = todos los model1.** Si el usuario pide un subconjunto o `model2`, validar que el path exista bajo `common/`.
 
-## Invoke examples
+Default `tools`:
 
-```text
-Usa init-project
-
-Carpeta: PASS
-Fuente: docs/topics/ITD/theme-audit-polish.md
-Modelo: model1
-Citas: APA7
+```json
+"tools": {
+  "design-thinking": "common/design-thinking/model1.md",
+  "lean-canvas": "common/lean-canvas/model1.md",
+  "rat": "common/rat/model1.md",
+  "foda": "common/foda/model1.md",
+  "as-is-to-be": "common/as-is-to-be/model1.md"
+}
 ```
 
-```text
-Usa init-project con el tema final de docs/topics/ITD/theme-audit-polish.md
+Ejemplo omitiendo FODA y usando otro canvas a futuro:
+
+```json
+"tools": {
+  "design-thinking": "common/design-thinking/model1.md",
+  "lean-canvas": "common/lean-canvas/model2.md",
+  "rat": "common/rat/model1.md",
+  "as-is-to-be": "common/as-is-to-be/model1.md"
+}
 ```
+
+6. **Índice:** como antes (`structure.md` local o `config.modelo`).
+7. Chat: path, `FOLDER`, `config.mvp`, tools habilitadas, siguiente **`init-project-mvp mvp-<N>`**.
 
 ## Forbidden
 
 - Inventar datos de empresa/tema no aportados.
-- Acortar el polish a 4 campos planos si el polish trae MVP entregables.
-- Copiar `common/structure/*.md` al proyecto solo porque se eligió un modelo.
-- Regenerar Graphify (**graphify-project**).
-- Ejecutar Design Thinking aquí (**init-project-mvp**).
-- Tocar skills RSL ni borrar proyectos existentes sin confirmación.
+- Acortar el polish si trae MVP entregables.
+- Copiar playbooks de `common/` al proyecto (solo referenciar paths en `tools`).
+- Regenerar Graphify / ejecutar **init-project-mvp** aquí.
+- Tocar RSL ni borrar proyectos sin confirmación.

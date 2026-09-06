@@ -2,5 +2,12 @@
   "citation_style": "APA7",
   "modelo": "model1",
   "alcance": [],
-  "mvp": 1
+  "mvp": 1,
+  "tools": {
+    "design-thinking": "common/design-thinking/model1.md",
+    "lean-canvas": "common/lean-canvas/model1.md",
+    "rat": "common/rat/model1.md",
+    "foda": "common/foda/model1.md",
+    "as-is-to-be": "common/as-is-to-be/model1.md"
+  }
 }
