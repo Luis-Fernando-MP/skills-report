@@ -43,5 +43,18 @@ MVP 1 — Consulta de disponibilidad PT por variante en un punto propio (métric
 - POS, ERP, SUNAT, BOM/MRP, e-commerce
 - Vender el entregable como alternativa comercial a INVY / iSiore
 
+## Marco PICOCT (para bibliography)
+
+| Componente | Definición | Criterios / descripción del caso |
+| :---: | :--- | :--- |
+| **P** | Population / Problem | PYME de calzado / personal planta-comercial; hipótesis de inconsistencia entre disponibilidad confirmable por variante (modelo×color×talla) y stock físico en ubicaciones propias |
+| **I** | Intervention | Diagnóstico AS-IS + diseño de fuente de consulta de inventario PT por variante (modelo de datos mínimo; sin ERP/POS) en ≤1–2 ubicaciones propias |
+| **C** | Comparison | Prácticas actuales informales (memoria, WhatsApp, cuaderno, Excel suelto) y alternativa de mercado POS/ERP (fuera de alcance del piloto) |
+| **O** | Outcome | % coincidencia físico vs registro; tiempo/esfuerzo para responder “¿hay stock de variante X?”; ownership/latencia de actualización; consultabilidad diseñada sin POS |
+| **C** | Context | Perú / Trujillo; manufactura de calzado; PYME; ubicaciones propias (no talleres tercerizados en esta fase) |
+| **T** | Time / Type of study | Año 2026 (sin rango indicado en audit); tipo preferente: artículos (`ar`) |
+
+Fuente para `bibliography-picoct` / espejo en `profile.md` vía `init-project`.
+
 ## Listo para
-`init-project` (espejar tema final + MVP entregables en `profile.md`) → `init-project-mvp mvp-1`.
+`init-project` (espejar tema final + MVP + Marco PICOCT en `profile.md`) → `init-project-mvp mvp-1` → `bibliography-picoct`.

@@ -49,15 +49,16 @@ Usar exactamente estos significados al llenar `picoct.md`:
 
 ### Reglas al llenar el marco
 
-1. Fuente primaria: `profile.md` (tema, problema, alcance, MVP). No inventar hechos de empresa.
-2. Cada celda: 1–3 frases + etiqueta `evidencia` | `hipótesis` | `pendiente_campo`.
-3. **P** debe ser problema *observable*, no slogan de transformación digital.
-4. **I** = intervención del estudio/MVP, no “digitalización” genérica.
-5. **C** (comparison): si no hay brazo control explícito, documentar *prácticas actuales* como comparación.
-6. **O** debe ser medible (nombres de métricas usables en keywords).
-7. **Context**: país/sector; evitar solo el nombre comercial de la empresa como único término de búsqueda (la empresa es caso; el Context de la query es el *tipo* de entorno).
-8. **T**: año mínimo/máximo explícitos (p. ej. 2018–2026) + tipos preferidos (`ar` = article). Si el usuario no fija años → default **últimos 5–6 años** hasta el año corriente del sistema.
-9. **Profile incompleto:** si el profile no alcanza para un componente (sobre todo **O** o **Context**): llenar con la mejor hipótesis razonable, etiquetar `pendiente_campo`, y listarlo en el chat final (Paso 6) como punto a confirmar con el usuario. **No** detener el pipeline ni inventar datos de empresa para completar la celda.
+1. **Fuente prioritaria:** si `profile.md` (o el polish de origen) ya trae **`## Marco PICOCT`**, **partir de esa tabla** — copiar/adaptar a `picoct.md` según el marco elegido (PICO/PICOC/PICOCT). Solo completar huecos; no reescribir desde cero salvo que falte la sección.
+2. Si no hay Marco PICOCT en profile: construir desde tema/problema/alcance/MVP. No inventar hechos de empresa.
+3. Cada celda: 1–3 frases + etiqueta `evidencia` | `hipótesis` | `pendiente_campo`.
+4. **P** debe ser problema *observable*, no slogan de transformación digital.
+5. **I** = intervención del estudio/MVP, no “digitalización” genérica.
+6. **C** (comparison): si no hay brazo control explícito, documentar *prácticas actuales* como comparación.
+7. **O** debe ser medible (nombres de métricas usables en keywords).
+8. **Context**: país/sector; evitar solo el nombre comercial de la empresa como único término de búsqueda (la empresa es caso; el Context de la query es el *tipo* de entorno).
+9. **T — años:** si el usuario/profile **no** fija rango → solo el **año corriente** del sistema (p. ej. `PUBYEAR > 2025 AND PUBYEAR < 2027` para acotar 2026, o documentar `año = 2026`) + tipo default `article` si aplica. Si hay rango explícito → usarlo.
+10. **Profile incompleto:** si un componente (sobre todo **O** o **Context**) sigue vacío tras el Marco PICOCT: mejor hipótesis razonable + `pendiente_campo`, listar en chat (Paso 6). **No** detener el pipeline ni inventar datos de empresa.
 
 ## Keywords — conceptos
 

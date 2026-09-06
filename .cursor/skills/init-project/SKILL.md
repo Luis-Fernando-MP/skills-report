@@ -23,7 +23,7 @@ Tercer paso de la familia **init-*** (tras `init-theme-audit-polish` / `init-the
 ```text
 docs/content/<FOLDER>/
   config.json          # citation_style, modelo, alcance, mvp, playbooks, tools
-  profile.md           # espejo del tema final + MVP entregables del polish
+  profile.md           # espejo: tema final + MVP + Marco PICOCT (si viene del polish)
   structure.md         # opcional — override del modelo común
   docs/                # apuntes md/qmd del curso
   mvp/                 # lo crea init-project-mvp → mvp/mvp-N-slug/*.md
@@ -91,10 +91,13 @@ Si `tools` apunta a `common/...` y no hay `playbooks`: tratar esos valores como 
 
 ## Procedure
 
-1. Leer lo que aportó el usuario. **Fuente preferida:** `docs/topics/<…>/theme-audit-polish.md` (Tema final + MVP entregables); si no, `theme-polish.md`; si no, input manual. No inventar hechos de empresa.
+1. Leer lo que aportó el usuario. **Fuente preferida:** `docs/topics/<…>/theme-audit-polish.md` (Tema final + MVP entregables + **Marco PICOCT**); si no, `theme-polish.md`; si no, input manual. No inventar hechos de empresa.
 2. **Derivar `FOLDER`:** código corto del usuario o slug; si ya existe, preguntar.
 3. Si la carpeta no existe → `pnpm project:init <FOLDER>` desde la raíz del repo.
-4. Escribir **`profile.md`** como espejo del polish (Tema / Descripción / Problema / Alcance / MVP entregables / Origen).
+4. Escribir **`profile.md`** como espejo del polish:
+   - Tema / Descripción / Problema / Alcance / MVP entregables / Origen.
+   - Si el polish trae **`## Marco PICOCT (para bibliography)`** (o equivalente) → **copiarla completa** (no acortar).
+   - Si el polish es GO/GO_con_cambios y **falta** Marco PICOCT → avisar en chat (ideal re-correr `init-theme-audit-polish` o completar a mano).
 5. Escribir **`config.json`:**
    - `citation_style`: default `common/citation-style/APA7.md` (verificar que exista).
    - `modelo`: default `common/structure/model1.md` (verificar).
@@ -102,12 +105,12 @@ Si `tools` apunta a `common/...` y no hay `playbooks`: tratar esos valores como 
    - `mvp`: arranque del polish o `1`.
    - `playbooks`: default todos model1; si el usuario pide subconjunto o `model2`, validar paths bajo `common/`.
    - `tools`: `{}` (los rellena **init-project-mvp**).
-6. Chat: path, `FOLDER`, `config.mvp`, playbooks habilitados, siguiente **`init-project-mvp mvp-<N>`**.
+6. Chat: path, `FOLDER`, `config.mvp`, playbooks, si PICOCT quedó en profile, siguiente **`init-project-mvp mvp-<N>`**.
 
 ## Forbidden
 
 - Inventar datos de empresa/tema no aportados.
-- Acortar el polish si trae MVP entregables.
+- Acortar el polish si trae MVP entregables **o** Marco PICOCT.
 - Copiar playbooks de `common/` al proyecto (solo referenciar en `playbooks`).
 - Rellenar `tools` con paths `common/` (eso es `playbooks`).
 - Regenerar Graphify / ejecutar **init-project-mvp** aquí.

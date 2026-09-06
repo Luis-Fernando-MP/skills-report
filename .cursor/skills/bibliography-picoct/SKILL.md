@@ -39,16 +39,16 @@ Sin `profile.md` → pedir **init-project** primero.
 
 ## Procedure
 
-1. Resolver `FOLDER`; leer `profile.md` (tema, problema, alcance, MVP). Opcional: mirar `config.tools["mvp-"+mvp]` solo como contexto de dominio — **no** pegar artefactos enteros en la bib.
+1. Resolver `FOLDER`; leer `profile.md`. Si existe **`## Marco PICOCT`**, usarlo como base del marco (no reinventar). Opcional: `config.tools["mvp-"+mvp]` solo como contexto de dominio — **no** pegar artefactos enteros.
 2. Leer playbook `common/bibliography-picoct/model1.md`.
 3. Si existe `bibliography/<MARCO>/` con archivos → **preguntar** antes de sobrescribir.
-4. Llenar y escribir **`picoct.md`** (solo componentes del marco elegido).
+4. Escribir **`picoct.md`**: desde Marco PICOCT del profile (filtrando componentes según PICO/PICOC/PICOCT) o construir si falta; completar `pendiente_campo` sin inventar empresa.
 5. Proponer keywords candidatas EN/ES por componente (controladas; ver playbook).
 6. **Debate** (Task / agentes), modo `keywords_picoct`:
    - `critico-estricto` — ataca inventadas / ruido / localismos; WebSearch ≤3.
    - Luego o en paralelo con ataques en prompt: `defensor-fundamento` — evidencia o `punto_debil`; WebSearch ≤3.
-7. Consolidar; escribir **`debate.md`** y **`keywords.md`** (tabla + ecuaciones EN y ES según playbook).
-8. Chat: paths, marco, años T, keywords descartadas, siguiente paso sugerido (CSV manual / búsqueda auto — aún en draft).
+7. Consolidar (desempate `candidato_débil` según playbook); checklist de sintaxis de ecuaciones; escribir **`debate.md`** y **`keywords.md`**.
+8. Chat: paths, marco, años T, keywords descartadas, componentes `pendiente_campo`, siguiente paso (CSV manual / auto — draft).
 
 ## Formato esperado `keywords.md` (resumen)
 

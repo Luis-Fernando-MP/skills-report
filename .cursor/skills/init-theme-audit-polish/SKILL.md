@@ -157,16 +157,35 @@ MVP N — una frase + por qué gana el debate
 ### Fuera de secuencia / descartado
 - …
 
+## Marco PICOCT (para bibliography)
+*(Obligatorio si GO o GO_con_cambios. Alimenta `bibliography-picoct` y se espeja en `profile.md`.)*
+
+| Componente | Definición | Criterios / descripción del caso |
+| :---: | :--- | :--- |
+| **P** | Population / Problem | Sujetos o problemática central (desde Problema + quién vive el dolor) |
+| **I** | Intervention | Método/herramienta a evaluar (alineada al MVP de arranque) |
+| **C** | Comparison | Práctica actual o alternativa (cuaderno, WhatsApp, Excel, POS/ERP…) |
+| **O** | Outcome | Métricas / desenlaces (criterio de éxito, métricas de diagnóstico) |
+| **C** | Context | País, sector, tipo de organización (no solo razón social) |
+| **T** | Time / Type of study | Años de búsqueda + tipo documental si aplica |
+
+**Reglas al llenar PICOCT:**
+- Derivar de Tema / Descripción / Problema / Alcance / MVP. No inventar hechos de empresa.
+- Si un componente falta dato: hipótesis breve (no vacío).
+- **T — años:** si el usuario **no** indicó rango en el invoke → solo el **año corriente** del sistema (p. ej. `2026`) + tipo default `article` si aplica. Si indicó rango → usarlo.
+
+Fuente para `bibliography-picoct` / espejo en `profile.md` vía `init-project`.
+
 ## Si NO_GO
 El tema no pasó. Reformular o cambiar de eje; volver a `init-theme-audit` o explorar con `init-theme`.
 
 ## Listo para
-`init-project` (espejar tema final + MVP entregables en `profile.md`) → `init-project-mvp mvp-<N>`.
+`init-project` (espejar tema final + MVP + **Marco PICOCT** en `profile.md`) → `init-project-mvp mvp-<N>` → `bibliography-picoct`.
 ```
 
 ### Chat
 
-Paths + veredicto + **MVP de arranque** en una línea. Si NO_GO: indicar reformulación.
+Paths + veredicto + **MVP de arranque** + si T usó solo año corriente. Si NO_GO: indicar reformulación.
 
 ## Forbidden
 
@@ -176,3 +195,4 @@ Paths + veredicto + **MVP de arranque** en una línea. Si NO_GO: indicar reformu
 - Escribir proyecto en `docs/content/` aquí.
 - Tocar skills `rsl-*` / regenerar Graphify.
 - Dejar solo un bullet “MVP acordado” sin tabla de entregables debatidos.
+- Omitir **Marco PICOCT** cuando el veredicto es GO o GO_con_cambios.

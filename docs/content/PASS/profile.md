@@ -30,6 +30,17 @@ MVP 1 — Piloto de confiabilidad de inventario PT por variante en ≤2 ubicacio
 ### Fuera de secuencia / descartado
 - ERP/POS comercial, facturación SUNAT, BOM/MRP, e-commerce, “tiempo real”, dashboards de tendencias de venta, ISO 19407 como criterio de ajuste.
 
+## Marco PICOCT (para bibliography)
+
+| Componente | Definición | Criterios / descripción del caso |
+| :---: | :--- | :--- |
+| **P** | Population / Problem | PYME de calzado / planta-comercial; disponibilidad por variante (modelo×color×talla) puede no coincidir con stock físico en ubicaciones propias; magnitud aún no medida |
+| **I** | Intervention | Piloto de confiabilidad: maestro variante + bitácora sin POS + saldos por ubicación propia (≤2) con latencia de turno; Fase 0 AS-IS como gate |
+| **C** | Comparison | Memoria, WhatsApp, cuaderno, Excel suelto; POS/ERP comercial fuera de alcance del piloto |
+| **O** | Outcome | Respuesta “¿hay talla X en Y?” con fuente de cierre de turno; % descuadre en muestra; % registro en turno; ownership de ubicación |
+| **C** | Context | Perú / Trujillo; calzado; PYME; ubicaciones propias (tercerizados fuera ahora) |
+| **T** | Time / Type of study | Año 2026; tipo preferente artículos (`ar`) |
+
 ## Origen
 - polish: docs/topics/ITD/theme-audit-polish.md
 - veredicto: GO_con_cambios
