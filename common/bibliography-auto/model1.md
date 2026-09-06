@@ -99,9 +99,12 @@ Tope: como máximo **5** PDFs. Si hay más GO, priorizar las más alineadas al p
 
 1. Crear `bibliography/auto/pdfs/` y `bibliography/docs/`.
 2. Para cada GO con URL PDF pública: HTTP 200 / content-type PDF (o enlace OA explícito). Guardar `pdfs/<slug>.pdf`.
-3. Convertir con `pdftotext -layout` → `bibliography/docs/<slug>.md`:
-   - Front matter breve: título, DOI/URL, path del PDF, fecha captura.
-   - Cuerpo con **≥3** headings `##` / `###` (páginas o secciones) — requerido por Graphify (`MIN_HEADINGS_NOTE`).
+3. Convertir con `pdftotext -layout` → `bibliography/docs/<slug>.md`, luego enriquecer para Graphify:
+   ```bash
+   python scripts/graphify_bib_enrich.py docs/content/<FOLDER>/bibliography/docs/<slug>.md \
+     --pdf docs/content/<FOLDER>/bibliography/auto/pdfs/<slug>.pdf
+   ```
+   El enrich añade: `source_pdf` + página, findings EN como `###` (snippet en el grafo), alias ES (`Hallazgo:` / `Concepto:`), chunks por sección. (Si no se llama aquí, **graphify-project** prepare lo hace al indexar.)
 4. Si la descarga falla → anotar en `debate.md` y chat; **no** inventar PDF, MD ni entrada en `docs.md`.
 
 Slug: 3–8 palabras, lowercase, hyphenated, estable (mismo nombre pdf y md).

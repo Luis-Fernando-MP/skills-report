@@ -56,7 +56,11 @@ graphify query "<q>" --graph docs/content/<FOLDER>/graphify-out/graph.json
 graphify explain "<concept>" --graph docs/content/<FOLDER>/graphify-out/graph.json
 ```
 
-Preferir este grafo para profile / structure / apuntes del proyecto. Root → **graphify-root**. Temas RSL legado → **graphify-theme**.
+Papers de **bibliography-auto** llevan finding hooks EN + alias ES y locators `[PDF p.N]` en el MD. Preferir queries con términos del paper (EN o ES). **No** abrir el PDF a mano si Graphify ya devolvió `src` + nodo Finding/Hallazgo + página.
+
+Preferir este grafo para profile / structure / apuntes / bib-auto del proyecto. Root → **graphify-root**. Temas RSL legado → **graphify-theme**.
+
+`--force` regenera y re-enriquece MD de bib-auto.
 
 ## Forbidden
 

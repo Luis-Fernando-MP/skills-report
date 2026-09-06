@@ -53,7 +53,7 @@ Sin `profile.md` → pedir **init-project** primero.
    - `critico-estricto` — utilidad / ruido / fuera de alcance; WebSearch ≤3.
    - `defensor-fundamento` — evidencia o `punto_debil`; WebSearch ≤3.
 6. Consolidar → `bibliography/auto/debate.md`. Solo `GO` / `GO_con_cambios` pasan; ante duda → no descargar.
-7. Descargar ≤5 PDFs OA → `auto/pdfs/`; `pdftotext` → `bibliography/docs/<slug>.md` (≥3 headings). Verificar archivos en disco.
+7. Descargar ≤5 PDFs OA → `auto/pdfs/`; `pdftotext` → `bibliography/docs/<slug>.md`; enriquecer con `python scripts/graphify_bib_enrich.py …` (≥3 headings; findings + páginas). Verificar archivos en disco.
 8. **Al final del material** (después de 7, antes de Graphify): escribir `bibliography/auto/docs.md` **solo** con fuentes que tengan PDF + MD reales. Si hay 2 PDFs → 2 secciones. No inventar `pendiente_oa` ni paths.
 9. Registrar `config.tools["bibliography-auto"]` (catalog, debate, pdfs, docs).
 10. Invocar **graphify-project**: `pnpm graphify:project -- <FOLDER>` (create o update; manifest skip por hash).

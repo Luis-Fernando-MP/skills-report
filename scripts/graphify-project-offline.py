@@ -281,8 +281,13 @@ def prepare(project: Path, force: bool = False) -> dict:
         rel = entry_key(str(bib_path.relative_to(project)))
         digest = sha256_file(bib_path)
         ent = entries.get(rel)
+        needs_enrich = False
+        if bib_kind == "bib_auto":
+            peek = bib_path.read_text(encoding="utf-8", errors="replace")
+            needs_enrich = "section-chunks + finding-hooks" not in peek
         if (
             not force
+            and not needs_enrich
             and ent
             and ent.get("sha256") == digest
             and ent.get("status") in {"md_ready", "graphify_indexed"}
@@ -290,6 +295,25 @@ def prepare(project: Path, force: bool = False) -> dict:
             skipped.append(rel)
             continue
 
+        # bib_auto papers: enrich with finding hooks + page locators before hash/index
+        if bib_kind == "bib_auto":
+            try:
+                # import sibling script next to this file
+                sys.path.insert(0, str(Path(__file__).resolve().parent))
+                from graphify_bib_enrich import enrich_bib_md
+
+                pdf_candidate = (
+                    project / "bibliography" / "auto" / "pdfs" / f"{bib_path.stem}.pdf"
+                )
+                enrich_bib_md(
+                    bib_path,
+                    pdf_candidate if pdf_candidate.is_file() else None,
+                    force=force or needs_enrich,
+                )
+            except Exception as e:
+                print(f"warn: bib enrich skipped for {rel}: {e}", file=sys.stderr)
+
+        digest = sha256_file(bib_path)
         text = bib_path.read_text(encoding="utf-8", errors="replace")
         headings = count_md_headings(text)
         min_h = 1 if bib_kind == "bib_auto_index" else MIN_HEADINGS_NOTE
@@ -310,6 +334,8 @@ def prepare(project: Path, force: bool = False) -> dict:
                 entry["source_pdf"] = entry_key(
                     str(pdf_candidate.relative_to(project))
                 )
+            if "section-chunks + finding-hooks" in text:
+                entry["technique"] = "section-chunks + finding-hooks + es-aliases"
         entries[rel] = entry
         prepared.append(rel)
         if status == "needs_agent":
