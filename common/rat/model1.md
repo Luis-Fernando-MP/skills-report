@@ -2,6 +2,8 @@
 
 Riskiest Assumption Test aplicado al **MVP N**.
 
+**Pedagogía vs salida:** este playbook guía al orquestador. La salida `rat.md` son fichas **aplicadas** al caso (sin tutorial RAT).
+
 ## Posición en el pipeline
 
 Se escribe **después** de FODA (y DT Prototype / Lean). Es la **fuente de verdad (SoT)** de supuestos riesgosos y falsaciones. DT Test y la brecha AS-IS→TO-BE **consumen** IDs `R#`; no inventan otro set.
@@ -60,4 +62,4 @@ Priorizar qué falsificar primero en campo (Fase 0 / piloto) para no construir s
 
 ## Salida mínima
 
-Sección semántica **Mapa de supuestos (RAT)** con 3–5 fichas + cola opcional. El **número** (`## N`) lo asigna el orquestador.
+Archivo `rat.md`: 3–5 fichas + cola opcional. Numeración `##` dentro del archivo.

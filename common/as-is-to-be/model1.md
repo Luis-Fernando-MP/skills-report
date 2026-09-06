@@ -2,6 +2,8 @@
 
 Diagramas Mermaid del **proceso del MVP N** (no de la transformación digital completa).
 
+**Pedagogía vs salida:** este playbook guía al orquestador. La salida `as-is-to-be.md` son flujos **del caso** (sin “cómo leer el método”).
+
 ## Posición en el pipeline
 
 Se escribe **al final** del diagrama de la skill (SoT del orden), después de los nodos presentes entre Prototype/profile y RAT/Test.
@@ -52,4 +54,4 @@ flowchart TD
 
 ## Salida mínima
 
-Sección semántica **Flujos AS-IS / TO-BE** con dos fences mermaid + brecha. El **número** (`## N`) lo asigna el orquestador.
+Archivo `as-is-to-be.md`: dos fences mermaid (AS-IS, TO-BE) + brecha. Numeración `##` dentro del archivo.

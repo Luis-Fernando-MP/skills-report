@@ -1,74 +1,67 @@
 # Design Thinking — model1
 
-Playbook para `init-project-mvp` / agente `design-thinking`. Aplica **solo al MVP N** del profile. No reabre el tema.
+Playbook para `init-project-mvp`. Solo el **MVP N**. No reabre el tema. Incorpora práctica de curso ITD (observar antes de preguntar, HMW accionable, Crazy 8’s, prototipo barato, test sin explicar).
+
+**Pedagogía vs salida:** este archivo enseña al orquestador. Los `.md` en `mvp/mvp-<N>-<slug>/` son **informe aplicado** al caso (sin mini-clases ni sección Notas).
 
 ## Posición en el pipeline
 
-Tool **opcional**. Si está en `config.tools`:
-
-1. Ejecutar **Empathize → Define → Ideate → Prototype** en su turno del diagrama (SoT del orden = diagrama de la skill).
-2. **No** cerrar Test todavía.
-3. Tras los nodos Lean/FODA/**RAT** presentes, completar **Test** (alimentado por `R#` si hubo RAT; si no, criterio_exito profile + umbral).
-4. AS-IS/TO-BE (si corre) referencia este Prototype.
-
-Si DT **no** está en tools: no hay sección DT; Lean y demás usan `ref: profile` (ver degradación en la skill).
+Tool opcional. Orden del diagrama de la skill = SoT. Empathize→Prototype primero; **Test después del RAT**. TO-BE referencia este Prototype.
 
 ## Propósito
 
-Traducir el MVP acordado en empatía, POV/HMW, ideación acotada, prototipo concreto y plan de test — etiquetando siempre evidencia.
+Entender el problema desde quien lo vive **antes** de fijar la solución. Ciclos, no carretera: Empatizar ↔ Definir ↔ Idear ↔ Prototipar ↔ Evaluar.
 
-## Etiquetas de evidencia (obligatorias)
+```mermaid
+flowchart LR
+  empatizar[Empatizar] --> definir[Definir]
+  definir --> idear[Idear]
+  idear --> prototipar[Prototipar]
+  prototipar --> evaluar[Evaluar]
+  evaluar -.-> empatizar
+  evaluar -.-> idear
+  prototipar -.-> definir
+```
 
-Cada afirmación relevante lleva una de:
+**Ejecución en este paquete:** el ciclo de arriba es **intención pedagógica**. `init-project-mvp` corre **una sola pasada** lineal (Empathize→Prototype → … → Test → flujos). Si Test revela que hay que reabrir Empathize o Idear, se declara como `pendiente_campo` / pregunta al equipo para una **iteración futura** — **no** se reabre el pipeline en el mismo run.
 
-- `evidencia` — dato del profile/polish/campo
-- `hipótesis` — supuesto razonable sin campo
-- `pendiente_campo` — debe validarse en Fase 0 / visitas
+## Etiquetas
 
-## Pasos
+`evidencia` | `hipótesis` | `pendiente_campo`
 
-### 1. Empathize
+## Cómo hacerlo (con lógica de ejemplo de curso)
 
-1. Listar **roles** del MVP (máx. 5): p. ej. dueño, almacén, comercial, taller.
-2. Por rol: qué hace hoy, qué le duele, qué necesita para el criterio de éxito del MVP.
-3. Mapa de empatía breve (Dice / Piensa / Hace / Siente) — marcar hipótesis.
-4. **Prohibido** inventar citas o métricas de la empresa.
+### Empatizar — observar comportamiento, no opiniones educadas
 
-**Preguntas guía (campo / entrevista):**
+1. Roles del MVP (máx. 5).
+2. **Observar** rutina real (o plan Fase 0 para observarla). Preguntas abiertas: *“cuéntame la última vez que…”*, no *“¿te gusta X?”*.
+3. Mapa empatía Dice/Piensa/Hace/Siente — marcar hipótesis.
+4. Prohibido inventar citas o métricas de la empresa.
 
-- ¿Dónde miras hoy para saber si hay talla/variante X?
-- ¿Cuánto tardas en confirmar disponibilidad a un cliente?
-- ¿Quién actualiza el stock y con qué frecuencia?
-- ¿Qué pasa cuando el dato y el físico no coinciden?
+**Mini-patrón (curso Ana/cafetería):** no preguntar “¿qué opinas de la app?”; mirar dónde se traban y preguntar *en el momento* qué pasó.
 
-### 2. Define
+### Definir — un reto, no “mejorar el sistema”
 
-1. Redactar **POV** en una frase: *[Usuario] necesita [necesidad] porque [insight].*
-2. Escribir **2–4 HMW** accionables y acotados al MVP (no “¿cómo digitalizamos la empresa?”).
-3. Elegir 1 HMW primario alineado a los **entregables** del profile.
+Fórmula HMW (curso): *“¿Cómo podríamos [acción] para que [usuario específico] pueda [resultado]?”*
 
-### 3. Ideate
+1. POV en una frase.
+2. 2–4 HMW; **1 primario** alineado a entregables del profile.
+3. Evitar HMW genéricos (“¿cómo digitalizamos la empresa?”).
 
-1. Generar **3–5** ideas que respondan al HMW primario.
-2. Descartar ideas fuera del alcance del MVP (ERP, POS, e-commerce, etc. si están en “Fuera”).
-3. Priorizar **1 idea** con criterio: valor al criterio de éxito + esfuerzo académico + dependencias de datos.
+### Idear — cantidad antes que calidad
 
-### 4. Prototype (SoT del artefacto)
+1. 3–5 ideas (o Crazy 8’s si hay sesión de equipo: 8 ideas / 8 min).
+2. Disparadores: ¿sin presupuesto? ¿100% manual? ¿sin POS?
+3. Descartar lo fuera de alcance; priorizar 1 idea (valor criterio_éxito + esfuerzo + datos).
 
-1. Describir el prototipo como **artefacto** (campos, pantallas, hoja, flujo) que materializa los entregables del MVP.
-2. Incluir: roles que lo usan, frecuencia de uso, dato maestro mínimo.
-3. No prototipar fases MVP+1.
-4. Lean Canvas (Solución) y AS-IS/TO-BE (TO-BE) **solo referencian** este Prototype; no inventan otro artefacto.
+### Prototipar — tangible y barato (≤1 día de diseño)
 
-### 5. Test (después del RAT)
+Artefacto concreto (Sheets, papel, flujo dibujado). Roles, frecuencia, maestro mínimo. No MVP+1. **SoT** del artefacto para Lean Solución y TO-BE.
 
-Completar **solo después** de tener la sección RAT (si `rat` está en `config.tools`). Si RAT no corre: Test se basa en el criterio de éxito del profile con umbral explícito.
+### Test — después del RAT; usuario usa, tú callas
 
-1. Mapear cada actividad de test a un `R#` del RAT (`R1 → …`). Prohibido un set de pruebas paralelo no trazado al RAT.
-2. Por actividad: quién / qué observar / **umbral numérico o binario** / cuándo.
-   - Ejemplo: “Muestra 20 SKU-ubicación; si % con |varianza| > 0 supera 10% → falsado el supuesto de stock alineado (R1)”.
-3. Lista de `pendiente_campo` que bloquean pasar de hipótesis a evidencia.
+Mapa `R# → actividad` + umbral numérico/binario. Si tienes que explicar el prototipo para que funcione, eso ya es hallazgo. Sin RAT: umbral desde criterio_exito profile.
 
-## Salida mínima en `mvp-N.md`
+## Salida mínima
 
-Sección semántica **Design Thinking** (Empathize / Define / Ideate / Prototype / Test post-RAT). El **número** (`## N`) lo asigna el orquestador según el diagrama y las tools presentes.
+Archivo `design-thinking.md`: Empathize → Define → Ideate → Prototype → Test (si hubo RAT), **aplicado al caso**. Sin diagrama de ciclo metodológico ni Notas pedagógicas. Número `##` = orquestador por archivo.

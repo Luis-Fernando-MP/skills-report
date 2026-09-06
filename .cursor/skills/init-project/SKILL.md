@@ -26,7 +26,7 @@ docs/content/<FOLDER>/
   profile.md           # espejo del tema final + MVP entregables del polish
   structure.md         # opcional — si existe, pisa al modelo común
   docs/                # apuntes md/qmd del curso
-  mvp/                 # lo crea init-project-mvp → mvp/mvp-N-slug.md
+  mvp/                 # lo crea init-project-mvp → mvp/mvp-N-slug/*.md
 
 common/citation-style/<id>.md
 common/structure/<modelo>.md

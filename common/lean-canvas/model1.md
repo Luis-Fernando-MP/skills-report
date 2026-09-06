@@ -1,66 +1,70 @@
 # Lean Canvas — model1
 
-Playbook Ash Maurya (9 bloques) para el **MVP N**, no para el negocio completo soñado.
+Playbook Ash Maurya (9 bloques) para el **MVP N**. Una hoja de hipótesis vivas, no plan de 40 páginas. Alineado a curso ITD S03 (orden de riesgo, UVP con fórmula, 3 problemas ↔ 3 features).
+
+**Pedagogía vs salida:** este archivo enseña al orquestador. La salida `lean-canvas.md` es el **canvas aplicado** al caso (tabla + flujo del feature si aplica), no una explicación del método.
 
 ## Posición en el pipeline
 
-Se llena **después** de DT Empathize→Prototype **si** `design-thinking` está en `config.tools`; si no, es el primer nodo presente tras el profile. **Antes** de FODA/RAT.
-
-DT es **opcional** (como toda tool): puede omitirse en `config.tools`. Por eso la trazabilidad tiene dos anclas.
+Después de DT Prototype (si hay DT); antes de FODA/RAT. Si no hay DT → `ref: profile`.
 
 ## Propósito
 
-Mapear hipótesis de modelo alrededor del MVP acordado. Una hoja mental; reescribible tras campo.
+Mapear hipótesis del modelo alrededor del MVP. Llenar en el **orden que reduce más riesgo** (no de arriba a abajo del lienzo).
 
-## Orden de llenado (obligatorio)
+### Orden de llenado (obligatorio) — diagrama funcional
 
-1. Problema  
-2. Segmentos de clientes  
-3. Propuesta de valor única  
-4. Solución  
-5. Canales  
-6. Flujos de ingreso  
-7. Estructura de costos  
-8. Métricas clave  
-9. Ventaja especial  
+```mermaid
+flowchart LR
+  p1[1 Problema] --> p2[2 Segmentos]
+  p2 --> p3[3 UVP]
+  p3 --> p4[4 Solucion]
+  p4 --> p5[5 Canales]
+  p5 --> p6[6 Costos]
+  p6 --> p7[7 Ingresos]
+  p7 --> p8[8 Metricas]
+  p8 --> p9[9 Ventaja]
+```
+
+1. Problema → 2. Segmentos → 3. UVP → 4. Solución → 5. Canales → 6. Costos → 7. Ingresos → 8. Métricas → 9. Ventaja especial
+
+### Anexo — estructura del lienzo (no es el orden de llenado)
+
+```mermaid
+flowchart TB
+  subgraph mercado [Realidad del mercado]
+    problema[Problema]
+    solucion[Solucion]
+    metricas[Metricas clave]
+    costos[Estructura de costos]
+  end
+  subgraph idea [Idea]
+    uvp[Propuesta de valor unica]
+  end
+  subgraph propio [Productos propios]
+    segmentos[Segmentos]
+    ventaja[Ventaja especial]
+    canales[Canales]
+    ingresos[Flujo de ingresos]
+  end
+  problema --> uvp
+  segmentos --> uvp
+  uvp --> solucion
+```
 
 ## Reglas
 
-- Cada celda: contenido + etiqueta `evidencia` | `hipótesis` | `pendiente_campo`.
-- **Longitud:** máx. **2 frases o 3 bullets** por celda.
-- **Trazabilidad (obligatoria):**
-  - Si corrió DT: Problema ← Empathize (`ref: DT Empathize`); Segmentos ← roles (`ref: DT roles`); Solución ← Prototype (`ref: DT Prototype`).
-  - Si **no** corrió DT: los tres anclan a profile (`ref: profile` — problema/alcance/entregables MVP). No inventar POV/HMW fantasma.
-- **Problema** y **Segmentos** anclados a roles del MVP, no a “el mercado peruano” genérico.
-- **Solución** = entregables del MVP N / Prototype / profile, no ERP/POS fuera de alcance.
-- **Métricas clave** alineadas al criterio de éxito del profile (máx. 3).
-- Prohibido BMC Osterwalder completo ni VPC largo.
-
-### N/A — cuándo sí y cuándo no
-
-| Bloque | N/A |
-|--------|-----|
-| Problema, Segmentos, UVP, Solución, Costos, Métricas | **Prohibido.** Vacío = error de llenado. |
-| Canales | **Permitido** si la adopción es 100% interna y ya está en Segmentos → `N/A interno (ver Segmentos)`. |
-| Flujos de ingreso | **Permitido** en MVP operativo sin cobro → `N/A operativo`. |
-| Ventaja especial | **Permitido** → `ninguna aún` + `pendiente_campo` o hipótesis débil explícita. |
-
-Si N/A aparece en un bloque prohibido, reescribir el bloque; no dejarlo vacío disfrazado.
-
-## Preguntas por bloque
-
-| Bloque | Preguntas |
-|--------|-----------|
-| Problema | ¿Top 1–3 dolores del usuario del MVP? ¿Alternativas actuales (cuaderno, WhatsApp, Excel)? |
-| Segmentos | ¿Quién usa el entregable día a día? ¿Quién decide adoptarlo? |
-| UVP | ¿Qué promesa única cumple el MVP vs status quo? |
-| Solución | ¿Qué artefactos concretos entrega el MVP N? (¿igual al Prototype?) |
-| Canales | ¿Cómo llega el prototipo a los usuarios internos? |
-| Ingresos | ¿Hay ingreso directo o solo valor operativo? |
-| Costos | ¿Tiempo, herramientas, capacitación del piloto? |
-| Métricas | ¿Cómo sabemos que el criterio de éxito se cumple? |
-| Ventaja | ¿Qué no puede copiar un POS genérico en *este* contexto? |
+- Cada celda: contenido + `evidencia` | `hipótesis` | `pendiente_campo`.
+- Máx. **2 frases o 3 bullets** por celda.
+- Trazas: Problema/Segmentos/Solución ← DT o profile.
+- **Problema:** hasta **3** dolores ordenados + **alternativas existentes** (qué hacen hoy). Idealmente derivados de conversación/observación, no solo imaginación.
+- **Segmentos:** específicos + **early adopters** (quién lo sufriría primero).
+- **UVP** — fórmula: *“Para [segmento] que [problema], [producto] es [categoría] que [beneficio], a diferencia de [alternativa].”*
+- **Solución:** hasta **3 features** que atacan los **3 problemas** (1:1). Diagrama de flujo del feature central si ayuda.
+- **Métricas:** evitar vanidad (descargas, “usuarios”); preferir comportamiento sostenido / criterio_éxito del profile.
+- **Ventaja:** algo costoso de copiar; “buen servicio” no cuenta → `ninguna aún` si aplica.
+- N/A solo en Canales (interno), Ingresos (operativo sin cobro), Ventaja (`ninguna aún`). Prohibido N/A en Problema/Segmentos/UVP/Solución/Costos/Métricas.
 
 ## Salida mínima
 
-Tabla de 9 bloques en la sección semántica **Lean Canvas** de `mvp-N.md`. El **número** (`## N`) lo asigna el orquestador (no hardcodear).
+Archivo `lean-canvas.md`: tabla 9 bloques (orden 1–9) + mermaid del feature central si la solución es multi-paso. **No** incluir el diagrama de zonas ni el de orden de llenado (viven solo en este playbook). Número = orquestador.
