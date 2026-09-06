@@ -10,5 +10,28 @@
     "foda": "common/foda/model1.md",
     "as-is-to-be": "common/as-is-to-be/model1.md"
   },
-  "tools": {}
+  "tools": {
+    "company": "./company.md",
+    "mvp-1": {
+      "design-thinking": "./mvp/mvp-1-nucleo-de-propuesta-pedidos-e-inventario-correctos/design-thinking.md",
+      "lean-canvas": "./mvp/mvp-1-nucleo-de-propuesta-pedidos-e-inventario-correctos/lean-canvas.md",
+      "foda": "./mvp/mvp-1-nucleo-de-propuesta-pedidos-e-inventario-correctos/foda.md",
+      "rat": "./mvp/mvp-1-nucleo-de-propuesta-pedidos-e-inventario-correctos/rat.md",
+      "as-is-to-be": "./mvp/mvp-1-nucleo-de-propuesta-pedidos-e-inventario-correctos/as-is-to-be.md"
+    },
+    "bibliography-auto": {
+      "catalog": "./bibliography/auto/docs.md",
+      "debate": "./bibliography/auto/debate.md",
+      "pdfs": "./bibliography/auto/pdfs/",
+      "docs": "./bibliography/docs/"
+    },
+    "make-report": {
+      "last": "./docs/v1-completo/draft.md"
+    },
+    "bibliographic-search": {
+      "debate": "./bibliographic/search/debate.md",
+      "pdfs": "./bibliographic/search/pdfs/",
+      "docs": "./bibliographic/docs/"
+    }
+  }
 }
