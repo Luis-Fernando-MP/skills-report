@@ -2,7 +2,8 @@
 """
 Project Graphify pipeline (docs/content/<FOLDER>).
 
-Corpus: profile.md, structure.md (local or common/structure/{modelo}), docs/**/*.{md,qmd}
+Corpus: profile.md, structure.md (local or common/structure/{modelo}),
+docs/**/*.{md,qmd}, bibliography/auto/docs.md, bibliography/docs/**/*.md
 Manifest: docs/content/<FOLDER>/index-manifest.json
 Resolved copies (qmd / modelo): graphify-out/_corpus/ (gitignored with graphify-out)
 """
@@ -110,6 +111,24 @@ def list_note_files(project: Path) -> list[Path]:
             continue
         if p.suffix.lower() in {".md", ".qmd"}:
             out.append(p)
+    return out
+
+
+def list_bib_auto_files(project: Path) -> list[tuple[Path, str]]:
+    """Return (path, kind) for bibliography auto corpus.
+
+    kind: bib_auto_index | bib_auto
+    """
+    out: list[tuple[Path, str]] = []
+    catalog = project / "bibliography" / "auto" / "docs.md"
+    if catalog.is_file() and catalog.stat().st_size > 20:
+        out.append((catalog, "bib_auto_index"))
+    bib_docs = project / "bibliography" / "docs"
+    if bib_docs.is_dir():
+        for p in sorted(bib_docs.rglob("*.md")):
+            if not p.is_file() or p.name.startswith(".") or p.name == ".gitkeep":
+                continue
+            out.append((p, "bib_auto"))
     return out
 
 
@@ -250,6 +269,48 @@ def prepare(project: Path, force: bool = False) -> dict:
             "heading_count": headings,
             "updated_at": utc_now(),
         }
+        prepared.append(rel)
+        if status == "needs_agent":
+            needs_agent.append(rel)
+            print(f"needs_agent: {rel} (headings={headings})")
+        else:
+            print(f"prepared: {rel} (headings={headings})")
+
+    # bibliography auto: catalog + PDF→MD under bibliography/docs/
+    for bib_path, bib_kind in list_bib_auto_files(project):
+        rel = entry_key(str(bib_path.relative_to(project)))
+        digest = sha256_file(bib_path)
+        ent = entries.get(rel)
+        if (
+            not force
+            and ent
+            and ent.get("sha256") == digest
+            and ent.get("status") in {"md_ready", "graphify_indexed"}
+        ):
+            skipped.append(rel)
+            continue
+
+        text = bib_path.read_text(encoding="utf-8", errors="replace")
+        headings = count_md_headings(text)
+        min_h = 1 if bib_kind == "bib_auto_index" else MIN_HEADINGS_NOTE
+        status = "md_ready" if headings >= min_h else "needs_agent"
+        entry: dict = {
+            "sha256": digest,
+            "status": status,
+            "kind": bib_kind,
+            "index_md": rel,
+            "heading_count": headings,
+            "updated_at": utc_now(),
+        }
+        if bib_kind == "bib_auto":
+            pdf_candidate = (
+                project / "bibliography" / "auto" / "pdfs" / f"{bib_path.stem}.pdf"
+            )
+            if pdf_candidate.is_file():
+                entry["source_pdf"] = entry_key(
+                    str(pdf_candidate.relative_to(project))
+                )
+        entries[rel] = entry
         prepared.append(rel)
         if status == "needs_agent":
             needs_agent.append(rel)
@@ -473,6 +534,18 @@ def verify(project: Path) -> dict:
         ]
         if len(note_nodes) < 1:
             warnings.append("docs/ notes present but no note nodes in graph")
+
+    bib_files = list_bib_auto_files(project)
+    if bib_files:
+        bib_nodes = [
+            n
+            for n in nodes
+            if (sf := str(n.get("source_file", "")).replace("\\", "/")).startswith(
+                "bibliography/"
+            )
+        ]
+        if len(bib_nodes) < 1:
+            warnings.append("bibliography auto MD present but no bibliography nodes in graph")
 
     entries = manifest.get("entries") or {}
     for key, ent in entries.items():

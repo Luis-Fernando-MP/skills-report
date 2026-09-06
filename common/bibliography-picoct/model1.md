@@ -57,7 +57,7 @@ Usar exactamente estos significados al llenar `picoct.md`:
 6. **C** (comparison): si no hay brazo control explícito, documentar *prácticas actuales* como comparación.
 7. **O** debe ser medible (nombres de métricas usables en keywords).
 8. **Context**: país/sector; evitar solo el nombre comercial de la empresa como único término de búsqueda (la empresa es caso; el Context de la query es el *tipo* de entorno).
-9. **T — años:** si el usuario/profile **no** fija rango → solo el **año corriente** del sistema (p. ej. `PUBYEAR > 2025 AND PUBYEAR < 2027` para acotar 2026, o documentar `año = 2026`) + tipo default `article` si aplica. Si hay rango explícito → usarlo.
+9. **T — años:** si el usuario/profile **no** fija rango → **últimos 5 años** (año corriente + 4 anteriores; p. ej. si el año corriente es 2026 → `PUBYEAR > 2021 AND PUBYEAR < 2027`) + tipo default `article` si aplica. Si hay rango explícito → usarlo. **Año único** (p. ej. solo 2026) **solo** si el usuario lo pide explícitamente — ya no es el default.
 10. **Profile incompleto:** si un componente (sobre todo **O** o **Context**) sigue vacío tras el Marco PICOCT: mejor hipótesis razonable + `pendiente_campo`, listar en chat (Paso 6). **No** detener el pipeline ni inventar datos de empresa.
 
 ## Keywords — conceptos
@@ -174,6 +174,8 @@ AND ( LIMIT-TO ( LANGUAGE , "English" ) )   # o Spanish en la versión ES
 
 `LIMIT-TO ( OA , "all" )` **solo** si el usuario lo pide o T lo exige; no es default (reduce recall).
 
+**Advertencia:** un marco PICOCT completo (5 bloques de contenido con AND) es la combinación más restrictiva posible. Si P e I abarcan literaturas técnicas distintas entre sí (p. ej. un dominio de proceso de negocio + un dominio de arquitectura de software), el cruce de los 5 puede no existir en la literatura indexada — anticipar esto y **entregar las variantes del Paso 5.3** en el mismo run (no una sola ecuación “sujeta a verificación manual” ni esperar a que el usuario reporte cero resultados).
+
 **Ejemplo de forma** (ilustrativo; no copiar al caso):
 
 ```text
@@ -185,7 +187,7 @@ TITLE-ABS-KEY ( "traditional braille" OR comparison OR versus )
 AND
 TITLE-ABS-KEY ( accuracy OR usability OR accessibility )
 AND
-PUBYEAR > 2020 AND PUBYEAR < 2026
+PUBYEAR > 2021 AND PUBYEAR < 2027
 AND ( LIMIT-TO ( DOCTYPE , "ar" ) )
 AND ( LIMIT-TO ( LANGUAGE , "English" ) )
 ```
@@ -201,9 +203,32 @@ La versión ES usa keywords ES + `LANGUAGE , "Spanish"` (o sin LIMIT de idioma s
 
 Sin este checklist, una ecuación “parecida” al ejemplo puede romper Scopus por anidación incorrecta.
 
+#### 5.3 Verificación de recall — entregar variantes (no solo advertir)
+
+Tras el checklist de sintaxis (5.2) y **antes** de cerrar `keywords.md`: estimar el recall. Si el marco elegido es **PICOCT** y hay **riesgo alto** (5 bloques AND; P e I de dominios técnicos distintos; cruce improbable en literatura indexada), **no** entregar una sola ecuación completa “sujeta a verificación manual”. Generar y presentar **2–3 ecuaciones** como entregable normal en `keywords.md` (EN y ES por cada una, o EN completo + nota ES), cada una etiquetada con el **nombre de marco real** de esa ecuación:
+
+| Etiqueta | Bloques de contenido | Filtro T | Rol |
+|----------|----------------------|----------|-----|
+| **PICOCT** | P+I+C+O+Context | default 5 años (o el rango pedido) | máxima precisión, menor recall |
+| **PICOC** | P+I+C+O+Context | mismo filtro de año amplio; T **no** es bloque TITLE-ABS-KEY | recall medio |
+| **PICO** (si aún hay riesgo de recall bajo) | P+I+O | filtro de año amplio | mayor recall, menor precisión |
+
+**Naming de ecuaciones:** nunca llamar “PICOCT” a una ecuación sin Context; nunca llamar “PICOC” a P+I+O. Por cada variante: nota de 1–2 líneas del trade-off precisión/recall para que el usuario elija cuál correr primero en Scopus.
+
+**Carpeta `bibliography/<MARCO>/`:** el path sigue al **marco efectivo**, no solo al invoke inicial.
+
+1. Invoke default/pedido = p. ej. PICOCT → crear `bibliography/PICOCT/` y entregar variantes ahí en el mismo run.
+2. Si tras 5.3 o tras búsqueda real la ecuación **PICOCT** no es usable (keywords irrelevantes / recall nulo o inaceptable) y se **adopta** la variante **PICOC** como marco de trabajo → **renombrar** la carpeta a `bibliography/PICOC/` (mover `picoct.md` / `keywords.md` / `debate.md`; alinear el nombre del archivo de marco, p. ej. `picoc.md`).
+3. Si se baja otra vez a **PICO** → renombrar a `bibliography/PICO/`.
+4. No dejar ecuaciones “PICOC” como SoT viviendo en una carpeta aún llamada `PICOCT/` cuando el marco efectivo ya cambió.
+
+Si **no** hay riesgo alto: basta la ecuación del marco pedido (p. ej. PICOCT completa con T 5 años).
+
+**Tope:** si incluso la variante **PICO** da ≈0, es señal de que I o P están mal definidos (nicho excesivo o literaturas que no se cruzan) — reportarlo como hallazgo; **no** inventar más relajaciones.
+
 ### Paso 6 — Chat al usuario
 
-Informar: paths, marco, años, keywords descartadas / `candidato_débil`, componentes en `pendiente_campo` a confirmar, si hace falta ampliar Context/T.
+Informar: paths, marco, años (default 5 años si aplica), keywords descartadas / `candidato_débil`, componentes en `pendiente_campo`. Si aplicó el Paso 5.3: listar las variantes entregadas (`PICOCT` / `PICOC` / `PICO`) y el trade-off breve. Si se **adoptó** un marco más relajado tras fallo de recall: informar el rename de carpeta (`PICOCT` → `PICOC` o → `PICO`).
 
 ## Diagrama mental keywords ↔ query
 

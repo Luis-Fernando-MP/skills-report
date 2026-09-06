@@ -27,6 +27,7 @@ A prepare → (B agent headings si needs_agent) → C build → D verify
 - `profile.md`
 - `structure.md` local **o** `common/structure/{config.modelo}.md`
 - `docs/**/*.{md,qmd}` (apuntes del curso)
+- `bibliography/auto/docs.md` + `bibliography/docs/**/*.md` (fuentes de **bibliography-auto**)
 - Manifest: `docs/content/<FOLDER>/index-manifest.json`
 - Copias resueltas (qmd / modelo): `graphify-out/_corpus/` (gitignored)
 
