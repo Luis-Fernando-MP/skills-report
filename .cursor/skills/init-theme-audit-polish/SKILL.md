@@ -15,10 +15,13 @@ Estresa **el tema único** producido por `init-theme-audit`. Reutiliza los mismo
 
 ```text
 docs/topics/<FOLDER>/
-  theme-audit.md           # entrada (init-theme-audit)
-  theme-audit-debate.md    # acta: scores, diagrama mermaid, Q&A, debate MVP
-  theme-audit-polish.md    # veredicto + tema final + MVP entregables (prosa limpia)
+  theme-audit-brainstorm.md   # contexto opcional (init-theme-audit)
+  theme-audit.md              # entrada (init-theme-audit)
+  theme-audit-debate.md       # acta: scores, diagrama mermaid, Q&A, debate MVP
+  theme-audit-polish.md       # veredicto + tema final + MVP entregables (prosa limpia)
 ```
+
+Leer `theme-audit.md` (obligatorio). Si existe `theme-audit-brainstorm.md`, usarlo como contexto de ángulos; **no** editarlo.
 
 ## Invoke
 
@@ -48,6 +51,7 @@ Leer `tipo_sujeto` y **`## Ficha de empresa (investigación)`** de `theme-audit.
 - Distinguir siempre: **reseña histórica pública** ≠ **AS-IS operativo interno** no publicado.
 - Si `dominio_sin_empresa` → no exigir ficha corporativa; el debate se centra en el problema de dominio.
 - Pasar la ficha (o N/A justificado) a los **5** agentes de fondo en CONTEXTO.
+- El polish final (GO / GO_con_cambios) debe incluir **Ficha de empresa** completa cuando `empresa|entidad` — misma estructura que `init-theme-polish` (lista para `company.md`).
 
 ## Procedure
 

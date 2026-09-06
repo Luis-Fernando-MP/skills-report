@@ -112,8 +112,8 @@ flowchart TD
 ### Prioridad sugerida
 
 1. Validar y cerrar mejoras de **query planning** en `bibliography-picoct` (PICO/SPIDER).
-2. Factorizar **OA multi-fuente** en auto + search (beneficio inmediato en DDS/TODOs).
-3. Diseñar **PRISMA** anclado a estándar + misma capacidad OA (cierra bib manual).
+2. Diseñar **PRISMA** anclado a estándar + misma capacidad OA (cierra bib manual).
+   *(OA multi-fuente en auto/search: ya implementado — no es pendiente.)*
 
 ---
 
@@ -121,9 +121,8 @@ flowchart TD
 
 ```text
 1. bibliography-picoct  (+ SPIDER / query plan)     [mejora in-place]
-2. common/bibliography-oa-sources + wire auto/search [capacidad compartida]
-3. bibliography-prisma / prepare-bibliography-manual [skill nueva; checklist PRISMA]
-4. README: insertar paso formal entre picoct y auto (o ramal “vía RSL”)
+2. bibliography-prisma / prepare-bibliography-manual [skill nueva; checklist PRISMA]
+3. README: insertar paso formal entre picoct y auto (o ramal “vía RSL”)
 ```
 
 ## Referencias externas (solo consulta)

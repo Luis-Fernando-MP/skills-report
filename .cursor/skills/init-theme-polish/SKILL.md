@@ -15,10 +15,13 @@ Estresa las **3 alternativas** de `theme.md`. Si el input es un **tema único** 
 
 ```text
 docs/topics/<FOLDER>/
-  theme.md           # entrada (init-theme)
-  theme-debate.md    # acta: scores, diagrama mermaid, preguntas, respuestas
-  theme-polish.md    # veredicto + alternativa final o NO_GO (prosa limpia)
+  theme-brainstorm.md   # contexto opcional (init-theme)
+  theme.md              # entrada (init-theme)
+  theme-debate.md       # acta: scores, diagrama mermaid, preguntas, respuestas
+  theme-polish.md       # veredicto + alternativa final o NO_GO (prosa limpia)
 ```
+
+Leer `theme.md` (obligatorio). Si existe `theme-brainstorm.md`, usarlo como contexto de ángulos; **no** editarlo.
 
 ## Invoke
 
@@ -52,7 +55,7 @@ Si alguna alternativa tiene `tipo_sujeto: empresa|entidad`:
 - Exigir ficha usable en CONTEXTO (completar investigación pública si falta).
 - El crítico puede tumbar una alt. por empresa inventada o sin fuentes.
 - Distinguir reseña histórica **pública** vs AS-IS interno no publicado.
-- Si gana una alt. con empresa → el polish debe llevar **Ficha de empresa** lista para `init-project` → `company.md`.
+- Si gana una alt. con empresa → el polish debe llevar **Ficha de empresa** completa (identidad, reseña, misión/visión/valores, oferta, fuentes) lista para `init-project` → `company.md`. Misma exigencia estructural que `init-theme-audit-polish`.
 
 ## Procedure
 

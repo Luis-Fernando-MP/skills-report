@@ -8,15 +8,15 @@ Dos vías de arranque del tema; después el pipeline es el mismo.
 
 | # | Skill | Qué hace |
 |---|--------|----------|
-| 1 | `init-theme` | De 3–4 tópicos, propone 3 alternativas de proyecto + benchmarking |
-| 2 | `init-theme-polish` | Debate 5 agentes de fondo (+ `gramatica-continuidad` en R3) → veredicto y tema final |
+| 1 | `init-theme` | Tópicos → `brainstorm-theme` → ficha empresa si aplica → `benchmark-theme` → `theme-brainstorm.md` + `theme.md` |
+| 2 | `init-theme-polish` | Debate 5 agentes (+ `gramatica-continuidad` en R3) → `theme-debate.md` + `theme-polish.md` (ficha si empresa\|entidad) |
 
 ### Vía B — Tema ya propuesto
 
 | # | Skill | Qué hace |
 |---|--------|----------|
-| 1 | `init-theme-audit` | Audita un tema concreto + benchmarking |
-| 2 | `init-theme-audit-polish` | Debate 5 agentes de fondo (+ `gramatica-continuidad` en R3, una alternativa) → veredicto, tema final y MVP |
+| 1 | `init-theme-audit` | Tema propuesto → ficha si aplica → `brainstorm-theme` → `benchmark-theme` → `theme-audit-brainstorm.md` + `theme-audit.md` |
+| 2 | `init-theme-audit-polish` | Debate 5 agentes (+ `gramatica-continuidad` en R3) → `theme-audit-debate.md` + `theme-audit-polish.md` (ficha si empresa\|entidad) |
 
 ### Proyecto e informe (después de A o B)
 
@@ -32,6 +32,8 @@ Dos vías de arranque del tema; después el pipeline es el mismo.
 | — | `bibliography-oa-sources` | Capacidad compartida OA multi-fuente (OpenAlex/S2/arXiv/PubMed); la usan auto y search |
 | — | `prepare-bibliography-manual` | *(pendiente)* CSV / búsqueda manual / PRISMA |
 
+Agentes de tema (no skills sueltas): `brainstorm-theme`, `benchmark-theme` — los lanzan init-theme / init-theme-audit.
+
 ### Memoria Graphify (cuando haga falta)
 
 | Skill | Qué hace |
@@ -43,9 +45,11 @@ Dos vías de arranque del tema; después el pipeline es el mismo.
 
 ```text
 docs/topics/<FOLDER>/
+  theme-brainstorm.md      # acta lluvia (init-theme)
   theme.md                 # 3 alternativas (init-theme)
   theme-debate.md          # acta (init-theme-polish)
   theme-polish.md          # veredicto (init-theme-polish)
+  theme-audit-brainstorm.md # acta lluvia (init-theme-audit)
   theme-audit.md           # tema único (init-theme-audit)
   theme-audit-debate.md    # acta (init-theme-audit-polish)
   theme-audit-polish.md    # veredicto (init-theme-audit-polish)
